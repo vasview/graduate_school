@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.postgres",
+    "phonenumber_field",
+    "profiles.apps.ProfilesConfig",
+    "faculties.apps.FacultiesConfig",
+    "postgraduates.apps.PostgraduatesConfig",
+    "study_plans.apps.StudyPlansConfig",
 ]
 
 MIDDLEWARE = [

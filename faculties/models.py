@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Faculty(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
-    name = models.CharField(max_lenght="200", null=False)
+    name = models.CharField(max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Факультет'
@@ -16,7 +16,7 @@ class Faculty(models.Model):
 class Department(models.Model):
     factulty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     code = models.CharField(max_length=50, blank=True, null=True)
-    name = models.CharField(max_lenght="200", null=False)
+    name = models.CharField(max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Кафедра'
@@ -29,7 +29,7 @@ class Department(models.Model):
 class Specialty(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     code = models.CharField(max_length=50, blank=True, null=True)
-    name = models.CharField(max_lenght="200", null=False)
+    name = models.CharField(max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Специальность'
@@ -41,7 +41,7 @@ class Specialty(models.Model):
 
 class Subject(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
-    name = models.CharField(max_lenght="200", null=False)
+    name = models.CharField(max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Дисциплина'
@@ -53,7 +53,7 @@ class Subject(models.Model):
 
 class AcademicDegree(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
-    name = models.CharField(max_lenght="200", null=False)
+    name = models.CharField(max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Ученая степень'
@@ -64,7 +64,7 @@ class AcademicDegree(models.Model):
         return self.name
 
 class AcademicTitle(models.Model):
-    name = models.CharField(max_lenght="200", null=False)
+    name = models.CharField(max_length=200, null=False)
 
     class Meta:
         verbose_name = 'Звание преподавателя'
