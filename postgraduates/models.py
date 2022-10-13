@@ -19,7 +19,7 @@ class ExamGrade(models.IntegerChoices):
     EXCELLENT = 5, 'отлично'
 
 
-class Postgradute(models.Model):
+class Postgraduate(models.Model):
     student = models.ForeignKey(User, on_delete=models.PROTECT)
     department = models.ForeignKey('faculties.Department', on_delete=models.SET_NULL, blank=True, null=True)
     specialty = models.ForeignKey('faculties.Specialty', on_delete=models.SET_NULL, blank=True, null=True)
@@ -43,7 +43,7 @@ class Postgradute(models.Model):
         return self.student.last_name
 
 class DissertationTopic(models.Model):
-    postgraduate = models.ForeignKey(Postgradute, on_delete=models.PROTECT)
+    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.PROTECT)
     name = models.TextField()
     approved_by = models.CharField(max_length=250, blank=True, null=True)
     approval_date = models.DateField(blank=True, null=True)
@@ -59,7 +59,7 @@ class DissertationTopic(models.Model):
 
 
 class ExplanatoryNote(models.Model):
-    postraduate = models.ForeignKey(Postgradute, on_delete=models.CASCADE)
+    postraduate = models.ForeignKey(Postgraduate, on_delete=models.CASCADE)
     topicality = models.TextField(blank=True, null=True)
     purpose = models.TextField(blank=True, null=True)
     scientific_value = models.TextField(blank=True, null=True)
@@ -71,7 +71,7 @@ class ExplanatoryNote(models.Model):
     is_application_approved = models.BooleanField(default=False)
 
 class Exam(models.Model):
-    postgraduate = models.ForeignKey(Postgradute, on_delete=models.PROTECT)
+    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.PROTECT)
     subject = models.ForeignKey('faculties.Subject', on_delete=models.PROTECT)
     date = models.DateField(blank=True, null=True)
     is_candidate_exam = models.BooleanField(default=False)

@@ -45,7 +45,7 @@ class StudyPlan(models.Model):
     class Meta:
         verbose_name = 'Учебный план заголовок'
         verbose_name_plural = 'Учебные планы - заголовки'
-        ordering = ['postraduate.id']
+        ordering = ['postraduate_id']
 
     def __str__(self):
         return self.postgraduate.student.last_name
