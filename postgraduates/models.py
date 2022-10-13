@@ -47,7 +47,7 @@ class DissertationTopic(models.Model):
     name = models.TextField()
     approved_by = models.CharField(max_length=250, blank=True, null=True)
     approval_date = models.DateField(blank=True, null=True)
-    protocol_number = models.CharField(max_lenght=50)
+    protocol_number = models.CharField(max_length=50)
 
     class Meta:
         verbose_name = 'Тема диссертации'
