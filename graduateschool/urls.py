@@ -20,5 +20,4 @@ admin.site.site_header = 'Администрирование Аспиранту�
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('tinymce/', include('tinymce.urls')),
 ]
