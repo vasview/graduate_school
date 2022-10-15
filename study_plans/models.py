@@ -38,7 +38,7 @@ class WorkScope(models.Model):
         return self.title
 
 class StudyPlan(models.Model):
-    postgraduate = models.ForeignKey('postgraduates.postgraduate', on_delete=models.PROTECT)
+    postgraduate = models.ForeignKey('postgraduates.Postgraduate', on_delete=models.PROTECT)
     work = models.ForeignKey(Work, on_delete=models.PROTECT)
     year_of_study = models.SmallIntegerField()
 
