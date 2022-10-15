@@ -52,6 +52,8 @@ load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\department.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_degree.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_title.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_scope.json
 
 clean:
 	find . -type f -name *.pyc -delete

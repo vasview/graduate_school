@@ -1,28 +1,28 @@
 [
     {
-        "model": "faculties.academic_title",
+        "model": "faculties.academictitle",
         "pk": 1,
         "fields": {
             "name": "старший преподаватель"
         }
     },
     {
-        "model": "faculties.academic_title",
+        "model": "faculties.academictitle",
         "pk": 2,
         "fields": {
             "name": "доцент"
         }
     },
     {
-        "model": "faculties.academic_title",
+        "model": "faculties.academictitle",
         "pk": 3,
         "fields": {
             "name": "профессор"
         }
     },
     {
-        "model": "faculties.academic_title",
-        "pk": 3,
+        "model": "faculties.academictitle",
+        "pk": 4,
         "fields": {
             "name": "академик"
         }

@@ -16,7 +16,7 @@ class Faculty(models.Model):
         return self.name
 
 class Department(models.Model):
-    factulty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
+    faculty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     code = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=200, null=False)
     active = models.BooleanField(default=True)

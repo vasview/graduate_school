@@ -1,0 +1,47 @@
+[
+    {
+        "model": "study_plans.workscope",
+        "pk": 1,
+        "fields": {
+            "work_id": 1,
+            "title": "Кандидатские экзамены",
+            "sort": 1
+        }
+    },
+    {
+        "model": "study_plans.workscope",
+        "pk": 2,
+        "fields": {
+            "work_id": 1,
+            "title": "Дисциплины",
+            "sort": 2
+        }
+    },
+    {
+        "model": "study_plans.workscope",
+        "pk": 3,
+        "fields": {
+            "work_id": 1,
+            "title": "Дисциплины для изучения",
+            "sort": 3
+        }
+    },
+    {
+        "model": "study_plans.workscope",
+        "pk": 4,
+        "fields": {
+            "work_id": 2,
+            "title": "Теоретическая",
+            "sort": 1
+        }
+    },
+    {
+        "model": "study_plans.workscope",
+        "pk": 5,
+        "fields": {
+            "work_id": 2,
+            "title": "Экспериментальная",
+            "sort": 2
+        }
+    }
+]

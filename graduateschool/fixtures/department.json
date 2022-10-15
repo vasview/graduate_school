@@ -3,7 +3,7 @@
         "model": "faculties.department",
         "pk": 1,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Подземная разработка месторождений полезных ископаемых"
         }
     },
@@ -11,7 +11,7 @@
         "model": "faculties.department",
         "pk": 2,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Открытые горные работы и взрывное дело"
         }
     },
@@ -19,7 +19,7 @@
         "model": "faculties.department",
         "pk": 3,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Маркшейдерское дело и ГИС технология"
         }
     },
@@ -27,7 +27,7 @@
         "model": "faculties.department",
         "pk": 4,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Обогащение полезных ископаемых и металлургические процессы"
         }
     },
@@ -35,7 +35,7 @@
         "model": "faculties.department",
         "pk": 5,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Геология полезных ископаемых"
         }
     },
@@ -43,7 +43,7 @@
         "model": "faculties.department",
         "pk": 6,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Водные, нефтегазовые ресурсы и геориски"
         }
     },
@@ -51,7 +51,7 @@
         "model": "faculties.department",
         "pk": 7,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Горные машины и электромеханика"
         }
     },
@@ -59,7 +59,7 @@
         "model": "faculties.department",
         "pk": 8,
         "fields": {
-            "faculty": 1,
+            "faculty_id": 1,
             "name": "Промышленная безопасность и геоэкология"
         }
     },
@@ -68,7 +68,7 @@
         "model": "faculties.department",
         "pk": 9,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Производство и экспертиза строительных материалов, изделий и конструкций"
         }
     },
@@ -76,7 +76,7 @@
         "model": "faculties.department",
         "pk": 10,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Геодезия и геоинформатика"
         }
     },
@@ -84,7 +84,7 @@
         "model": "faculties.department",
         "pk": 11,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Строительные конструкции, здания и сооружения"
         }
     },
@@ -92,7 +92,7 @@
         "model": "faculties.department",
         "pk": 12,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Автомобильные и железные дороги, мосты и тоннели"
         }
     },
@@ -100,7 +100,7 @@
         "model": "faculties.department",
         "pk": 13,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Проектирование, возведение зданий и сейсмостойкое строительство"
         }
     },
@@ -108,7 +108,7 @@
         "model": "faculties.department",
         "pk": 14,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Водоснабжение и водоотведение"
         }
     },
@@ -116,7 +116,7 @@
         "model": "faculties.department",
         "pk": 15,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Теплогазоснабжение и вентиляция"
         }
     },
@@ -124,7 +124,7 @@
         "model": "faculties.department",
         "pk": 16,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Строительная механика и гидротехническое строительство"
         }
     },
@@ -132,7 +132,7 @@
         "model": "faculties.department",
         "pk": 17,
         "fields": {
-            "faculty": 2,
+            "faculty_id": 2,
             "name": "Эксплуатация транспортных и технологических машин"
         }
     },
@@ -141,7 +141,7 @@
         "model": "faculties.department",
         "pk": 18,
         "fields": {
-            "faculty": 3,
+            "faculty_id": 3,
             "name": "Архитектура"
         }
     },
@@ -149,7 +149,7 @@
         "model": "faculties.department",
         "pk": 19,
         "fields": {
-            "faculty": 3,
+            "faculty_id": 3,
             "name": "Дизайна"
         }
     },
@@ -157,7 +157,7 @@
         "model": "faculties.department",
         "pk": 20,
         "fields": {
-            "faculty": 3,
+            "faculty_id": 3,
             "name": "Дизайн архитектурной среды"
         }
     },
@@ -165,7 +165,7 @@
         "model": "faculties.department",
         "pk": 21,
         "fields": {
-            "faculty": 3,
+            "faculty_id": 3,
             "name": "Художественное проектирование изделий"
         }
     },
@@ -173,7 +173,7 @@
         "model": "faculties.department",
         "pk": 22,
         "fields": {
-            "faculty": 3,
+            "faculty_id": 3,
             "name": "Реставрация и реконструкция архитектурного наследия"
         }
     },
@@ -181,7 +181,7 @@
         "model": "faculties.department",
         "pk": 23,
         "fields": {
-            "faculty": 3,
+            "faculty_id": 3,
             "name": "Градостроительство"
         }
     },
@@ -190,7 +190,7 @@
         "model": "faculties.department",
         "pk": 24,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Автоматическое управление"
         }
     },
@@ -198,7 +198,7 @@
         "model": "faculties.department",
         "pk": 25,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Информатика и вычислительная техника"
         }
     },
@@ -206,7 +206,7 @@
         "model": "faculties.department",
         "pk": 26,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Программное обеспечение компьютерных систем"
         }
     },
@@ -214,7 +214,7 @@
         "model": "faculties.department",
         "pk": 27,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Прикладная математика и информатика"
         }
     },
@@ -222,7 +222,7 @@
         "model": "faculties.department",
         "pk": 28,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Прикладная информатика"
         }
     },
@@ -230,7 +230,7 @@
         "model": "faculties.department",
         "pk": 29,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Обеспечение безопасности информационных систем"
         }
     },
@@ -238,7 +238,7 @@
         "model": "faculties.department",
         "pk": 30,
         "fields": {
-            "faculty": 4,
+            "faculty_id": 4,
             "name": "Инженерная и компьютерная графика"
         }
     },
@@ -247,7 +247,7 @@
         "model": "faculties.department",
         "pk": 32,
         "fields": {
-            "faculty": 5,
+            "faculty_id": 5,
             "name": "Радиоэлектроника"
         }
     },
@@ -255,7 +255,7 @@
         "model": "faculties.department",
         "pk": 33,
         "fields": {
-            "faculty": 5,
+            "faculty_id": 5,
             "name": "Телекоммуникация"
         }
     },
@@ -263,7 +263,7 @@
         "model": "faculties.department",
         "pk": 34,
         "fields": {
-            "faculty": 5,
+            "faculty_id": 5,
             "name": "Информационные системы и технологии в телекоммуникациях"
         }
     },
@@ -272,7 +272,7 @@
         "model": "faculties.department",
         "pk": 34,
         "fields": {
-            "faculty": 6,
+            "faculty_id": 6,
             "name": "Телематика"
         }
     },
@@ -280,7 +280,7 @@
         "model": "faculties.department",
         "pk": 35,
         "fields": {
-            "faculty": 6,
+            "faculty_id": 6,
             "name": "Механика и промышленная инженерия"
         }
     },
@@ -288,7 +288,7 @@
         "model": "faculties.department",
         "pk": 36,
         "fields": {
-            "faculty": 6,
+            "faculty_id": 6,
             "name": "Технология машиностроения"
         }
     },
@@ -296,7 +296,7 @@
         "model": "faculties.department",
         "pk": 37,
         "fields": {
-            "faculty": 6,
+            "faculty_id": 6,
             "name": "Машины и аппараты пищевых производств"
         }
     },
@@ -305,7 +305,7 @@
         "model": "faculties.department",
         "pk": 38,
         "fields": {
-            "faculty": 7,
+            "faculty_id": 7,
             "name": "Автомобильный транспорт"
         }
     },
@@ -313,7 +313,7 @@
         "model": "faculties.department",
         "pk": 39,
         "fields": {
-            "faculty": 7,
+            "faculty_id": 7,
             "name": "Организация перевозок и безопасность движения"
         }
     },
@@ -321,7 +321,7 @@
         "model": "faculties.department",
         "pk": 40,
         "fields": {
-            "faculty": 7,
+            "faculty_id": 7,
             "name": "Автоматизация, робототехника и мехатроника"
         }
     },
@@ -330,7 +330,7 @@
         "model": "faculties.department",
         "pk": 41,
         "fields": {
-            "faculty": 8,
+            "faculty_id": 8,
             "name": "Технология производства продуктов питания"
         }
     },
@@ -338,7 +338,7 @@
         "model": "faculties.department",
         "pk": 42,
         "fields": {
-            "faculty": 8,
+            "faculty_id": 8,
             "name": "Технология консервирования"
         }
     },
@@ -346,7 +346,7 @@
         "model": "faculties.department",
         "pk": 43,
         "fields": {
-            "faculty": 8,
+            "faculty_id": 8,
             "name": "Технология изделий легкой промышленности"
         }
     },
@@ -354,7 +354,7 @@
         "model": "faculties.department",
         "pk": 44,
         "fields": {
-            "faculty": 8,
+            "faculty_id": 8,
             "name": "Технология продуктов общественного питания"
         }
     },
@@ -362,7 +362,7 @@
         "model": "faculties.department",
         "pk": 45,
         "fields": {
-            "faculty": 8,
+            "faculty_id": 8,
             "name": "Химии и химических технологий"
         }
     },
@@ -371,7 +371,7 @@
         "model": "faculties.department",
         "pk": 46,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Электроэнергетика"
         }
     },
@@ -379,7 +379,7 @@
         "model": "faculties.department",
         "pk": 47,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Электроснабжение"
         }
     },
@@ -387,7 +387,7 @@
         "model": "faculties.department",
         "pk": 48,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Электромеханика"
         }
     },
@@ -395,7 +395,7 @@
         "model": "faculties.department",
         "pk": 49,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Возобновляемые источники энергии"
         }
     },
@@ -403,7 +403,7 @@
         "model": "faculties.department",
         "pk": 50,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Теоретические основы  электротехники и общая электротехника"
         }
     },
@@ -411,7 +411,7 @@
         "model": "faculties.department",
         "pk": 51,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Теплоэнергетика"
         }
     },
@@ -419,7 +419,7 @@
         "model": "faculties.department",
         "pk": 52,
         "fields": {
-            "faculty": 9,
+            "faculty_id": 9,
             "name": "Техносферная безопасность"
         }
     }
