@@ -1,0 +1,65 @@
+[
+    {
+        "model": "faculties.faculty",
+        "pk": 1,
+        "fields": {
+            "name": "Кыргызский горно-металлургический институт им. акад. У.Асаналиева"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 2,
+        "fields": {
+            "name": "Кыргызский инженерно-строительный институт им. Н.Исанова"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 3,
+        "fields": {
+            "name": "Институт архитектуры и дизайна"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 4,
+        "fields": {
+            "name": "Институт информационных технологий"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 5,
+        "fields": {
+            "name": "Институт электроники и телекоммуникаций"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 6,
+        "fields": {
+            "name": "Кыргызско-Германский технический институт"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 7,
+        "fields": {
+            "name": "Институт транспорта и робототехники"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 8,
+        "fields": {
+            "name": "Технологический институт"
+        }
+    },
+    {
+        "model": "faculties.faculty",
+        "pk": 9,
+        "fields": {
+            "name": "Энергетический институт"
+        }
+    }
+]

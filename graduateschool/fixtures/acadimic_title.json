@@ -1,0 +1,30 @@
+[
+    {
+        "model": "faculties.academic_title",
+        "pk": 1,
+        "fields": {
+            "name": "старший преподаватель"
+        }
+    },
+    {
+        "model": "faculties.academic_title",
+        "pk": 2,
+        "fields": {
+            "name": "доцент"
+        }
+    },
+    {
+        "model": "faculties.academic_title",
+        "pk": 3,
+        "fields": {
+            "name": "профессор"
+        }
+    },
+    {
+        "model": "faculties.academic_title",
+        "pk": 3,
+        "fields": {
+            "name": "академик"
+        }
+    }
+]

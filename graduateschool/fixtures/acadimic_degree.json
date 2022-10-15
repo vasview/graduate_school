@@ -1,0 +1,66 @@
+[
+    {
+        "model": "faculties.academic_degree",
+        "pk": 1,
+        "fields": {
+            "code": "к.т.н.",
+            "name": "кандидат технических наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 2,
+        "fields": {
+            "code": "к.э.н.",
+            "name": "кандидат экономический наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 3,
+        "fields": {
+            "code": "к.ф.-м.н.",
+            "name": "кандидат физико-математических наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 4,
+        "fields": {
+            "code": "к.х.н.",
+            "name": "кандидат химических наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 5,
+        "fields": {
+            "code": "д.т.н.",
+            "name": "доктор технических наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 6,
+        "fields": {
+            "code": "д.э.н.",
+            "name": "доктор экономических наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 7,
+        "fields": {
+            "code": "д.ф.-м.н.",
+            "name": "доктор физико-математических наук"
+        }
+    },
+    {
+        "model": "faculties.academic_degree",
+        "pk": 8,
+        "fields": {
+            "code": "д.х.н.",
+            "name": "доктор химических наук"
+        }
+    }
+]
