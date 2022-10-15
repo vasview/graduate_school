@@ -1,9 +1,11 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
 
 class Faculty(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=200, null=False)
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Факультет'
@@ -17,6 +19,7 @@ class Department(models.Model):
     factulty = models.ForeignKey(Faculty, on_delete=models.CASCADE)
     code = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=200, null=False)
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Кафедра'
@@ -30,6 +33,7 @@ class Specialty(models.Model):
     department = models.ForeignKey(Department, on_delete=models.CASCADE)
     code = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=200, null=False)
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Специальность'
@@ -42,6 +46,7 @@ class Specialty(models.Model):
 class Subject(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=200, null=False)
+    active = models.BooleanField(default=True)
 
     class Meta:
         verbose_name = 'Дисциплина'
