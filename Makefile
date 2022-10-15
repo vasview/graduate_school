@@ -49,6 +49,7 @@ flush:
 load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\subject.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\faculty.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\department.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_degree.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_title.json
 
