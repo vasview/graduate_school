@@ -59,7 +59,7 @@ class DissertationTopic(models.Model):
 
 
 class ExplanatoryNote(models.Model):
-    postraduate = models.ForeignKey(Postgraduate, on_delete=models.CASCADE)
+    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.CASCADE)
     topicality = models.TextField(blank=True, null=True)
     purpose = models.TextField(blank=True, null=True)
     scientific_value = models.TextField(blank=True, null=True)
