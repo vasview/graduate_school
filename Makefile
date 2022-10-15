@@ -47,7 +47,10 @@ flush:
 	${PYTHON} ${MANAGE} flush
 
 load_data:
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\city.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\subject.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\faculty.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_degree.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_title.json
 
 clean:
 	find . -type f -name *.pyc -delete
