@@ -30,7 +30,6 @@ class Department(models.Model):
         return self.name
 
 class Specialty(models.Model):
-    department = models.ForeignKey(Department, on_delete=models.CASCADE)
     code = models.CharField(max_length=50, blank=True, null=True)
     name = models.CharField(max_length=200, null=False)
     active = models.BooleanField(default=True)
