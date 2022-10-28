@@ -1,0 +1,641 @@
+[
+    {
+        "model": "faculties.specialty",
+        "pk": 1,
+        "fields": {
+            "code": "01.02.04",
+            "name": "Механика деформируемого твердого тела",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 2,
+        "fields": {
+            "code": "01.02.05",
+            "name": "Механика жидкости, газа и плазмы",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 3,
+        "fields": {
+            "code": "01.04.07",
+            "name": "Физика конденсированного состояния",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 4,
+        "fields": {
+            "code": "01.04.14",
+            "name": "Теплофизика и теоретическая теплотехника",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 5,
+        "fields": {
+            "code": "02.00.01",
+            "name": "Неорганическая химия",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 6,
+        "fields": {
+            "code": "02.00.03",
+            "name": "Органическая химия",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 7,
+        "fields": {
+            "code": "05.02.08",
+            "name": "Технология машиностроения",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 8,
+        "fields": {
+            "code": "05.02.18",
+            "name": "Теория механизмов и машин",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 9,
+        "fields": {
+            "code": "05.02.23",
+            "name": "Стандартизация и управление качеством",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 10,
+        "fields": {
+            "code": "05.05.03",
+            "name": "Колесные и гусеничные машины",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 11,
+        "fields": {
+            "code": "05.05.04",
+            "name": "Дорожные, строительные подъемно-транспортные машины",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 12,
+        "fields": {
+            "code": "05.05.06",
+            "name": "Горные машины и оборудование",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 13,
+        "fields": {
+            "code": "05.09.01",
+            "name": "Электромеханика и электрические аппараты",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 14,
+        "fields": {
+            "code": "05.09.03",
+            "name": "Электротехнические комплексы и системы",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 15,
+        "fields": {
+            "code": "05.12.04",
+            "name": "Радиотехника, в том числе системы и устройства радионавигации,радиолокации и телевидения",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 16,
+        "fields": {
+            "code": "05.13.00",
+            "name": "Информатика, вычислительная техника и управление",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 17,
+        "fields": {
+            "code": "05.13.01",
+            "name": "Системный анализ, управление и обработка информации (по отраслям)",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 18,
+        "fields": {
+            "code": "05.13.06",
+            "name": "Автоматизация и управление технологическими процессами и производствами (по отраслям)",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 19,
+        "fields": {
+            "code": "05.13.10",
+            "name": "Управление и социальных и экономических системах",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 20,
+        "fields": {
+            "code": "05.13.11",
+            "name": "Математическое и программное обеспечение вычислительных машин,комплексов и компьютерных сетей",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 21,
+        "fields": {
+            "code": "05.13.13",
+            "name": "Телекоммуникационные системы и компьютерные сети",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 22,
+        "fields": {
+            "code": "05.13.18",
+            "name": "Математическое моделирование, численные методы и комплексы программ",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 23,
+        "fields": {
+            "code": "05.14.01",
+            "name": "Энергетические системы и комплексы",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 24,
+        "fields": {
+            "code": "05.14.02",
+            "name": "Электростанции и электроэнергетические системы",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 25,
+        "fields": {
+            "code": "05.14.08",
+            "name": "Энергоустановки на основе возобновляемых видов энергии",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 26,
+        "fields": {
+            "code": "05.16.02",
+            "name": "Металлургия черных, цветных и редких металлов",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 27,
+        "fields": {
+            "code": "05.16.06",
+            "name": "Порошковая металлургия и композиционные материалы",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 28,
+        "fields": {
+            "code": " 05.17.06",
+            "name": "Технология и переработка полимеров и композитов",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 29,
+        "fields": {
+            "code": "05.18.01",
+            "name": "Технология обработки, хранения и переработки злаковых, бобовых культур, крупяных продуктов, плодоовощной продукции и виноградарства",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 30,
+        "fields": {
+            "code": "05.18.04",
+            "name": "Технология мясных, молочных, рыбных продуктов и холодильных производств",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 31,
+        "fields": {
+            "code": "05.18.05",
+            "name": "Технология сахара и сахаристых продуктов",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 32,
+        "fields": {
+            "code": "05.18.12",
+            "name": "Процессы и аппараты пищевых производств",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 33,
+        "fields": {
+            "code": "05.18.15",
+            "name": "Технология и товароведение пищевых продуктов и функционального и специализированного назначения и общественного питания",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 34,
+        "fields": {
+            "code": "05.19.04",
+            "name": "Технология швейных изделий",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 35,
+        "fields": {
+            "code": "05.22.06",
+            "name": "Железнодорожный путь, изыскание и проектирование железных дорог",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 36,
+        "fields": {
+            "code": "05.22.10",
+            "name": "Эксплуатация автомобильного транспорта",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 37,
+        "fields": {
+            "code": "05.23.01",
+            "name": "Строительные конструкции, здания и сооружения",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 38,
+        "fields": {
+            "code": "05.23.03",
+            "name": "Теплоснабжение, вентиляция, кондиционирование воздуха, газоснабжение и освещение",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 39,
+        "fields": {
+            "code": "05.23.04",
+            "name": "Водоснабжение, канализация, строительные системы охраны водных ресурсов",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 40,
+        "fields": {
+            "code": "05.23.05",
+            "name": "Строительные материалы и изделия",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 41,
+        "fields": {
+            "code": "05.23.07",
+            "name": "Гидротехническое строительство",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 42,
+        "fields": {
+            "code": "05.23.08",
+            "name": "Технология и организация строительства",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 43,
+        "fields": {
+            "code": "05.23.11",
+            "name": "Проектирование и строительство дорог, метрополитенов, аэродромов, мостов и транспортных тоннелей",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 44,
+        "fields": {
+            "code": "05.23.17",
+            "name": "Строительная механика",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 45,
+        "fields": {
+            "code": "05.23.20",
+            "name": "Теория и история архитектуры, реставрация и реконструкция архитектурного наследия",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 46,
+        "fields": {
+            "code": "05.23.21",
+            "name": "Архитектура зданий и сооружений. Творческие концепции архитектурной деятельности (по архитектуре)",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 47,
+        "fields": {
+            "code": "07.00.10",
+            "name": "История науки и техники",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 48,
+        "fields": {
+            "code": "08.00.01",
+            "name": "Экономическая теория",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 49,
+        "fields": {
+            "code": "08.00.05",
+            "name": "Экономика и управление народным хозяйством (по отраслям)",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 50,
+        "fields": {
+            "code": "08.00.10",
+            "name": "Финансы и кредит",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 51,
+        "fields": {
+            "code": "08.00.12",
+            "name": "Бухгалтерский учет и статистика",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 52,
+        "fields": {
+            "code": "09.00.11",
+            "name": "Социальная философия",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 53,
+        "fields": {
+            "code": "10.22.20",
+            "name": "Сравнительно-историческое, типологическое и сопоставительное языкознание",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 54,
+        "fields": {
+            "code": "13.00.01",
+            "name": "Общая педагогика, история педагогики и образования",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 55,
+        "fields": {
+            "code": "13.00.02",
+            "name": "Теория и методика обучения и воспитания (по областям и уровням образования)",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 56,
+        "fields": {
+            "code": "13.00.08",
+            "name": "Теория и методика профессионального образования",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 57,
+        "fields": {
+            "code": "17.00.01",
+            "name": "Теория искусства",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 58,
+        "fields": {
+            "code": "24.00.02",
+            "name": "Теория и история культуры",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 59,
+        "fields": {
+            "code": "24.00.04",
+            "name": "Культурология и теория культуры",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 60,
+        "fields": {
+            "code": "25.00.07",
+            "name": "Гидрогеология",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 61,
+        "fields": {
+            "code": "25.00.08",
+            "name": "Инженерная геология, мерзлотоведение и грунтоведение",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 62,
+        "fields": {
+            "code": "25.00.10",
+            "name": "Геофизика, геофизические методы поисков полезных ископаемых",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 63,
+        "fields": {
+            "code": "25.00.11",
+            "name": "Геология, поиски и разведка твердых полезных ископаемых, минерагения",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 64,
+        "fields": {
+            "code": "25.00.12",
+            "name": "Геология, поиски и разведка нефтяных и газовых месторождений",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 65,
+        "fields": {
+            "code": "25.00.13",
+            "name": "Обогащение полезных ископаемых",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 66,
+        "fields": {
+            "code": "25.00.16",
+            "name": "Горнопромышленная и нефтегазопромысловая геология, геофизика, маркшейдерское дело и геометрия недр",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 67,
+        "fields": {
+            "code": "25.00.20",
+            "name": "Геомеханика, разрушение горных пород, рудничная аэрогазодинамика и горная теплофизика",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 68,
+        "fields": {
+            "code": "25.00.22",
+            "name": "Геотехнология (подземная, открытая и строительная)",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 69,
+        "fields": {
+            "code": "25.00.29",
+            "name": "Физика атмосферы и гидросферы",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 70,
+        "fields": {
+            "code": "25.00.32",
+            "name": "Геодезия",
+            "active": true
+        }
+    },
+    {
+        "model": "faculties.specialty",
+        "pk": 71,
+        "fields": {
+            "code": "25.00.36",
+            "name": "Геоэкология (по отраслям)",
+            "active": true
+        }
+    }
+]
