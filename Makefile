@@ -22,7 +22,10 @@ run:
 	${PYTHON} ${MANAGE} runserver
 
 migrations:
-	${PYTHON} ${MANAGE} makemigrations
+	${PYTHON} ${MANAGE} makemigrations ${APP_PROFILE}
+	${PYTHON} ${MANAGE} makemigrations ${APP_FACULTY}
+	${PYTHON} ${MANAGE} makemigrations ${APP_POSTGRADUATE}
+	${PYTHON} ${MANAGE} makemigrations ${APP_STUDY_PLAN}
 
 inspect_migration:
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_PROFILE}
@@ -48,6 +51,7 @@ flush:
 
 load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\subject.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\specialty.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\faculty.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\department.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_degree.json
