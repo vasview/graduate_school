@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "phonenumber_field",
+    "main.apps.MainConfig",
     "profiles.apps.ProfilesConfig",
     "faculties.apps.FacultiesConfig",
     "postgraduates.apps.PostgraduatesConfig",
@@ -132,10 +133,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 if DEBUG:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-    STATICFILES_DIRS = [
-        BASE_DIR / "staticfiles",
-    ]
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'dev_static'),
+    )
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
