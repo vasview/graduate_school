@@ -49,6 +49,9 @@ delete_migrations:
 flush:
 	${PYTHON} ${MANAGE} flush
 
+static:
+	${PYTHON} ${MANAGE} collectstatic
+
 load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\subject.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\specialty.json
