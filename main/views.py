@@ -1,5 +1,4 @@
 import imp
-from django.shortcuts import render
 from django.template import RequestContext
 from django.urls import reverse_lazy
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound, Http404
