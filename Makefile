@@ -8,6 +8,7 @@ APP_PROFILE = profiles
 APP_FACULTY = faculties
 APP_POSTGRADUATE = postgraduates
 APP_STUDY_PLAN = study_plans
+APP_APPLICATION = applications
 FIXTURE = .\graduateschool\fixtures
 
 ${VENV}\Scripts\activate: requirements.txt
@@ -26,12 +27,14 @@ migrations:
 	${PYTHON} ${MANAGE} makemigrations ${APP_FACULTY}
 	${PYTHON} ${MANAGE} makemigrations ${APP_POSTGRADUATE}
 	${PYTHON} ${MANAGE} makemigrations ${APP_STUDY_PLAN}
+	${PYTHON} ${MANAGE} makemigrations ${APP_APPLICATION}
 
 inspect_migration:
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_PROFILE}
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_FACULTY}
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_POSTGRADUATE}
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_STUDY_PLAN}
+	${PYTHON} ${MANAGE} sqlmigrate ${APP_APPLICATION}
 	
 migrate:
 	${PYTHON} ${MANAGE} migrate
@@ -41,6 +44,7 @@ rollback_all_migrations:
 	${PYTHON} ${MANAGE} migrate ${APP_FACULTY} zero
 	${PYTHON} ${MANAGE} migrate ${APP_POSTGRADUATE} zero
 	${PYTHON} ${MANAGE} migrate ${APP_STUDY_PLAN} zero
+	${PYTHON} ${MANAGE} migrate ${APP_APPLICATIO} zero
 
 delete_migrations:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
