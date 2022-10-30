@@ -16,9 +16,25 @@ class Education(models.Model):
     code = models.CharField(max_length=10, blank=False)
     name = models.CharField(max_length=50, blank=False)
 
+    class Meta:
+        verbose_name = 'Уровень образования'
+        verbose_name_plural = 'Уровни образования'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
 class Citizenship(models.Model):
     code = models.CharField(max_length=10, blank=False)
     name = models.CharField(max_length=50, blank=False)
+
+    class Meta:
+        verbose_name = 'Страна гражданства'
+        verbose_name_plural = 'Справочник - страны гражданства'
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
