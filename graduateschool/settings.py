@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "faculties.apps.FacultiesConfig",
     "postgraduates.apps.PostgraduatesConfig",
     "study_plans.apps.StudyPlansConfig",
+    "applications.apps.ApplicationsConfig",
 ]
 
 MIDDLEWARE = [

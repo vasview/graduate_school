@@ -8,6 +8,7 @@ admin.site.site_header = 'Аспирантура КГTY'
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('main.urls')),
+    path('applications/', include('applications.urls')),
 ]
 
 if settings.DEBUG:
