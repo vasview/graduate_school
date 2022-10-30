@@ -1,0 +1,82 @@
+[
+    {
+        "model": "profiles.citizenship",
+        "pk": 1,
+        "fields": {
+            "code": "KGZ",
+            "name": "Кыргызстан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 2,
+        "fields": {
+            "code": "KAZ",
+            "name": "Казахстан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 3,
+        "fields": {
+            "code": "UZB",
+            "name": "Узбекистан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 4,
+        "fields": {
+            "code": "RUS",
+            "name": "Россия"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 5,
+        "fields": {
+            "code": "TJK",
+            "name": "Таджикистан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 6,
+        "fields": {
+            "code": "TKM",
+            "name": "Туркменистан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 7,
+        "fields": {
+            "code": "AFG",
+            "name": "Афганистан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 8,
+        "fields": {
+            "code": "IND",
+            "name": "Индия"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 9,
+        "fields": {
+            "code": "PAK",
+            "name": "Пакистан"
+        }
+    },
+    {
+        "model": "profiles.citizenship",
+        "pk": 10,
+        "fields": {
+            "code": "CHN",
+            "name": "Китай"
+        }
+    }
+]
