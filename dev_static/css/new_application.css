@@ -1,0 +1,31 @@
+
+.main::after {
+  background: #fff;
+}
+
+.application-form {
+	/*border:  2px solid #D9D9D9;*/
+	border: 1px solid #0A62BF;
+	border-radius: 5px;
+	padding: 10px;
+}
+
+.info-block {
+	border: 1px solid #5F98D5;
+	border-radius: 5px;
+}
+
+.form-check-input {
+	width: 28px;
+	height: 28px;
+}
+
+.info-block-subtitle {
+	text-align: left;
+	font-weight: bold;
+	width: 100%;
+}
+
+.info-block-warning {
+	font-style: italic;
+}
