@@ -5,3 +5,6 @@ class NewApplicationForm(forms.Form):
 
 class UpdateApplicationForm(forms.Form):
     pass
+
+class AllApplicationsForm(forms.Form):
+    pass

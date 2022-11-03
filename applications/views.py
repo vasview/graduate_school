@@ -7,16 +7,31 @@ from django.urls import reverse_lazy
 from .models import *
 from .forms import *
 
-class ListApplications(LoginRequiredMixin, ListView):
-    model = Application
-    context_object_name = 'applications'
-    template_name = 'applications/index.html'
-    login_url = '/login/'
-    paginate_by = 10
+#class ListApplications(LoginRequiredMixin, ListView):
+    # model = Application
+    # context_object_name = 'applications'
+    # template_name = 'applications/index.html'
+    # login_url = '/login/'
+    # paginate_by = 10
 
-    def get_queryset(self):
-        queryset = Application.objects.all
-        return queryset
+    # def get_queryset(self):
+    #     queryset = Application.objects.all
+    #     return queryset
+class ListApplications(View):
+    form_class = AllApplicationsForm
+    template_name = 'applications/index_application.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST,  request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+        else:
+            return render(request, self.template_name, {'form': form})
 
 class ShowApplication(LoginRequiredMixin, DetailView):
     model = Application
