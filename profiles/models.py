@@ -24,13 +24,13 @@ class Education(models.Model):
     def __str__(self):
         return self.name
 
-class Citizenship(models.Model):
+class Country(models.Model):
     code = models.CharField(max_length=10, blank=False)
     name = models.CharField(max_length=50, blank=False)
 
     class Meta:
-        verbose_name = 'Страна гражданства'
-        verbose_name_plural = 'Справочник - страны гражданства'
+        verbose_name = 'Страна'
+        verbose_name_plural = 'Справочник страны'
         ordering = ['name']
 
     def __str__(self):
@@ -55,11 +55,10 @@ class ContactDetails(models.Model):
     document_code = models.CharField(max_length=10, blank=False)
     document_number = models.CharField(max_length=10, blank=False)
     issue_date = models.DateField(blank=False)
-    issued_place_code = models.CharField(max_length=20, blank=True, null=True)
     issued_by = models.CharField(max_length=50, blank=False)
     birthdate_place = models.CharField(max_length=100, blank=False)
     education_level = models.ForeignKey(Education, on_delete=models.SET_NULL, blank=True, null=True)
-    citizenship = models.ForeignKey(Citizenship, on_delete=models.SET_NULL, blank=True, null=True)
+    citizenship = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
 
 class EducationalDocument(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

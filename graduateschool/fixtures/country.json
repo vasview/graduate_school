@@ -1,6 +1,6 @@
 [
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 1,
         "fields": {
             "code": "KGZ",
@@ -8,7 +8,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 2,
         "fields": {
             "code": "KAZ",
@@ -16,7 +16,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 3,
         "fields": {
             "code": "UZB",
@@ -24,7 +24,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 4,
         "fields": {
             "code": "RUS",
@@ -32,7 +32,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 5,
         "fields": {
             "code": "TJK",
@@ -40,7 +40,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 6,
         "fields": {
             "code": "TKM",
@@ -48,7 +48,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 7,
         "fields": {
             "code": "AFG",
@@ -56,7 +56,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 8,
         "fields": {
             "code": "IND",
@@ -64,7 +64,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 9,
         "fields": {
             "code": "PAK",
@@ -72,7 +72,7 @@
         }
     },
     {
-        "model": "profiles.citizenship",
+        "model": "profiles.country",
         "pk": 10,
         "fields": {
             "code": "CHN",
