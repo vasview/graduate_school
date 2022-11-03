@@ -4,10 +4,11 @@
   <head>
     <title>{% block title %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}?{% now 'U' %}" type="text/css">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+    {% block style_head %}
+      <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+    {% endblock %}
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script>window.CKEDITOR_BASEPATH = '/staticfiles/ckeditor/ckeditor/';</script>
   </head>

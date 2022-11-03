@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/signin.css' %}">
+{% block title %}Login Posgratude Polytech{% endblock %}
+{% block style_head %} 
+  <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+{% endblock %}
+
 {% block page_content %}
 <div class="text-center">
   {% if next %}
