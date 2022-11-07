@@ -1,3 +1,4 @@
+from hashlib import blake2b
 from tabnanny import verbose
 from django.db import models
 
@@ -5,6 +6,21 @@ class ReferenceTable(models.IntegerChoices):
     NONE = 0
     EXAMS = 1 , 'postgraduates.exam'
     SUBJECTS = 2 , 'faculties.subject'
+
+class StudyPlanType(models.Model):
+    name = models.CharField(max_length=250)
+    code = models.CharField(max_length=50)
+    description = models.CharField(max_length=250)
+    sort = models.SmallIntegerField()
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Тип учебного плана аспиранта'
+        verbose_name_plural = '1.Справочник учебных планов - Типы учебных планов аспиранта'
+        ordering = ['sort']
+
+    def __str__(self):
+        return self.name
 
 class Work(models.Model):
     title = models.CharField(max_length=250)
@@ -16,7 +32,7 @@ class Work(models.Model):
 
     class Meta:
         verbose_name = 'Наименование работы'
-        verbose_name_plural = 'Справочник наименования работ'
+        verbose_name_plural = '2.Справочник учебных планов - Наименования работ учебного плана'
         ordering = ['title']
 
     def __str__(self):
@@ -31,7 +47,7 @@ class WorkScope(models.Model):
 
     class Meta:
         verbose_name = 'Объем работы'
-        verbose_name_plural = 'Справочник объемов работ'
+        verbose_name_plural = '3.Справочник учебных планов - Наименование объемов работ'
         ordering = ['title']
 
     def __str__(self):
@@ -41,6 +57,7 @@ class StudyPlan(models.Model):
     postgraduate = models.ForeignKey('postgraduates.Postgraduate', on_delete=models.PROTECT)
     work = models.ForeignKey(Work, on_delete=models.PROTECT)
     year_of_study = models.SmallIntegerField()
+    plan_type = models.ForeignKey(StudyPlanType, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Учебный план заголовок'

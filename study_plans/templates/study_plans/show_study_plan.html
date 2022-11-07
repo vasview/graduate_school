@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Study plan{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/study_plan.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="main_block_wrapper">
+    <h3 class="text-sm-center fs-3">Общий учебный план работы аспиранта</h3>
+    <div class="study_plan_section col-sm-10 mb-2">
+        <div class="row px-5">
+            <h4 class="fs-4 col-sm-8">Учебная работа</h4>
+            <div class="col-sm-2 py-2">
+                <div class="progress">
+                      <div class="progress-bar bg-success w-50" role="progressbar">50%</div>
+                      <div class="progress-bar bg-info w-50" role="progressbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="card col-sm-12 mb-1">							
+                <div class="card-header fs-5 fw-bold w-100">Кандидатские экзамены:
+                    <a href="#"><img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить"></a>
+                </div>
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">История и философия науки</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">доклад</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28" title="Редактировать"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28" title="Удалить"></a>
+                    </div>
+                  </div>
+            </div>
+            <div class="card col-sm-12">
+                <div class="card-header fs-5 fw-bold w-100">Дисциплины для изучения:
+                    <a href="#"><img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить"></a>
+                </div>
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">История и философия науки</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">экзамен</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28" title="Редактировать"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28" title="Удалить"></a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="study_plan_section col-sm-10 mb-2">
+        <div class="row px-5">
+            <h4 class="fs-4 col-sm-8">Научная работа</h4>
+            <div class="col-sm-2 py-2">
+                <div class="progress">
+                      <div class="progress-bar bg-success w-25" role="progressbar">25%</div>
+                      <div class="progress-bar bg-info w-75" role="progressbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 fw-bold w-100">Теоретическая:</div>
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Exercitationem blanditiis inventore error, repudiandae odio quo unde consequatur.</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">доклад</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28"></a>
+                    </div>
+                  </div>
+            </div>
+            <div class="card col-sm-12">
+                <div class="card-header fs-5 fw-bold w-100">Экспериментальная:</div>
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem reprehenderit corporis obcaecati veniam quia, facilis repellendus ullam!</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">экзамен</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28"></a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="study_plan_section col-sm-10 mb-2">
+        <div class="row px-5">
+            <h4 class="fs-4 col-sm-8">Педагогическая практика</h4>
+            <div class="col-sm-2 py-2">
+                <div class="progress">
+                      <div class="progress-bar bg-success w-0" role="progressbar"></div>
+                      <div class="progress-bar bg-info w-100" role="progressbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="card col-sm-12 mb-1">
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Exercitationem blanditiis inventore error, repudiandae odio quo unde consequatur corporis, quae, minima excepturi! Necessitatibus beatae sit temporibus cumque dolorum enim ab quidem.</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">доклад</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28"></a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="study_plan_section col-sm-10 mb-2">
+        <div class="row px-5">
+            <h4 class="fs-4 col-sm-8">Другие виды работ</h4>
+            <div class="col-sm-2 py-2">
+                <div class="progress">
+                      <div class="progress-bar bg-success w-25" role="progressbar">25%</div>
+                      <div class="progress-bar bg-info w-75" role="progressbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 fw-bold"></div>
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Exercitationem blanditiis inventore error, repudiandae odio quo unde consequatur corporis, quae, minima excepturi! Necessitatibus beatae sit temporibus cumque dolorum enim ab quidem.</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">доклад</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28"></a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="study_plan_section col-sm-10 mb-2">
+        <div class="row px-5">
+            <h4 class="fs-4 col-sm-8">Предварительная защита научной работы на кафедре</h4>
+            <div class="col-sm-2 py-2">
+                <div class="progress">
+                      <div class="progress-bar bg-success w-0" role="progressbar"></div>
+                      <div class="progress-bar bg-info w-100" role="progressbar"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row px-3 pb-2">
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 fw-bold"></div>
+                  <div class="card-body row">
+                      <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                      <div class="fw-bold col-sm-2">срок:</div>
+                      <div class="fw-bold col-sm-2">форма отчетности:</div>
+                      <div class="fw-bold col-sm-2">Действия:</div>
+                    <div class="col-sm-6">Lorem ipsum, dolor sit, amet consectetur adipisicing elit. Exercitationem blanditiis inventore error, repudiandae odio quo unde consequatur corporis, quae, minima excepturi! Necessitatibus beatae sit temporibus cumque dolorum enim ab quidem.</div>
+                    <div class="col-sm-2">2022-10-18</div>
+                    <div class="col-sm-2">доклад</div>
+                    <div class="col-sm-2">
+                        <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28"></a> 
+                        <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28"></a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

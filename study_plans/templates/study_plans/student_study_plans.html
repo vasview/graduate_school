@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Study plans{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/study_plan.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="main_block_wrapper">
+    <h3 class="text-sm-center fs-3">Мои планы работы</h3>
+    <div class="main_block_section mb-3">
+        <div class="row">
+            <div class="col-sm-6 fw-bold">Название плана</div>
+            <div class="col-sm-3 fw-bold">Процент выполнения</div>
+            <div class="col-sm-2 fw-bold">Статус</div>
+            <div class="col-sm-1 fw-bold">Действия</div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-sm-6">Общий учебный план работы аспиранта</div>
+            <div class="col-sm-3">0%</div>
+            <div class="col-sm-2">Утвержден</div>
+            <div class="col-sm-1">
+                <a href="{% url 'student_study_plans:show_study_plan' id=1 %}">
+                    <img src="{% static 'images/view.png' %}" alt="edit" width="28" height="28" title="Просмотреть">
+                </a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">Учебный план 1 – го года подготовки аспиранта</div>
+            <div class="col-sm-3">0%</div>
+            <div class="col-sm-2">Новый</div>
+            <div class="col-sm-1">
+                <a href="{% url 'student_study_plans:show_study_plan' id=1 %}">
+                    <img src="{% static 'images/view.png' %}" alt="edit" width="28" height="28" title="Просмотреть">
+                </a> 
+            </div>
+        </div>
+    </div>
+    <div class="row text-sm-center">
+        <a href="{% url 'student_study_plans:create_study_plan' %}" class="btn btn-primary w-25">
+            Добавить учебный план
+        </a>
+    </div>
+</div>
+{% endblock %}
