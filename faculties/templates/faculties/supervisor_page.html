@@ -9,9 +9,9 @@
 {% block page_content %}
 <div class="main_block_wrapper">
     <div class="main_block_section mb-3">
-        <h3 class="main_subtitle">Мои аспиранты</h3>
+        <h3 class="fs-2">Мои аспиранты</h3>
         <form class="d-flex col-6">
-          <input class="form-control me-2" type="search" placeholder="Поиск студентов" aria-label="Search">
+          <input class="form-control me-2" type="search" placeholder="Поиск аспиранта" aria-label="Search">
           <button class="btn btn-primary btn-search" type="submit">
               <img src="{% static 'images/search_white_30.png' %}"><span>Найти<span>
           </button>
@@ -19,11 +19,11 @@
     </div>
     <div class="main_block_section mb-3">
         <div class="row">
-            <div class="col-sm-1">id</div>
-            <div class="col-sm-3">ФИО</div>
-            <div class="col-sm-5">Тема диссертации</div>
-            <div class="col-sm-2">Специальность</div>
-            <div class="col-sm-1">Действия</div>
+            <div class="col-sm-1 fw-bold">id</div>
+            <div class="col-sm-3 fw-bold">ФИО</div>
+            <div class="col-sm-5 fw-bold">Тема диссертации</div>
+            <div class="col-sm-2 fw-bold">Специальность</div>
+            <div class="col-sm-1 fw-bold">Действия</div>
         </div>
         <hr/>
         <div class="row">
@@ -31,7 +31,9 @@
             <div class="col-sm-3">Данил Андреев</div>
             <div class="col-sm-5">Изучение влияние информация на человека</div>
             <div class="col-sm-2">Психология</div>
-            <div class="col-sm-1">Просмотр</div>
+            <div class="col-sm-1">
+                <a href="#"><img src="{% static 'images/view.png' %}" alt="edit" width="28" height="28" title="Просмотреть"></a>
+            </div>
         </div>
     </div>
 </div>
