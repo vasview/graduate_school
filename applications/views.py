@@ -33,12 +33,16 @@ class ListApplications(View):
         else:
             return render(request, self.template_name, {'form': form})
 
-class ShowApplication(LoginRequiredMixin, DetailView):
-    model = Application
-    context_object_name = 'application'
-    pk_url_kwarg = 'id'
-    template_name = 'applications/show_application.html'
-    login_url = '/login/'
+# class ShowApplication(LoginRequiredMixin, DetailView):
+#     model = Application
+#     context_object_name = 'application'
+#     pk_url_kwarg = 'id'
+#     template_name = 'applications/show_application.html'
+#     login_url = '/login/'
+
+class ShowApplication(View):
+    def get(self,request,*args, **kwargs):
+        return render(request, 'applications/show_application.html')
 
 class NewApplication(View):
     form_class = NewApplicationForm

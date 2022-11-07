@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Application Polytech{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/application_form.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="main_block_section mb-3">
+    <div class="application-form col-10">
+        <h4 class="text-center text-uppercase">Заявление</h4>
+        <div class="col-sm-10 mb-3">
+            <p>
+                Прошу допустить меня к сдаче вступительных испытаний для приема 
+                на обучение по программе подготовки научных и научно-педагогических 
+                кадров аспирантуре в следующем приоритетном порядке: 
+            </p>
+            <p>
+                Срок освоения образовательной программы составляет <span class="fw-bold">2</span> года.
+            </p>
+
+            <table class="table table-bordered border-dark text-center">
+                <thead>
+                    <tr>
+                        <th>Шифр научной специальности</th>
+                        <th>Наименование научной специальности</th>
+                        <th>Форма обучения</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>05.13.11</td>
+                        <td>Математическое и программное обеспечение вычислительных машин,комплексов и компьютерных сетей</td>
+                        <td>Очная</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="fw-bold">О себе сообщаю следующие сведения:</p>
+            <p>
+                Фамилия: <span class="fst-italic">Сатаров</span> 
+                Имя: <span class="fst-italic">Эрлан</span> 
+                Отчество: <span class="fst-italic">Кубанович</span>
+            </p>
+            <p>
+                Дата рождения: <span class="fst-italic">01.01.1990</span> 
+                Пол: <span class="fst-italic">Мужчина</span> 
+                Гражданство: <span class="fst-italic">Кыргызстан</span>
+            </p>
+            <p class="fw-bold">
+                Документ, удостоверяющий личность и гражданство: <span class="fw-normal fst-italic">паспорт</span>
+            </p>
+            <p>
+                серия: <span class="fst-italic">ACD</span> 
+                номер: <span class="fst-italic">20105080</span> 
+                когда выдан: <span class="fst-italic">01.01.2020</span>
+                кем выдан: <span class="fst-italic">ИММ 20-50</span>
+                ИНН: <span class="fst-italic">123456789101</span>
+            </p>
+            <p>
+                Место рождения: <span class="fst-italic">Бишкек</span> 
+            </p>
+            <p class="fw-bold">
+                Контактные данные:
+            </p>
+            <p>
+                Номер мобильного телефона: <span class="fst-italic">20105080</span> 
+                Email: <span class="fst-italic">test@test.kg</span> 
+            </p>
+            <p class="col-10 fst-italic text-decoration-underline">
+                указанный адрес постоянной регистрации и адрес электронной почты могут быть использованы КГТУ им.И.Раззакова для направления юридически значимых сообщений в соответствии с Правилами внутреннего распорядка обучающихся КГТУ им.И.Раззакова.
+            </p>
+            <p class="fw-bold">Сведения об имеющемся образовании:</p>
+            <p>
+                Уровень образования: <span class="fst-italic">Высшее</span> 
+            </p>
+            <p class="fw-bold">Документ об образовании и квалификации:</p>
+            <p>
+                Серия и номер: <span class="fst-italic">TGK</span> 
+                Дата выдачи: <span class="fst-italic">17.07.2010</span> 
+            </p>
+            <p>
+                Наименование образовательной организации (полностью): <span class="fst-italic">Кыргызский Технический Универсисет им. И.Раззакова</span> 
+            </p>
+            <p><span class="fw-bold">Подтверждаю ознакомление с нижеследующей информацией:</span>
+                правилами приема на обучение, уставом КГТУ им.И.Раззакова, со сведениями о дате предоставления и регистрационным номере лицензии на осуществление образовательной деятельности, свидетельством о государственной аккредитации, с образовательными программами и другими документами, регламентирующими организацию и осуществление образовательной деятельности, правилами внутреннего распорядка обучающихся КГТУ им.И.Раззакова, иными локальными нормативными актами.
+            </p>
+            <p class="fw-bold">Подтверждаю следующие факты:</p>
+            <ul>
+                <li>согласие на обработку моих персональных данных (прилагается);</li>
+                <li>
+                    ознакомление с информацией о необходимости указания в заявлении о приеме достоверных сведений и представления подлинных документов;
+                </li>
+                <li>при поступлении на обучение на места в рамках контрольных цифр приема.</li>
+            </ul>
+            <p class="fw-bold">Подтверждаю достоверность предоставленных мною данных в заявлении о приеме.</p>
+            <div class="row text-center">
+                <div class="col-sm-4 border-bottom border-dark">Сатаров Эрлан</div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3 border-bottom border-dark">12.10.2022 г.</div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-4">ФИО поступающего</div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-3">дата заявления</div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between">
+              <a href="" class="btn btn-primary col-4">Утвердить</a>
+              <a href="" class="btn btn-danger col-4">Отклонить</a>	
+        </div>
+    </div>
+</div>
+{% endblock %}
