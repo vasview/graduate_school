@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Application Polytech{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/student_card.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="main_block_section col-sm-10 mb-3">
+    <h3 class="fs-2 col-sm-10">Карточка аспиранта</h3>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-4">Факультет</div>
+        <div class="col_value col-sm-6">Энергетический</div>
+    </div>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-4">Кафедра</div>
+        <div class="col_value col-sm-6">Энергетический</div>
+    </div>
+    <div class="row col-12">
+        <div class="col_title col-sm-4">Форма обучения</div>
+        <div class="col_value col-sm-6">Очное</div>
+    </div>
+    <div class="row col-12">
+        <div class="col_title col-sm-4">Срок обучения</div>
+        <div class="col_value col-sm-6">2 года</div>
+    </div>
+</div>
+<div class="main_block_section col-sm-10 mb-3">
+    <h3 class="fs-2">Индивидуальный учебный план работы аспиранта</h3>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-4">Фамилия, имя, отчество</div>
+        <div class="col_value col-sm-6">Назарбек Назрбекович</div>
+    </div>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-4">Специальность</div>
+        <div class="col_value col-sm-6">Гидродинамика</div>
+    </div>
+    <div class="row col-sm-12 mb-2">
+        <div class="col_title col-sm-4">Научный руководитель</div>
+        <div class="col_value col-sm-6">Арзыбаев А.</div>
+    </div>
+    <div class="row col-sm-12 mb-2">
+        <div class="col_title topic_title col-10 mb-2">Тема диссертации</div>
+        <div class="col_value col_value_text col-10">Lorem ipsum, dolor sit amet consectetur, adipisicing elit. Minima consequatur tenetur saepe ratione quidem sed similique aliquid, dolorem molestias vero eos delectus obcaecati unde nesciunt nisi esse eligendi dolor, quisquam.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime perferendis quidem reiciendis voluptatibus similique suscipit, sequi, culpa hic natus facere. Voluptatibus rem, doloribus delectus esse enim cumque itaque, quia dolore?
+        </div>
+    </div>
+    <div clas="row col-sm-12">
+        <div class="col_value col-9">Утверждена на совете</div>
+    </div>
+</div>
+{% endblock %}

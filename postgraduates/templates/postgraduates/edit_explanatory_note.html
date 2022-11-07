@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}New explanatory note{% endblock %}
+
+{% block style_head %} {% endblock %}
+
+{% block page_content %}
+<div class="main_block_section mb-3">
+    <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
+    <form class="col-10">
+        <div class="form-group mb-2 text-sm-start">
+            <label for="topicality" class="fs-5">Актуальность темы:</label>
+            <textarea class="form-control" id="topicality" rows="3"></textarea>
+        </div>
+        <div class="form-group mb-2 text-sm-start">
+            <label for="purpose" class="fs-5">Основная цель и задачи диссертации:</label>
+            <textarea class="form-control" id="purpose" rows="3"></textarea>
+        </div>
+        <div class="form-group mb-2 text-sm-start">
+            <label for="scientific_value" class="fs-5">Новизна и научная значимость диссертации:</label>
+            <textarea class="form-control" id="scientific_value" rows="3"></textarea>
+        </div>
+        <div class="form-group mb-2 text-sm-start">
+            <label for="expected_results" class="fs-5">Ожидаемые результаты:</label>
+            <textarea class="form-control" id="expected_results" rows="3"></textarea>
+        </div>
+        <div class="form-group mb-2 text-sm-start">
+            <label for="application_area" class="fs-5">Область применения:</label>
+            <textarea class="form-control" id="application_area" rows="3"></textarea>
+        </div>
+        <div class="d-flex justify-content-between">
+              <button class="btn btn-primary col-4" type="submit">Сохранить</button>
+              <button class="btn btn-secondary col-4" type="cancel">Очистить</button>	
+        </div>
+    </form>
+</div>
+{% endblock %}

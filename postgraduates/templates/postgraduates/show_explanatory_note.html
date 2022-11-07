@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Explanatory note{% endblock %}
+
+{% block style_head %} {% endblock %}
+
+{% block page_content %}
+<div class="main_block_section mb-3">
+    <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
+    <div class="study_plan_section col-sm-12 mb-2">
+        <div class="row px-3 py-2">
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 w-100">Актуальность темы:</div>
+                  <div class="card-body">
+                      <div class="col-sm-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. A pariatur repellat dolore deserunt nam recusandae, temporibus necessitatibus? Delectus illum eos inventore optio voluptatibus sint officia, asperiores praesentium necessitatibus minus odio?</div>
+                  </div>
+            </div>
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 w-100">Основная цель и задачи диссертации:</div>
+                  <div class="card-body">
+                      <div class="col-sm-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque sint alias molestiae repellendus commodi nam, molestias. Repudiandae doloremque, fugiat. Quo fugiat, consequatur libero? Amet debitis consectetur non, velit possimus qui.</div>
+                  </div>
+            </div>
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 w-100">Новизна и научная значимость диссертации:</div>
+                  <div class="card-body">
+                      <div class="col-sm-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque commodi nemo expedita sed fuga fugiat nesciunt saepe aliquam odit quis perferendis veniam fugit obcaecati sapiente, adipisci debitis dolorum maiores neque.</div>
+                  </div>
+            </div>
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 w-100">Ожидаемые результаты:</div>
+                  <div class="card-body">
+                      <div class="col-sm-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque commodi nemo expedita sed fuga fugiat nesciunt saepe aliquam odit quis perferendis veniam fugit obcaecati sapiente, adipisci debitis dolorum maiores neque.</div>
+                  </div>
+            </div>
+            <div class="card col-sm-12 mb-1">
+                <div class="card-header fs-5 w-100">Область применения:</div>
+                  <div class="card-body">
+                      <div class="col-sm-12">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque commodi nemo expedita sed fuga fugiat nesciunt saepe aliquam odit quis perferendis veniam fugit obcaecati sapiente, adipisci debitis dolorum maiores neque.</div>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-10">
+    <div class="d-flex justify-content-between">
+          <a href="{% url 'edit_explanatory_note' id=1 %}" class="btn btn-primary col-4">Редактировать</a>
+    </div>
+</div>
+</div>
+{% endblock %}
