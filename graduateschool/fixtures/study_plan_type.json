@@ -1,0 +1,47 @@
+[
+    {
+        "model": "study_plans.studyplantype",
+        "pk": 1,
+        "fields": {
+            "name": "Общий учебный план работы аспиранта",
+            "code": "GenPlan",
+            "sort": 1
+        }
+    },
+    {
+        "model": "study_plans.studyplantype",
+        "pk": 2,
+        "fields": {
+            "name": "Учебный план 1–го года подготовки аспиранта",
+            "code": "PlanFirstYear",
+            "sort": 2
+        }
+    },
+    {
+        "model": "study_plans.studyplantype",
+        "pk": 3,
+        "fields": {
+            "name": "Учебный план 2–го года подготовки аспиранта",
+            "code": "PlanSecondYear",
+            "sort": 3
+        }
+    },
+    {
+        "model": "study_plans.studyplantype",
+        "pk": 4,
+        "fields": {
+            "name": "Учебный план  3–го года подготовки аспиранта очного обучения",
+            "code": "PlanThirdYear",
+            "sort": 4
+        }
+    },
+    {
+        "model": "study_plans.studyplantype",
+        "pk": 5,
+        "fields": {
+            "name": "Учебный план  4–го года подготовки аспиранта заочного обучения",
+            "code": "PlanForthYear",
+            "sort": 5
+        }
+    }
+]
