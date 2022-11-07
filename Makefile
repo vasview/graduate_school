@@ -66,6 +66,7 @@ load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_scope.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\country.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\study_plan_type.json
 
 clean:
 	find . -type f -name *.pyc -delete
