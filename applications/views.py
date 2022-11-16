@@ -49,7 +49,7 @@ class NewApplication(View):
     template_name = 'applications/new_application.html'
 
     def get(self, request, *args, **kwargs):
-        form = self.form_class
+        form = self.form_class()
         return render(request, self.template_name, {'form': form})
 
     def post(self, request, *args, **kwargs):

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load widget_tweaks %} 
 {% block title %}New Application Polytech{% endblock %}
 
 {% block style_head %} 
@@ -10,7 +11,8 @@
 <div class="main_block_section mb-3">
     <div class="application-form col-10">
         <h4 class="text-center text-uppercase">Заявление</h4>
-        <form class="" action="">
+        <form class="" action="" method="post">
+            {% csrf_token %}
             <p class="col-sm-10">
                 Прошу допустить меня к сдаче вступительных испытаний для приема 
                 на обучение по программе подготовки научных и научно-педагогических 
@@ -19,29 +21,21 @@
             <div class="row">
                 <div class="form-group mb-2 col-sm-8">
                     <label for="specialty">Наименование научной специальности:</label>
-                    <select class="form-select" aria-label="specialty" id="specialty">
-                        <option selected>Выберите специальность</option>
-                        <option value="1">Химия</option>
-                        <option value="2">Физика</option>
-                    </select>
+                    {% render_field form.specialty class="form-select" id="specialty" aria-label="specialty" %}
                 </div>
                 <div class="form-group mb-2 col-sm-2">
-                    <label for="form-of-study">Форма обучения:</label>
-                    <select class="form-select" aria-label="form_of_study" id="form_of_study">
-                        <option selected>Выбрать</option>
-                        <option value="1">Очное</option>
-                        <option value="2">Заочное</option>
-                    </select>
+                    <label for="form_of_study">Форма обучения:</label>
+                    {% render_field form.form_of_study class="form-select" id="form_of_study" aria-label="form_of_study" %}
                 </div>
             </div>
             <div class="row">
                 <p class="col-sm-8">
                     Срок освоения образовательной программы составляет 
-                    <input type="number" name="number-of-years" style="width: 50px" min="1" max="4"> года.
+                    {% render_field form.number_of_years style="width: 50px" min='1' max='4' id="number_of_years" type="number" %} года.
                 </p>
                 <div class="form-group mb-2 col-sm-2">
                     <label for="application_date">Дата заявления:</label>
-                    <input type="date" class="form-control" id="application_date" name="application_date">
+                    {% render_field form.application_date class="form-control" id="application_date" type="date" placeholder=form.application_date.value %}
                 </div>
             </div>
             <div class="info-block mb-2 p-2">
@@ -49,38 +43,29 @@
                 <div class="row">
                     <div class="form-group mb-2 col-sm-4">
                         <label for="last_name">Фамилия:</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name">
+                        {% render_field form.last_name class="form-control" id="last_name" type="text" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
                         <label for="first_name">Имя:</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name">
+                        {% render_field form.first_name class="form-control" id="first_name" type="text" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
                         <label for="middle_name">Отчество:</label>
-                        <input type="text" class="form-control" id="middle_name" name="middle_name">
+                        {% render_field form.middle_name class="form-control" id="middle_name" type="text" %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group mb-2 col-sm-4">
                         <label for="birth_date">Дата рождения:</label>
-                        <input type="date" class="form-control" id="birth_date" name="middle_name">
+                        {% render_field form.birth_date type="date" class="form-control" id="birth_date" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
                         <label for="gender">Пол:</label>
-                        <select class="form-select" aria-label="Default select example" id="gender">
-                          <option selected>Выберите пол</option>
-                          <option value="1">Мужчина</option>
-                          <option value="2">Женщина</option>
-                        </select>
+                        {% render_field form.gender class="form-select" id="gender" aria-label="gender" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
                         <label for="citizenship">Гражданство:</label>
-                         <select class="form-select" aria-label="Default select example" id="citizenship">
-                          <option selected>Выберите страну</option>
-                          <option value="1">Кыргызстан</option>
-                          <option value="2">Казахстан</option>
-                          <option value="3">Россия</option>
-                        </select>
+                        {% render_field form.citizenship class="form-select" id="citizenship" aria-label="citizenship" %}
                     </div>
                 </div>
             </div>
@@ -88,36 +73,36 @@
                 <p class="col-10">Документ, удостоверяющий личность и гражданство:</p>
                 <div class="row">
                     <div class="form-group mb-2 col-sm-5">
-                      <label for="passport">Вид документа:</label>
-                        <input type="text" class="form-control" id="passport" name="passport">
+                        <label for="passport">Вид документа:</label>
+                        {% render_field form.document_name type="text" class="form-control" id="document_name" %}
                     </div>
                     <div class="form-group mb-2 col-sm-2">
                         <label for="series">серия:</label>
-                        <input type="text" class="form-control" id="series" name="series">
+                        {% render_field form.document_code type="text" class="form-control" id="document_code" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
                         <label for="number">номер:</label>
-                        <input type="text" class="form-control" id="number" name="number">
+                        {% render_field form.document_number type="text" class="form-control" id="document_number" %}
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group mb-2 col-sm-5">
                         <label for="issued_by">Кем выдан:</label>
-                        <input type="text" class="form-control" id="issued_by" name="issued_by">
+                        {% render_field form.issued_by type="text" class="form-control" id="issued_by" %}
                     </div>
                     <div class="form-group mb-2 col-sm-2">
-                        <label for="issue-date">когда выдан:</label>
-                        <input type="date" class="form-control" id="issue-date" name="issue-date">
+                        <label for="issue_date">когда выдан:</label>
+                        {% render_field form.issue_date type="date" class="form-control" id="issue_date" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
                         <label for="personal_number">ИНН:</label>
-                        <input type="text" class="form-control" id="personal_number" name="personal_number">
+                        {% render_field form.personal_number type="text" class="form-control" id="personal_number" %}
                     </div>
                 
                     <div class="col-sm-12">
                         <div class="form-group mb-2 col-sm-11">
                             <label for="birth_place">Место рождения:</label>
-                            <input type="text" class="form-control" id="birth_place" name="birth_place">
+                            {% render_field form.birthdate_place type="text" class="form-control" id="birthdate_place" %}
                         </div>
                     </div>
                 </div>
@@ -127,11 +112,11 @@
                 <div class="row">
                     <div class="form-group mb-2 col-sm-5">
                         <label for="mobile">Номер мобильного телефона:</label>
-                        <input type="text" class="form-control" id="mobile" name="mobile">
+                        {% render_field form.mobile type="text" class="form-control" id="mobile" %}
                     </div>
                     <div class="form-group mb-2 col-sm-5">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        {% render_field form.email type="email" class="form-control" id="email" %}
                     </div>
                 </div>
             </div>
@@ -145,15 +130,8 @@
                     <div class="col-sm-4">
                         <p class="col">Сведения об имеющемся образовании:</p>
                         <div class="form-group mb-2">
-                              <label for="education" class="col-form-label">
-                                  Уровень образования:
-                              </label>
-                            <select class="form-select" aria-label="уровень образования" id="education">
-                              <option selected>Выберите уровень</option>
-                              <option value="1">Высшее</option>
-                              <option value="2">Бакалавр</option>
-                              <option value="3">Магистр</option>
-                            </select>
+                            <label for="education" class="col-form-label">Уровень образования:</label>
+                            {% render_field form.education_level class="form-select" id="education_level" aria-label="education_level" %}
                         </div>
                     </div>
                     <div class="col-sm-6">
@@ -161,18 +139,18 @@
                         <div class="row">
                             <div class="form-group mb-2 col-sm-4">
                                 <label for="diploma_number" class="col-form-label">Серия и номер:</label>
-                                   <input type="text" class="form-control" id="diploma_number" name="diploma_number">
+                                {% render_field form.diploma_number type="text" class="form-control" id="diploma_number" %}
                             </div>
                             <div class="form-group mb-2 col-sm-4">
                                 <label for="diploma_issued" class="col-form-label">Дата выдачи:</label>
-                                <input type="date" class="form-control" id="diploma_issued" name="diploma_issued">
+                                {% render_field form.diploma_issued type="date" class="form-control" id="diploma_issued" %}
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group mb-2 col-sm-11">
                             <label for="organization" class="col-form-label">Наименование образовательной организации (полностью):</label>
-                            <input type="text" class="form-control" id="organization" name="organization">
+                            {% render_field form.edu_organization type="text" class="form-control" id="edu_organization" %}
                         </div>
                     </div>
                 </div>
@@ -180,8 +158,8 @@
             <div class="info-block-warning mb-2 p-2">
                 <div class="col-10">
                     <p>
-                          <input class="form-check-input" type="checkbox" value="" id="term_confirmation" checked>
-                        <label class="btn btn btn-outline-secondary" for="term_confirmation" data-bs-toggle="collapse" data-bs-target="#infoconfermation" aria-expanded="false" aria-controls="infoconfermation">
+                        <input class="form-check-input" type="checkbox" value="" id="is_terms_accepted" checked>
+                        <label class="btn btn btn-outline-secondary" for="is_terms_accepted" data-bs-toggle="collapse" data-bs-target="#infoconfermation" aria-expanded="false" aria-controls="infoconfermation">
                             <span class="info-block-subtitle">Подтверждаю ознакомление с нижеследующей информацией:</span>
                           </label>
                     </p>
@@ -204,7 +182,7 @@
             </div>
             <div class="d-flex justify-content-between">
                   <button class="btn btn-primary col-4" type="submit">Отправить</button>
-                  <button class="btn btn-secondary col-4" type="cancel">Очистить</button>	
+                  <button class="btn btn-secondary col-4" type="reset">Очистить</button>	
             </div>
         </form>
     </div>
