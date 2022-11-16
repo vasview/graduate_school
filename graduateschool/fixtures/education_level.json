@@ -1,0 +1,26 @@
+[
+    {
+        "model": "profiles.education",
+        "pk": 1,
+        "fields": {
+            "name": "Высшее",
+            "code": "ВШ"
+        }
+    },
+    {
+        "model": "profiles.education",
+        "pk": 2,
+        "fields": {
+            "name": "Бакалавр",
+            "code": "БАК"
+        }
+    },
+    {
+        "model": "profiles.education",
+        "pk": 3,
+        "fields": {
+            "name": "Магистр",
+            "code": "МАГ"
+        }
+    }
+]
