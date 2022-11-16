@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.postgres",
     "phonenumber_field",
+    'widget_tweaks',  
     "main.apps.MainConfig",
     "profiles.apps.ProfilesConfig",
     "faculties.apps.FacultiesConfig",
