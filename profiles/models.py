@@ -61,7 +61,7 @@ class ContactDetails(models.Model):
     citizenship = models.ForeignKey(Country, on_delete=models.SET_NULL, blank=True, null=True)
 
 class EducationalDocument(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='educational_document')
     number = models.CharField(max_length=50, blank=False)
     issued_date = models.DateField(blank=False)
     organization = models.CharField(max_length=200, blank=False)
