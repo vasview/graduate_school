@@ -3,6 +3,18 @@
 	border: 1px solid #0A62BF;
 	border-radius: 5px;
 	padding: 10px;
+	position: relative;
+}
+
+.application_status {
+	position: absolute;
+	left: 25px;
+	top: 10px;
+	text-transform: uppercase;
+	font-weight: normal;
+	padding: 2px 5px;
+	border: 1px solid #0A62BF;
+	border-radius: 5px;
 }
 
 .info-block {

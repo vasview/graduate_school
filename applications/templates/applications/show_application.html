@@ -10,6 +10,19 @@
 <div class="main_block_section mb-3">
     <div class="application-form col-10">
         <h4 class="text-center text-uppercase">Заявление</h4>
+        {% if application.status == 1 %} 
+            <div class="application_status text-primary border-primary">
+                Статус: {{ application.get_status_display }}
+            </div>
+        {% elif application.status == 5 %}
+            <div class="application_status text-success border-success">
+                Статус: {{ application.get_status_display }}
+            </div>
+        {% else %}
+            <div class="application_status text-danger border-danger">
+                Статус: {{ application.get_status_display }}
+            </div>
+        {% endif %}
         <div class="col-sm-10 mb-3">
             <p>
                 Прошу допустить меня к сдаче вступительных испытаний для приема 
@@ -17,7 +30,7 @@
                 кадров аспирантуре в следующем приоритетном порядке: 
             </p>
             <p>
-                Срок освоения образовательной программы составляет <span class="fw-bold">2</span> года.
+                Срок освоения образовательной программы составляет <span class="fw-bold">{{ application.number_of_years }}</span> года.
             </p>
 
             <table class="table table-bordered border-dark text-center">
@@ -30,60 +43,66 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>05.13.11</td>
-                        <td>Математическое и программное обеспечение вычислительных машин,комплексов и компьютерных сетей</td>
-                        <td>Очная</td>
+                        <td>{{ application.specialty.code }}</td>
+                        <td>{{ application.specialty.name }}</td>
+                        <td>{{ application.get_form_of_study_display }}</td>
                     </tr>
                 </tbody>
             </table>
             <p class="fw-bold">О себе сообщаю следующие сведения:</p>
             <p>
-                Фамилия: <span class="fst-italic">Сатаров</span> 
-                Имя: <span class="fst-italic">Эрлан</span> 
-                Отчество: <span class="fst-italic">Кубанович</span>
+                Фамилия: <span class="fst-italic">{{ application.user.last_name }}</span> 
+                Имя: <span class="fst-italic">{{ application.user.first_name }}</span> 
+                Отчество: <span class="fst-italic">{{ application.user.profile.middle_name }}</span>
             </p>
             <p>
-                Дата рождения: <span class="fst-italic">01.01.1990</span> 
-                Пол: <span class="fst-italic">Мужчина</span> 
-                Гражданство: <span class="fst-italic">Кыргызстан</span>
+                Дата рождения: <span class="fst-italic">{{ application.user.profile.birth_date|date:"SHORT_DATE_FORMAT" }} г.,</span> 
+                Пол: <span class="fst-italic">{{ application.user.profile.get_gender_display }},</span> 
+                Гражданство: <span class="fst-italic">{{ application.user.contactdetails.citizenship }}.</span>
             </p>
             <p class="fw-bold">
-                Документ, удостоверяющий личность и гражданство: <span class="fw-normal fst-italic">паспорт</span>
+                Документ, удостоверяющий личность и гражданство: 
+                <span class="fw-normal fst-italic">{{ application.user.contactdetails.document_name }}</span>
             </p>
             <p>
-                серия: <span class="fst-italic">ACD</span> 
-                номер: <span class="fst-italic">20105080</span> 
-                когда выдан: <span class="fst-italic">01.01.2020</span>
-                кем выдан: <span class="fst-italic">ИММ 20-50</span>
-                ИНН: <span class="fst-italic">123456789101</span>
+                серия: <span class="fst-italic">{{ application.user.contactdetails.document_code }},</span> 
+                номер: <span class="fst-italic">{{ application.user.contactdetails.document_number }},</span> 
+                когда выдан: <span class="fst-italic">{{ application.user.contactdetails.issue_date|date:"SHORT_DATE_FORMAT" }} г.,</span>
+                кем выдан: <span class="fst-italic">{{ application.user.contactdetails.issued_by }},</span>
+                ИНН: <span class="fst-italic">{{ application.user.profile.personal_number }}.</span>
             </p>
             <p>
-                Место рождения: <span class="fst-italic">Бишкек</span> 
+                Место рождения: <span class="fst-italic">{{ application.user.contactdetails.birthdate_place }}</span> 
             </p>
             <p class="fw-bold">
                 Контактные данные:
             </p>
             <p>
-                Номер мобильного телефона: <span class="fst-italic">20105080</span> 
-                Email: <span class="fst-italic">test@test.kg</span> 
+                Номер мобильного телефона: <span class="fst-italic">{{ application.user.profile.mobile }}.</span> 
+                Email: <span class="fst-italic">{{ application.user.email }}</span> 
             </p>
             <p class="col-10 fst-italic text-decoration-underline">
-                указанный адрес постоянной регистрации и адрес электронной почты могут быть использованы КГТУ им.И.Раззакова для направления юридически значимых сообщений в соответствии с Правилами внутреннего распорядка обучающихся КГТУ им.И.Раззакова.
+                указанный адрес постоянной регистрации и адрес электронной почты могут быть использованы КГТУ им.И.Раззакова 
+                для направления юридически значимых сообщений в соответствии с Правилами внутреннего распорядка обучающихся КГТУ им.И.Раззакова.
             </p>
             <p class="fw-bold">Сведения об имеющемся образовании:</p>
             <p>
-                Уровень образования: <span class="fst-italic">Высшее</span> 
+                Уровень образования: <span class="fst-italic">{{ application.user.contactdetails.education_level }}</span> 
             </p>
             <p class="fw-bold">Документ об образовании и квалификации:</p>
             <p>
-                Серия и номер: <span class="fst-italic">TGK</span> 
-                Дата выдачи: <span class="fst-italic">17.07.2010</span> 
+                Серия и номер: <span class="fst-italic">{{ application.user.educational_documents.last.number }},</span> 
+                Дата выдачи: <span class="fst-italic">{{ application.user.educational_documents.last.issued_date|date:"SHORT_DATE_FORMAT" }} г.</span>
             </p>
             <p>
-                Наименование образовательной организации (полностью): <span class="fst-italic">Кыргызский Технический Универсисет им. И.Раззакова</span> 
+                Наименование образовательной организации (полностью): 
+                <span class="fst-italic">{{ application.user.educational_documents.last.organization }}</span> 
             </p>
             <p><span class="fw-bold">Подтверждаю ознакомление с нижеследующей информацией:</span>
-                правилами приема на обучение, уставом КГТУ им.И.Раззакова, со сведениями о дате предоставления и регистрационным номере лицензии на осуществление образовательной деятельности, свидетельством о государственной аккредитации, с образовательными программами и другими документами, регламентирующими организацию и осуществление образовательной деятельности, правилами внутреннего распорядка обучающихся КГТУ им.И.Раззакова, иными локальными нормативными актами.
+                правилами приема на обучение, уставом КГТУ им.И.Раззакова, со сведениями о дате предоставления и регистрационным номере лицензии 
+                на осуществление образовательной деятельности, свидетельством о государственной аккредитации, с образовательными программами и 
+                другими документами, регламентирующими организацию и осуществление образовательной деятельности, правилами внутреннего распорядка 
+                обучающихся КГТУ им.И.Раззакова, иными локальными нормативными актами.
             </p>
             <p class="fw-bold">Подтверждаю следующие факты:</p>
             <ul>
@@ -95,24 +114,44 @@
             </ul>
             <p class="fw-bold">Подтверждаю достоверность предоставленных мною данных в заявлении о приеме.</p>
             <div class="row text-center">
-                <div class="col-sm-4 border-bottom border-dark">Сатаров Эрлан</div>
+                <div class="col-sm-4 border-bottom border-dark">
+                    {{ application.user.first_name }} {{ application.user.last_name }} {{ application.user.profile.middle_name }}
+                </div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-1"></div>
-                <div class="col-sm-3 border-bottom border-dark">12.10.2022 г.</div>
+                <div class="col-sm-3 border-bottom border-dark">{{ application.application_date|date:"SHORT_DATE_FORMAT" }} г.</div>
             </div>
             <div class="row text-center">
-                <div class="col-sm-4">ФИО поступающего</div>
+                <div class="col-sm-4"><small>ФИО поступающего</small></div>
                 <div class="col-sm-1"></div>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-1"></div>
-                <div class="col-sm-3">дата заявления</div>
+                <div class="col-sm-3"><small>дата заявления</small></div>
             </div>
         </div>
-        <div class="d-flex justify-content-between">
-              <a href="" class="btn btn-primary col-4">Утвердить</a>
-              <a href="" class="btn btn-danger col-4">Отклонить</a>	
-        </div>
+        {% if application.status == 1 %}
+        <form class="d-flex justify-content-between" action="{% url 'change_apl_status' id=application.id %}" method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="status" id="apl_approved" value="5">
+            <button class="btn btn-primary col-sm-4" type="submit" id="btn_approve" onclick="approveButtonClick()">Утвердить</button>
+            <!-- <a href="{#% url 'change_apl_status' id=application.id %}?status=5" class="btn btn-primary col-sm-4" type="submit" data-status=5>Утвердить</a> -->
+            <input type="hidden" name="status" id="apl_reject" value="10">
+            <button class="btn btn-danger col-sm-4" type="submit" id="btn_reject" onclick="rejectButtonClick()">Отклонить</button>
+            <!-- <a href="{#% url 'change_apl_status' id=application.id %}?status=10" class="btn btn-danger col-sm-4" type="submit" data-status=5>Отклонить</a>	 -->
+        </form>
+        {% endif %}
     </div>
 </div>
+<script>
+    function approveButtonClick() {
+        var element = document.getElementById('apl_reject');
+        if (typeof(element) != 'undefined' && element != null) {element.remove();}
+    }
+
+    function rejectButtonClick() {
+        var element = document.getElementById('apl_approved');
+        if (typeof(element) != 'undefined' && element != null) {element.remove();}
+    }
+</script>
 {% endblock %}

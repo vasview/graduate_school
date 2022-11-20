@@ -73,15 +73,15 @@
                 <p class="col-10">Документ, удостоверяющий личность и гражданство:</p>
                 <div class="row">
                     <div class="form-group mb-2 col-sm-5">
-                        <label for="passport">Вид документа:</label>
+                        <label for="document_name">Вид документа:</label>
                         {% render_field form.document_name type="text" class="form-control" id="document_name" %}
                     </div>
                     <div class="form-group mb-2 col-sm-2">
-                        <label for="series">серия:</label>
+                        <label for="document_code">серия:</label>
                         {% render_field form.document_code type="text" class="form-control" id="document_code" %}
                     </div>
                     <div class="form-group mb-2 col-sm-3">
-                        <label for="number">номер:</label>
+                        <label for="document_number">номер:</label>
                         {% render_field form.document_number type="text" class="form-control" id="document_number" %}
                     </div>
                 </div>
@@ -158,7 +158,7 @@
             <div class="info-block-warning mb-2 p-2">
                 <div class="col-10">
                     <p>
-                        <input class="form-check-input" type="checkbox" value="" id="is_terms_accepted" checked>
+                        <input class="form-check-input" type="checkbox" value="yes" id="is_terms_accepted" name="is_terms_accepted" checked>
                         <label class="btn btn btn-outline-secondary" for="is_terms_accepted" data-bs-toggle="collapse" data-bs-target="#infoconfermation" aria-expanded="false" aria-controls="infoconfermation">
                             <span class="info-block-subtitle">Подтверждаю ознакомление с нижеследующей информацией:</span>
                           </label>
