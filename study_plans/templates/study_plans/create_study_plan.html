@@ -11,15 +11,11 @@
 {% block page_content %}
 <h3 class="text-sm-center fs-3 mb-3">Добавить учебный план работы</h3>
 <div class="study_plan_section col-sm-10 mb-2">
-    <form class="mb-3" action="">
+    <form class="mb-3" action="" method="post">
+        {% csrf_token %}
         <div class="form-group mb-3 py-2 col-sm-8 col-lg-6">
             <label for="study_plan_type" class="fw-bold mb-2 fs-5">Выберите вид учебного плана работ:</label>
-            <select class="form-select" aria-label="Выбрать тип учебного плана работы" id="study_plan_type">
-                <option selected>Общий учебный план работы аспиранта</option>
-                <option value="1">Общий учебный план работы аспиранта</option>
-                <option value="2">Учебный план 1–го года подготовки аспиранта</option>
-                <option value="2">Учебный план 2–го года подготовки аспиранта</option>
-            </select>
+            {% render_field form.study_plan_type id="study_plan_type" class="form-select" %}
         </div>
         <div class="row">
             <div class="col-sm-6 d-flex justify-content-between">

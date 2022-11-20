@@ -119,6 +119,8 @@ if not DEBUG:
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
+DATE_FORMAT = ( ( 'd-m-Y' ))
+DATE_INPUT_FORMATS = ( ('%d-%m-%Y'),)
 
 LANGUAGE_CODE = "ru"
 

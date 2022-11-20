@@ -1,0 +1,11 @@
+[
+    {
+        "model": "main.applicationparameters",
+        "pk": 1,
+        "fields": {
+            "code": "new_default_pwd",
+            "name": "пароль для нового пользователя",
+            "value": ""
+        }
+    }
+]

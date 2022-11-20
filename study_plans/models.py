@@ -11,6 +11,7 @@ class StudyPlanType(models.Model):
     name = models.CharField(max_length=250)
     code = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
+    year_of_study = models.SmallIntegerField()
     sort = models.SmallIntegerField()
     active = models.BooleanField(default=True)
 
@@ -56,7 +57,6 @@ class WorkScope(models.Model):
 class StudyPlan(models.Model):
     postgraduate = models.ForeignKey('postgraduates.Postgraduate', on_delete=models.PROTECT)
     work = models.ForeignKey(Work, on_delete=models.PROTECT)
-    year_of_study = models.SmallIntegerField()
     plan_type = models.ForeignKey(StudyPlanType, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
