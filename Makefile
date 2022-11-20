@@ -9,6 +9,7 @@ APP_FACULTY = faculties
 APP_POSTGRADUATE = postgraduates
 APP_STUDY_PLAN = study_plans
 APP_APPLICATION = applications
+APP_MAIN = main
 FIXTURE = .\graduateschool\fixtures
 
 ${VENV}\Scripts\activate: requirements.txt
@@ -28,6 +29,7 @@ migrations:
 	${PYTHON} ${MANAGE} makemigrations ${APP_POSTGRADUATE}
 	${PYTHON} ${MANAGE} makemigrations ${APP_STUDY_PLAN}
 	${PYTHON} ${MANAGE} makemigrations ${APP_APPLICATION}
+	${PYTHON} ${MANAGE} makemigrations ${APP_MAIN}
 
 inspect_migration:
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_PROFILE}
@@ -35,6 +37,7 @@ inspect_migration:
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_POSTGRADUATE}
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_STUDY_PLAN}
 	${PYTHON} ${MANAGE} sqlmigrate ${APP_APPLICATION}
+	${PYTHON} ${MANAGE} sqlmigrate ${APP_MAIN}
 	
 migrate:
 	${PYTHON} ${MANAGE} migrate
@@ -44,7 +47,8 @@ rollback_all_migrations:
 	${PYTHON} ${MANAGE} migrate ${APP_FACULTY} zero
 	${PYTHON} ${MANAGE} migrate ${APP_POSTGRADUATE} zero
 	${PYTHON} ${MANAGE} migrate ${APP_STUDY_PLAN} zero
-	${PYTHON} ${MANAGE} migrate ${APP_APPLICATIO} zero
+	${PYTHON} ${MANAGE} migrate ${APP_APPLICATION} zero
+	${PYTHON} ${MANAGE} migrate ${APP_MAIN} zero
 
 delete_migrations:
 	find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
@@ -68,6 +72,7 @@ load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\country.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\study_plan_type.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\education_level.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\application_params.json
 	
 clean:
 	find . -type f -name *.pyc -delete
