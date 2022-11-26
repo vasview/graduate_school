@@ -7,6 +7,7 @@ from django.urls import reverse_lazy
 from main.models import *
 from .models import *
 from .forms import *
+from postgraduates.models import Postgraduate, DissertationTopic, ExplanatoryNote
 
 #class ListApplications(LoginRequiredMixin, ListView):
     # model = Application
@@ -66,6 +67,13 @@ class ChangeStatusApplication(View):
     # def get_success_url(self):
     #     apl_id = self.kwargs.get('id')
     #     return redirect('show_application', id=apl_id)
+    
+    def create_student(self,application):
+        student = Postgraduate(student=application.user, specialty=application.specialty,
+                    form_of_study=application.form_of_study, number_of_years=application.number_of_years,
+                    start_date=application.approval_date)
+        student.save()
+        return student
 
     def post(self, request, *args, **kwargs):
         application = self.get_object()
@@ -77,7 +85,11 @@ class ChangeStatusApplication(View):
             application.user.is_active = True
             application.user.set_password(pwd.value)
             application.user.save()
+            student = self.create_student(application)
+            DissertationTopic.objects.create(postgraduate=student)
+            ExplanatoryNote.objects.create(postgraduate=student)
         
         # return redirect("applications")
         return redirect("show_application", id=application.id)
+
     
