@@ -5,24 +5,29 @@
       <span class="pl-2 logo-text">КГТУ им. И.Раззакова</span>
     </a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 justify-content-end">
-        <!-- {#% if request.user.is_authenticated %} -->
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'show_explanatory_note' id=1 %}">Объяснительная записка</a>
+        {% if request.user.is_authenticated %}
+          {% for m in menu %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url m.url_name %}">{{ m.title }}</a>
+              </li>
+          {% endfor %}
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{#% url 'postgraduates:show_explanatory_note' id=request.user.id %}">Объяснительная записка</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'student_study_plans:index' %}">Мои планы</a>
+            <a class="nav-link" aria-current="page" href="{#% url 'student_study_plans:index' %}">Мои планы</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Мой профиль</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Выход</a>
-          </li>
-        <!-- {#% else %}
+            <a class="nav-link" href="{#% url 'logout' %}">Выход</a>
+          </li> -->
+        {% else %}
           <li class="nav-item">
             <a href="{% url 'login' %}" class="nav-link">Вход</a>
           </li>
-        {#% endif %} -->
+        {% endif %}
       </ul>
   </nav>
 </div>
