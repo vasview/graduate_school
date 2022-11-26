@@ -6,13 +6,32 @@ from django.urls import reverse_lazy
 
 from .forms import *
 
+
+menu = [{'title': 'Аспирантура', 'url_name': 'postgraduates:student_workspace'},
+        {'title': 'Объяснительная записка', 'url_name': 'postgraduates:show_explanatory_note'},
+        {'title': 'Мои планы', 'url_name': 'student_study_plans:index'},
+        {'title': 'Мой профиль', 'url_name': 'postgraduates:student_workspace'},    
+        {'title': 'Выход', 'url_name': 'logout'}
+]
+
+
 class ListStudyPlans(View):
+    template_name = 'study_plans/student_study_plans.html'
+
     def get(self,request,*args, **kwargs):
-        return render(request, 'study_plans/student_study_plans.html')
+        context = {
+            'menu': menu
+        }
+        return render(request, self.template_name, context = context)
 
 class ShowStudyPlan(View):
+    template_name = 'study_plans/show_study_plan.html'
+
     def get(self,request,*args, **kwargs):
-        return render(request, 'study_plans/show_study_plan.html')
+        context = {
+            'menu': menu
+        }
+        return render(request, self.template_name, context = context)
 
 class CreateStudyPlan(View):
     form_class = NewStudyPlan
