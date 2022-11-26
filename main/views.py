@@ -7,8 +7,28 @@ from django.views.generic import View, ListView, DetailView, CreateView, DeleteV
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic.base import ContextMixin
 
 from main.forms import *
+from .models import MenuItems
+
+class StudentMenuView(ContextMixin):
+    def get_context_data(self, *args,**kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=1)
+        return context
+
+class SupervisorMenuView(ContextMixin):
+    def get_context_data(self, *args,**kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=2)
+        return context
+
+class AdministrationMenuView(ContextMixin):
+    def get_context_data(self, *args,**kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=3)
+        return context
 
 class HomePage(View):
     def get(self,request,*args, **kwargs):

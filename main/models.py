@@ -12,3 +12,25 @@ class ApplicationParameters(models.Model):
 
     def __str__(self):
         return self.name
+
+class MenuShownOnPages(models.IntegerChoices):
+    POSTGRADUATE    = 1, 'аспирант' 
+    SUPERVISOR      = 2, 'руководитель'
+    ADMINISTRATION  = 3, 'администрация'
+
+
+class MenuItems(models.Model):
+    title = models.CharField(max_length=50, blank=False)
+    url_name = models.CharField(max_length=250, blank=False)
+    sort = models.SmallIntegerField()
+    seen_by = models.IntegerField(choices=MenuShownOnPages.choices, default=MenuShownOnPages.POSTGRADUATE)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = 'Пункт меню'
+        verbose_name_plural = 'Пункты меню'
+        ordering = ['sort']
+
+    def __str__(self):
+        return self.title
+

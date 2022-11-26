@@ -1,0 +1,52 @@
+[
+    {
+        "model": "main.menuitems",
+        "pk": 1,
+        "fields": {
+            "title": "Аспирантура",
+            "url_name": "postgraduates:student_workspace",
+            "sort": 1,
+            "seen_by": 1
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 2,
+        "fields": {
+            "title": "Объяснительная записка",
+            "url_name": "postgraduates:show_explanatory_note",
+            "sort": 2,
+            "seen_by": 1
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 3,
+        "fields": {
+            "title": "Мои планы",
+            "url_name": "student_study_plans:index",
+            "sort": 3,
+            "seen_by": 1
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 4,
+        "fields": {
+            "title": "Мой профиль",
+            "url_name": "postgraduates:my_profile",
+            "sort": 4,
+            "seen_by": 1
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 5,
+        "fields": {
+            "title": "Выход",
+            "url_name": "logout",
+            "sort": 5,
+            "seen_by": 1
+        }
+    }
+]
