@@ -40,7 +40,7 @@ class Specialty(models.Model):
         ordering = ['name']
 
     def __str__(self):
-        return self.code + '-' + self.name
+        return self.code + '. ' + self.name
 
 class Subject(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
