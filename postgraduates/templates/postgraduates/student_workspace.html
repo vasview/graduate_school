@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Application Polytech{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/student_card.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="main_block_section col-sm-10 mb-3">
+    <h3 class="fs-4 col-sm-10 text-uppercase">Карточка аспиранта</h3>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-2">Факультет</div>
+        <div class="col_value col-sm-8">Энергетический</div>
+    </div>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-2">Кафедра</div>
+        <div class="col_value col-sm-8">{{ student.department.name }}</div>
+    </div>
+    <div class="row col-12">
+        <table>
+            <th>
+                <tr class="fs-4">
+                    <td>Форма обучения</td>
+                    <td>Срок</td>
+                    <td>Дата зачисления</td>
+                    <td>Дата окончания</td>
+                    <td>Факт. дата окончания</td>
+                </tr>
+            </th>
+            <tbody>
+                <tr class="col_value text-sm-center">
+                    <td>{{ student.get_form_of_study_display }}</td>
+                    <td>{{ student.number_of_years }} г.</td>
+                    <td>{{ student.start_date|default_if_none:" " }} г.</td>
+                    <td>{{ student.real_end_date|default_if_none:" " }} г.</td>
+                    <td>{{ student.real_end_date|default_if_none:" " }} г.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="main_block_section col-sm-10 mb-3">
+    <h3 class="fs-4 text-uppercase">Индивидуальный учебный план работы аспиранта</h3>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-4">Фамилия, имя, отчество</div>
+        <div class="col_value col-sm-6">{{ user.last_name }} {{ user.first_name}} {{ user.profile.middle_name }}</div>
+    </div>
+    <div class="row col-sm-12">
+        <div class="col_title col-sm-4">Наименование специальности</div>
+        <div class="col_value col-sm-6">{{ student.specialty }}</div>
+    </div>
+    <div class="row col-sm-12 mb-2">
+        <div class="col_title col-sm-4">Научный руководитель</div>
+        <div class="col_value col-sm-6">{{ student.supervisor.name }}</div>
+    </div>
+    <div class="row col-sm-12 mb-2">
+        <div class="col_title topic_title col-10 mb-2">Тема диссертации</div>
+        <div class="col_value col_value_text col-10">{{ topic.name }}</div>
+    </div>
+    <div clas="row col-sm-12">
+        <div class="col_value col-9">Утверждена на совете
+            {{ topic.approved_by }}
+        </div>
+        <div class="col_value col-9 mb-3">дата утверждения
+            {{ topic.approval_date|default_if_none:"_____" }} г.
+            протокол № {{ topic.protocol_number|default_if_none:"_____" }}
+        </div>
+    </div>
+    <div class="col-10 mb-2">
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'postgraduates:edit_dissertation_topic' id=topic.id %}" class="btn btn-primary col-4">Редактировать</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

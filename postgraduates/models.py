@@ -20,7 +20,7 @@ class ExamGrade(models.IntegerChoices):
 
 
 class Postgraduate(models.Model):
-    student = models.ForeignKey(User, on_delete=models.PROTECT)
+    student = models.ForeignKey(User, on_delete=models.PROTECT, related_name='students')
     department = models.ForeignKey('faculties.Department', on_delete=models.SET_NULL, blank=True, null=True)
     specialty = models.ForeignKey('faculties.Specialty', on_delete=models.SET_NULL, blank=True, null=True)
     supervisor = models.ForeignKey('faculties.Supervisor', on_delete=models.SET_NULL, blank=True, null=True)
@@ -37,29 +37,29 @@ class Postgraduate(models.Model):
     class Meta:
         verbose_name = 'Аспирант'
         verbose_name_plural = 'Аспиранты'
-        ordering = ['student_id']
+        ordering = ['id']
 
     def __str__(self):
         return self.student.last_name
 
 class DissertationTopic(models.Model):
-    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.PROTECT)
+    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.PROTECT, related_name='topics')
     name = models.TextField()
     approved_by = models.CharField(max_length=250, blank=True, null=True)
     approval_date = models.DateField(blank=True, null=True)
-    protocol_number = models.CharField(max_length=50)
+    protocol_number = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Тема диссертации'
         verbose_name_plural = 'Темы диссертации'
-        ordering = ['name']
+        ordering = ['id']
 
     def __str__(self):
-        return self.name
+        return self.id
 
 
 class ExplanatoryNote(models.Model):
-    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.CASCADE)
+    postgraduate = models.ForeignKey(Postgraduate, on_delete=models.CASCADE, related_name='explanatory_notes')
     topicality = models.TextField(blank=True, null=True)
     purpose = models.TextField(blank=True, null=True)
     scientific_value = models.TextField(blank=True, null=True)
@@ -69,6 +69,9 @@ class ExplanatoryNote(models.Model):
     is_purpose_approved = models.BooleanField(default=False)
     is_value_approved = models.BooleanField(default=False)
     is_application_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.id
 
 class Exam(models.Model):
     postgraduate = models.ForeignKey(Postgraduate, on_delete=models.PROTECT)

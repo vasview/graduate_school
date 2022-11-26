@@ -7,26 +7,27 @@
 {% block page_content %}
 <div class="main_block_section mb-3">
     <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
-    <form class="col-10">
+    <form action="" class="col-10" method="POST">
+        {% csrf_token %}
         <div class="form-group mb-2 text-sm-start">
-            <label for="topicality" class="fs-5">Актуальность темы:</label>
-            <textarea class="form-control" id="topicality" rows="3"></textarea>
+            <label for="topicality" class="fs-5">{{ form.topicality.label_tag }}</label>
+            {{ form.topicality }}
         </div>
         <div class="form-group mb-2 text-sm-start">
-            <label for="purpose" class="fs-5">Основная цель и задачи диссертации:</label>
-            <textarea class="form-control" id="purpose" rows="3"></textarea>
+            <label for="purpose" class="fs-5">{{ form.purpose.label_tag }}</label>
+            {{ form.purpose }}
         </div>
         <div class="form-group mb-2 text-sm-start">
-            <label for="scientific_value" class="fs-5">Новизна и научная значимость диссертации:</label>
-            <textarea class="form-control" id="scientific_value" rows="3"></textarea>
+            <label for="scientific_value" class="fs-5">{{ form.scientific_value.label_tag }}</label>
+            {{ form.scientific_value }}
         </div>
         <div class="form-group mb-2 text-sm-start">
-            <label for="expected_results" class="fs-5">Ожидаемые результаты:</label>
-            <textarea class="form-control" id="expected_results" rows="3"></textarea>
+            <label for="expected_result" class="fs-5">{{ form.expected_result.label_tag }}</label>
+            {{ form.expected_result }}
         </div>
         <div class="form-group mb-2 text-sm-start">
-            <label for="application_area" class="fs-5">Область применения:</label>
-            <textarea class="form-control" id="application_area" rows="3"></textarea>
+            <label for="application_area" class="fs-5">{{ form.application_area.label_tag }}</label>
+            {{ form.application_area }}
         </div>
         <div class="d-flex justify-content-between">
               <button class="btn btn-primary col-4" type="submit">Сохранить</button>
