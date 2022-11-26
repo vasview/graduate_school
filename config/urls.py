@@ -10,7 +10,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('applications/', include('applications.urls')),
     path('faculty/', include('faculties.urls')),
-    path('postgraduates/', include('postgraduates.urls')),
+    path('postgraduates/', include('postgraduates.urls', namespace='postgraduates')),
     path('all_study_plans/', include('study_plans.urls', namespace='all_study_plans')),
     path('student_study_plans/', include('study_plans.urls', namespace='student_study_plans')),
 ]

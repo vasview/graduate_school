@@ -10,7 +10,7 @@ APP_POSTGRADUATE = postgraduates
 APP_STUDY_PLAN = study_plans
 APP_APPLICATION = applications
 APP_MAIN = main
-FIXTURE = .\graduateschool\fixtures
+FIXTURE = .\config\fixtures
 
 ${VENV}\Scripts\activate: requirements.txt
 	python -m venv venv
