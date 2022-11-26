@@ -34,7 +34,7 @@
         "pk": 4,
         "fields": {
             "title": "Мой профиль",
-            "url_name": "postgraduates:my_profile",
+            "url_name": "profiles:student_profile",
             "sort": 4,
             "seen_by": 1
         }

@@ -6,29 +6,24 @@ from django.urls import reverse_lazy
 
 from .models import *
 from .forms import *
+from main.views import StudentMenuView
 
- ##TODO need to create a profile page and root
-menu = [{'title': 'Аспирантура', 'url_name': 'postgraduates:student_workspace'},
-        {'title': 'Объяснительная записка', 'url_name': 'postgraduates:show_explanatory_note'},
-        {'title': 'Мои планы', 'url_name': 'student_study_plans:index'},
-        {'title': 'Мой профиль', 'url_name': 'postgraduates:student_workspace'},    
-        {'title': 'Выход', 'url_name': 'logout'}
-]
-
-class StudentWorkspace(LoginRequiredMixin, View):
+class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
     template_name = 'postgraduates/student_workspace.html'
     login_url = '/login/'
 
-    def get(self, request, *args, **kwargs):
+    def get_context_data(self, request, *args,**kwargs):
+        context =  super().get_context_data(*args, **kwargs)
         user = request.user
         student = user.students.last()
         topic = student.topics.last()
-        context = {
-            'user': user, 
-            'student': student, 
-            'topic': topic,
-            'menu': menu
-        }
+        context['user'] = user
+        context['student'] = student
+        context['topic'] = topic
+        return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(request)
         # assert False
         return render(request, self.template_name, context)
 
@@ -49,39 +44,42 @@ class StudentCard(LoginRequiredMixin, View):
         else:
             return render(request, self.template_name, {'form': form})
 
-class EditDissertationTopic(LoginRequiredMixin, UpdateView):
+class EditDissertationTopic(LoginRequiredMixin, StudentMenuView, UpdateView):
     model = DissertationTopic
     form_class = EditDissertationTopic
     template_name = 'postgraduates/edit_dissertation_topic.html'
     pk_url_kwarg = 'id'
     login_url = '/login/'
 
-    def get_context_data(self, *, object_list=None, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
         return context
 
     def get_success_url(self):
-        # id = self.object.postgraduate.id
         return reverse_lazy('postgraduates:student_workspace')
 
-class ShowExplanatoryNote(LoginRequiredMixin, View):
+class ShowExplanatoryNote(LoginRequiredMixin, StudentMenuView, View):
     model = ExplanatoryNote
     context_object_name = 'expl_note'
     template_name = 'postgraduates/show_explanatory_note.html'
     login_url = '/login/'
 
-    def get(self,request,*args, **kwargs):
+    def get_context_data(self, request, *args,**kwargs):
+        context =  super().get_context_data(*args, **kwargs)
         user = request.user
         student = user.students.last()
         expl_note = student.explanatory_notes.last()
-        context = {
-            'menu': menu,
-            'expl_note': expl_note
-        }
+        context['expl_note'] = expl_note
+        return context
+
+    def get(self, request, *args, **kwargs):
+        user = request.user
+        student = user.students.last()
+        expl_note = student.explanatory_notes.last()
+        context = self.get_context_data(request)
         return render(request, self.template_name, context)
 
-class EditExplanatoryNote(LoginRequiredMixin, UpdateView):
+class EditExplanatoryNote(LoginRequiredMixin, StudentMenuView, UpdateView):
     model = ExplanatoryNote
     form_class = EditExplanatoryNote
     template_name = 'postgraduates/edit_explanatory_note.html'
@@ -90,7 +88,6 @@ class EditExplanatoryNote(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['menu'] = menu
         return context
 
     def get_success_url(self):
