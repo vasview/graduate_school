@@ -1,0 +1,85 @@
+[
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 1,
+        "fields": {
+            "work_type_id": 1,
+            "title": "Кандидатские экзамены",
+            "description": "Кандидатские экзамены",
+            "sort": 1
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 2,
+        "fields": {
+            "work_type_id": 1,
+            "title": "Дисциплины",
+            "description": "Экзаменационные дисциплины",
+            "sort": 2
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 3,
+        "fields": {
+            "work_type_id": 1,
+            "title": "Дисциплины для изучения",
+            "description": "Дисциплины для изучения",
+            "sort": 3
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 4,
+        "fields": {
+            "work_type_id": 2,
+            "title": "Теоретическая",
+            "description": "Теоретическая часть научной работы",
+            "sort": 1
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 5,
+        "fields": {
+            "work_type_id": 2,
+            "title": "Экспериментальная",
+            "description": "Экспериментальная часть научной работы",
+            "sort": 2
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 6,
+        "fields": {
+            "work_type_id": 3,
+            "title": "Без заголовка",
+            "description": "Объем работы по умолчанию для педпрактики",
+            "sort": 1,
+            "is_title_visible": false
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 7,
+        "fields": {
+            "work_type_id": 4,
+            "title": "Без заголовка",
+            "description": "Объем работы по умолчанию для других видов работ",
+            "sort": 1,
+            "is_title_visible": false
+        }
+    },
+    {
+        "model": "study_plans.workscopetype",
+        "pk": 8,
+        "fields": {
+            "work_type_id": 5,
+            "title": "Без заголовка",
+            "description": "Объем работы по умолчанию по предзащите диссертации",
+            "sort": 1,
+            "is_title_visible": false
+        }
+    }
+]

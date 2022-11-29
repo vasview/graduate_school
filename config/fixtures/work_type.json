@@ -1,53 +1,53 @@
 [
     {
-        "model": "study_plans.work",
+        "model": "study_plans.worktype",
         "pk": 1,
         "fields": {
             "title": "Учебная работа",
             "description": "изучение дисциплин и сдача экзаменов",
             "sort": 1,
-            "visible": true,
-            "genplan_visible": true
+            "is_visible": true,
+            "is_genplan_visible": true
         }
     },
     {
-        "model": "study_plans.work",
+        "model": "study_plans.worktype",
         "pk": 2,
         "fields": {
             "title": "Научная работа",
             "sort": 2,
-            "visible": true,
-            "genplan_visible": true
+            "is_visible": true,
+            "is_genplan_visible": true
         }
     },
     {
-        "model": "study_plans.work",
+        "model": "study_plans.worktype",
         "pk": 3,
         "fields": {
             "title": "Педагогическая практика",
             "sort": 3,
-            "visible": true,
-            "genplan_visible": true
+            "is_visible": true,
+            "is_genplan_visible": true
         }
     },
     {
-        "model": "study_plans.work",
+        "model": "study_plans.worktype",
         "pk": 4,
         "fields": {
             "title": "Другие виды работ",
             "sort": 4,
-            "visible": true,
-            "genplan_visible": true
+            "is_visible": true,
+            "is_genplan_visible": true
         }
     },
     {
-        "model": "study_plans.work",
+        "model": "study_plans.worktype",
         "pk": 5,
         "fields": {
             "title": "Предварительная защита научной работы на кафедре",
             "sort": 5,
-            "visible": false,
-            "genplan_visible": true
+            "is_visible": false,
+            "is_genplan_visible": true
         }
     }
 ]

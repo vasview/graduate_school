@@ -67,10 +67,10 @@ load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\department.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_degree.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_title.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_scope.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\country.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\study_plan_type.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_type.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_scope_type.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\country.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\education_level.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\application_params.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\menu_items.json
