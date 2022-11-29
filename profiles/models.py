@@ -30,7 +30,7 @@ class Country(models.Model):
 
     class Meta:
         verbose_name = 'Страна'
-        verbose_name_plural = 'Справочник страны'
+        verbose_name_plural = 'Справочник стран'
         ordering = ['name']
 
     def __str__(self):
