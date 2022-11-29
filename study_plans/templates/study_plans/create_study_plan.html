@@ -13,6 +13,7 @@
 <div class="study_plan_section col-sm-10 mb-2">
     <form class="mb-3" action="" method="post">
         {% csrf_token %}
+        {{ form.postgraduate.as_hidden }}
         <div class="form-group mb-3 py-2 col-sm-8 col-lg-6">
             <label for="study_plan_type" class="fw-bold mb-2 fs-5">Выберите вид учебного плана работ:</label>
             {% render_field form.study_plan_type id="study_plan_type" class="form-select" %}
