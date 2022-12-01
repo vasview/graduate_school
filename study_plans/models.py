@@ -2,6 +2,7 @@ from hashlib import blake2b
 from tabnanny import verbose
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.urls import reverse
 
 class ReferenceTable(models.IntegerChoices):
     NONE = 0
@@ -9,8 +10,8 @@ class ReferenceTable(models.IntegerChoices):
     SUBJECTS = 2 , 'faculties.subject'
 
 class StudyPlanStatus(models.IntegerChoices):
-    NEW = 1, 'новое' 
-    APPROVED = 5, 'одобрено'
+    NEW = 1, 'новый' 
+    APPROVED = 5, 'одобрен'
 
 # Register for types of study plans
 class StudyPlanType(models.Model):
@@ -54,6 +55,7 @@ class WorkScopeType(models.Model):
     sort = models.SmallIntegerField()
     active = models.BooleanField(default=True)
     is_title_visible = models.BooleanField(default=True)
+    code = models.CharField(max_length=50, blank=True, null=True)
 
     class Meta:
         verbose_name = 'Объем работы'
@@ -101,13 +103,13 @@ class StudyPlanWork(models.Model):
     def __str__(self):
         return self.work_type.title
 
+    def get_absolute_url(self):
+        return reverse('student_study_plans:show_study_plan', args=[self.id])
+
 # Work scope in the study plan
 class StudyWorkScope(models.Model):
     study_plan_work = models.ForeignKey(StudyPlanWork, on_delete=models.PROTECT, related_name='study_work_scopes')
     work_scope = models.ForeignKey(WorkScopeType, on_delete=models.PROTECT)
-    subtitle = models.CharField(max_length=250, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    is_section_title = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['id']
@@ -118,10 +120,13 @@ class StudyWorkScope(models.Model):
 # Details of a work scope in the study plan
 class StudyWorkScopeDetails(models.Model):
     study_work_scope = models.ForeignKey(StudyWorkScope, on_delete=models.PROTECT, related_name='study_work_scope_details')
+    subtitle = models.CharField(max_length=250, blank=True, null=True)
+    summary = models.TextField(blank=True, null=True)
+    is_section_title = models.BooleanField(default=False)
     reference_table = models.SmallIntegerField(choices=ReferenceTable.choices, 
                                                default=ReferenceTable.NONE)
     reference_key = models.IntegerField(blank=True, null=True)
-    deadline = models.DateField()
+    deadline = models.DateField(blank=True, null=True)
     reporting_form = models.CharField(max_length=250, blank=True, null=True)
     completion_mark = models.CharField(max_length=100, blank=True, null=True)
     faculty_conclustion = models.TextField(blank=True, null=True)
