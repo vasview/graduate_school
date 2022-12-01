@@ -6,7 +6,8 @@
             "work_type_id": 1,
             "title": "Кандидатские экзамены",
             "description": "Кандидатские экзамены",
-            "sort": 1
+            "sort": 1,
+            "code": "exam"
         }
     },
     {
@@ -16,7 +17,8 @@
             "work_type_id": 1,
             "title": "Дисциплины",
             "description": "Экзаменационные дисциплины",
-            "sort": 2
+            "sort": 2,
+            "code": "subject"
         }
     },
     {
@@ -26,7 +28,8 @@
             "work_type_id": 1,
             "title": "Дисциплины для изучения",
             "description": "Дисциплины для изучения",
-            "sort": 3
+            "sort": 3,
+            "code": "subject"
         }
     },
     {
@@ -36,7 +39,8 @@
             "work_type_id": 2,
             "title": "Теоретическая",
             "description": "Теоретическая часть научной работы",
-            "sort": 1
+            "sort": 1,
+            "code": "science"
         }
     },
     {
@@ -46,7 +50,8 @@
             "work_type_id": 2,
             "title": "Экспериментальная",
             "description": "Экспериментальная часть научной работы",
-            "sort": 2
+            "sort": 2,
+            "code": "science"
         }
     },
     {
@@ -57,7 +62,8 @@
             "title": "Без заголовка",
             "description": "Объем работы по умолчанию для педпрактики",
             "sort": 1,
-            "is_title_visible": false
+            "is_title_visible": false,
+            "code": "practice"
         }
     },
     {
@@ -68,7 +74,8 @@
             "title": "Без заголовка",
             "description": "Объем работы по умолчанию для других видов работ",
             "sort": 1,
-            "is_title_visible": false
+            "is_title_visible": false,
+            "code": "other"
         }
     },
     {
@@ -79,7 +86,8 @@
             "title": "Без заголовка",
             "description": "Объем работы по умолчанию по предзащите диссертации",
             "sort": 1,
-            "is_title_visible": false
+            "is_title_visible": false,
+            "code": "predefence"
         }
     }
 ]
