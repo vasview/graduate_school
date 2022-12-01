@@ -21,24 +21,39 @@
                     </div>
                 </div>
             </div>
-            {% for scopes in work.study_work_scopes.all %}
+            {% for scope in work.study_work_scopes.all %}
                 <div class="row px-3 pb-2">
                     <div class="card col-sm-12 mb-1">							
-                        <div class="card-header fs-5 fw-bold w-100">{{ scopes.work_scope.title }}:
-                            <a href="#"><img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить"></a>
+                        <div class="card-header fs-5 fw-bold w-100">{{ scope.work_scope.title }}:
+                            {% if scope.work_scope.code == 'subject' or scope.work_scope.code == 'exam' %}
+                                <a href="{% url 'student_study_plans:new_scope_subject' id=scope.id %}">
+                                    <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить дисциплину">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'student_study_plans:new_scope_details' id=scope.id %}">
+                                    <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить содержание">
+                                </a>
+                            {% endif %}
                         </div>
-                        {% for details in scopes.study_work_scope_details.all %}
+                        {% for details in scope.study_work_scope_details.all %}
                             <div class="card-body row">
                                 <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
                                 <div class="fw-bold col-sm-2">срок:</div>
                                 <div class="fw-bold col-sm-2">форма отчетности:</div>
                                 <div class="fw-bold col-sm-2">Действия:</div>
-                                <div class="col-sm-6">История и философия науки</div>
+                                <div class="col-sm-6">
+                                    {% if details.subtitle %}
+                                        {{ details.subtitle }} <br>
+                                    {% endif %}
+                                    {{ details.summary }}
+                                </div>
+                                <div class="col-sm-2">{{ details.deadline|date:"SHORT_DATE_FORMAT" }}</div>
                                 <div class="col-sm-2">{{ details.reporting_form }}</div>
-                                <div class="col-sm-2">{{ details.deadline }}</div>
                                 <div class="col-sm-2">
                                     <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28" title="Редактировать"></a> 
-                                    <a href="#"><img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28" title="Удалить"></a>
+                                    <a href="{% url 'student_study_plans:remove_work_scope_details' id=details.id %}">
+                                        <img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28" title="Удалить">
+                                    </a>
                                 </div>
                             </div>
                         {% endfor %}
