@@ -11,17 +11,17 @@
 {% block page_content %}
 <h3 class="text-sm-center fs-3 mb-3">Добавить учебный план работы</h3>
 <div class="study_plan_section col-sm-10 mb-2">
-    <form class="mb-3" action="" method="post">
+    <form class="mb-3" action="{% url 'student_study_plans:create_study_plan' %}" method="post">
         {% csrf_token %}
         {{ form.postgraduate.as_hidden }}
-        <div class="form-group mb-3 py-2 col-sm-8 col-lg-6">
+        <div class="form-group mb-3 py-2 col-sm-8">
             <label for="study_plan_type" class="fw-bold mb-2 fs-5">Выберите вид учебного плана работ:</label>
             {% render_field form.plan_type id="plan_type" class="form-select" %}
         </div>
         <div class="row">
-            <div class="col-sm-6 d-flex justify-content-between">
-                <button class="btn btn-primary col-3" type="submit">Создать</button>
-                <button class="btn btn-secondary col-3" type="cancel">Отмена</button>
+            <div class="col-sm-8 d-flex justify-content-between">
+                <button class="btn btn-primary col-sm-4" type="submit">Создать</button>
+                <a href="{{ view.get_success_url }}" class="btn btn-secondary col-sm-4 me-0">Отмена</a>
             </div>
         </div>
     </form>

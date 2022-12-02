@@ -13,6 +13,7 @@ class NewStudyPlan(forms.ModelForm):
     plan_type = forms.ModelChoiceField(
         required=True,
         queryset=StudyPlanType.objects.all(),
+        empty_label='Учебный план не выбран'
     )
 
     def __init__(self, *args, **kwargs):
@@ -55,14 +56,7 @@ class NewStudyPlanScopeDetails(forms.ModelForm):
                         widget=forms.TextInput(attrs={'class': 'form-control'})
         )
 
-    def save(self):
-        data = self.cleaned_data
-        scope_details = StudyWorkScopeDetails(study_work_scope=data['study_work_scope'],
-                                subtitle=data['subtitle'],
-                                summary=data['summary'],
-                                deadline=data['deadline'],
-                                reporting_form=data['reporting_form'])
-        scope_details.save()
-        return scope_details
-
+    def __init__(self, *args, **kwargs):
+        self.study_work_scope = kwargs.pop('study_work_scope')
+        super(NewStudyPlanScopeDetails, self).__init__(*args, **kwargs)
 

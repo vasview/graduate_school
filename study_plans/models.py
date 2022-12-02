@@ -84,6 +84,9 @@ class StudyPlan(models.Model):
     def __str__(self):
         return self.postgraduate.student.last_name + ' ' + self.plan_type.title
 
+    def get_absolute_url(self):
+        return reverse('student_study_plans:show_study_plan', args=[self.id])
+
 # Study plan with a work
 class StudyPlanWork(models.Model):
     study_plan = models.ForeignKey(StudyPlan, on_delete=models.PROTECT, related_name='study_plan_works')
@@ -102,9 +105,6 @@ class StudyPlanWork(models.Model):
 
     def __str__(self):
         return self.work_type.title
-
-    def get_absolute_url(self):
-        return reverse('student_study_plans:show_study_plan', args=[self.id])
 
 # Work scope in the study plan
 class StudyWorkScope(models.Model):

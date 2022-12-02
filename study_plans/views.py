@@ -43,10 +43,10 @@ class CreateStudyPlan(LoginRequiredMixin, StudentMenuView, CreateView):
     form_class = NewStudyPlan
     template_name = 'study_plans/create_study_plan.html'
     login_url = '/login/'
-    success_url = reverse_lazy("student_study_plans:index")
+    # success_url = reverse_lazy("student_study_plans:index")
 
-    # def get_success_url(self):
-    #     return redirect("student_study_plans:index")
+    def get_success_url(self):
+        return reverse_lazy("student_study_plans:index")
 
     def get_context_data(self, *args,**kwargs):
         context = super(CreateStudyPlan, self).get_context_data(*args, **kwargs)
@@ -82,7 +82,7 @@ class CreateStudyPlan(LoginRequiredMixin, StudentMenuView, CreateView):
     def form_valid(self, form):
         study_plan = form.save()
         self.create_study_plan_works(study_plan)
-        return HttpResponseRedirect(self.success_url)
+        return HttpResponseRedirect(self.get_success_url())
 
 
 class AddStudyWorkScopeSubject(LoginRequiredMixin, StudentMenuView, View):
@@ -108,7 +108,7 @@ class AddStudyWorkScopeSubject(LoginRequiredMixin, StudentMenuView, View):
     # def post(self, request, *args, **kwargs):
     #     context = self.get_context_data(request)
     #     form = self.form_class(request.POST)
-    #     if form.is_valid():
+    #     if form.is_valid():e
     #         study_plan = form.save()
     #         self.create_study_plan_works(study_plan)
     #         return redirect("student_study_plans:index")
@@ -117,41 +117,38 @@ class AddStudyWorkScopeSubject(LoginRequiredMixin, StudentMenuView, View):
     #         return render(request, self.template_name, context)
 
 
-class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, View):
+class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, CreateView):
     form_class = NewStudyPlanScopeDetails
     template_name = 'study_plans/add_work_scope_details.html'
     login_url = '/login/'
 
+    def get_success_url(self):
+        work_scope = self.get_study_work_scope()
+        plan_id = work_scope.study_plan_work.study_plan_id
+        return reverse_lazy("student_study_plans:show_study_plan", kwargs={'id': plan_id})
+
     def get_study_work_scope(self):
         return get_object_or_404(StudyWorkScope, pk=self.kwargs['id'])
 
-    def get_context_data(self, request, *args,**kwargs):
-        context =  super().get_context_data(*args, **kwargs)
-        # user = request.user
-        # student = user.students.last()
-        # context['user'] = user
-        # context['student_id'] = student.id
+    def get_context_data(self, *args,**kwargs):
+        context =  super(AddStudyWorkScopeDetails, self).get_context_data(*args, **kwargs)
         return context
 
-    def get(self, request, *args, **kwargs):
+    def get_initial(self, *args, **kwargs):
+        initial = super().get_initial(**kwargs)
         work_scope = self.get_study_work_scope()
-        context = self.get_context_data(request)
+        initial['study_work_scope'] = work_scope
+        return initial
 
-        form = self.form_class(initial={'study_work_scope': work_scope.id })
-        context['form'] = form
-        return render(request, self.template_name, context)
+    def get_form_kwargs(self, *args, **kwargs):
+        kwargs = super(AddStudyWorkScopeDetails, self).get_form_kwargs(*args, **kwargs)
+        work_scope = self.get_study_work_scope()
+        kwargs['study_work_scope'] = work_scope
+        return kwargs
 
-    def post(self, request, *args, **kwargs):
-        context = self.get_context_data(request)
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            scope_details = form.save()
-            plan_id = scope_details.study_work_scope.study_plan_work.study_plan_id
-            # return reverse_lazy("student_study_plans:show_study_plan", kwargs={'id': plan_id})
-            return redirect("student_study_plans:show_study_plan", id=plan_id)
-        else:
-            context['form'] = form
-            return render(request, self.template_name, context)
+    def form_valid(self, form):
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 class DeleteStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, DeleteView):
     model = StudyWorkScopeDetails
