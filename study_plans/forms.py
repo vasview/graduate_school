@@ -75,3 +75,11 @@ class StudyPlanSubjectDetailsForm(StudyPlanScopeDetailsCommonForm):
         self.study_work_scope = kwargs.pop('study_work_scope')
         super(StudyPlanSubjectDetailsForm, self).__init__(*args, **kwargs)
         self.fields['subject'].empty_label = 'Дисциплина не выбрана' 
+
+class EditStudyPlanScopeDetailsForm(StudyPlanScopeDetailsCommonForm):
+    class Meta(StudyPlanScopeDetailsCommonForm.Meta):
+        exclude = ('subject',)
+
+class EditStudyPlanSubjectDetailsForm(StudyPlanScopeDetailsCommonForm):
+    class Meta(StudyPlanScopeDetailsCommonForm.Meta):
+        exclude = ('subtitle', 'summary', )

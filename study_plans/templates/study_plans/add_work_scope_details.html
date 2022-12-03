@@ -33,7 +33,8 @@
         <div class="row mb-3">
             <div class="form-group col-sm-3 mb-2 text-sm-start">
                 <label for="deadline" class="fs-5">{{ form.deadline.label_tag }}</label>
-                {% render_field form.deadline id="deadline" class="form-control" type="date" %}
+                <input type="date" name="deadline" value="{{ form.deadline.value|date:'Y-m-d' }}" class="form-control" >
+                <!-- {#% render_field form.deadline id="deadline" class="form-control" type="date" value="form.deadline.value|date:"Y-m-d"" %} -->
             </div>
             <div class="form-group col-sm-9 mb-2 text-sm-start">
                 <label for="reporting_form" class="fs-5">{{ form.reporting_form.label_tag }}</label>

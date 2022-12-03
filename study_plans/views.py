@@ -86,7 +86,7 @@ class CreateStudyPlan(LoginRequiredMixin, StudentMenuView, CreateView):
 
 
 class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, CreateView):
-    form_class = StudyPlanScopeDetailsForm
+    # form_class = StudyPlanScopeDetailsForm
     template_name = 'study_plans/add_work_scope_details.html'
     login_url = '/login/'
 
@@ -124,6 +124,32 @@ class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, CreateView):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(self.get_success_url())
+
+class EditStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, UpdateView):
+    model = StudyWorkScopeDetails
+    pk_url_kwarg = 'id'
+    template_name = 'study_plans/add_work_scope_details.html'
+    login_url = '/login/'
+
+    def get_success_url(self):
+        work_scope = self.get_study_work_scope()
+        plan_id = work_scope.study_plan_work.study_plan_id
+        return reverse_lazy("student_study_plans:show_study_plan", kwargs={'id': plan_id})
+
+    def get_form_class(self):
+        study_work_scope = self.get_study_work_scope()
+        if study_work_scope.work_scope.code == 'subject' or study_work_scope.work_scope.code == 'exam':
+            return EditStudyPlanSubjectDetailsForm
+        else:
+            return EditStudyPlanScopeDetailsForm
+
+    def get_study_work_scope_details(self):
+        return get_object_or_404(StudyWorkScopeDetails, pk=self.kwargs['id'])
+
+    def get_study_work_scope(self):
+        scope_details = self.get_study_work_scope_details()
+        return get_object_or_404(StudyWorkScope, pk=scope_details.study_work_scope.id)
+
 
 class DeleteStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, DeleteView):
     model = StudyWorkScopeDetails

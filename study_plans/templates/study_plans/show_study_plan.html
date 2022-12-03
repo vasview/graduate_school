@@ -56,7 +56,9 @@
                                 <div class="col-sm-2">{{ details.deadline|date:"SHORT_DATE_FORMAT" }}</div>
                                 <div class="col-sm-2">{{ details.reporting_form }}</div>
                                 <div class="col-sm-2">
-                                    <a href="#"><img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28" title="Редактировать"></a> 
+                                    <a href="{% url 'student_study_plans:edit_scope_details' id=details.id %}">
+                                        <img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28" title="Редактировать">
+                                    </a> 
                                     <a href="{% url 'student_study_plans:remove_work_scope_details' id=details.id %}">
                                         <img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28" title="Удалить">
                                     </a>
