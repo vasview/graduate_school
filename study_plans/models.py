@@ -4,10 +4,6 @@ from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.urls import reverse
 
-class ReferenceTable(models.IntegerChoices):
-    NONE = 0
-    EXAMS = 1 , 'postgraduates.exam'
-    SUBJECTS = 2 , 'faculties.subject'
 
 class StudyPlanStatus(models.IntegerChoices):
     NEW = 1, 'новый' 
@@ -122,10 +118,7 @@ class StudyWorkScopeDetails(models.Model):
     study_work_scope = models.ForeignKey(StudyWorkScope, on_delete=models.PROTECT, related_name='study_work_scope_details')
     subtitle = models.CharField(max_length=250, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
-    is_section_title = models.BooleanField(default=False)
-    reference_table = models.SmallIntegerField(choices=ReferenceTable.choices, 
-                                               default=ReferenceTable.NONE)
-    reference_key = models.IntegerField(blank=True, null=True)
+    subject = models.ForeignKey('faculties.Subject', on_delete=models.SET_NULL, blank=True, null=True, related_name='study_work_subjects')
     deadline = models.DateField(blank=True, null=True)
     reporting_form = models.CharField(max_length=250, blank=True, null=True)
     completion_mark = models.CharField(max_length=100, blank=True, null=True)
