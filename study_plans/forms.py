@@ -3,6 +3,7 @@ from django.forms.widgets import DateInput
 
 from .models import StudyPlanType, StudyPlan, StudyWorkScope, StudyWorkScopeDetails
 from postgraduates.models import Postgraduate
+from faculties.models import Subject
 
 class NewStudyPlan(forms.ModelForm):
     class Meta:
@@ -28,17 +29,14 @@ class NewStudyPlan(forms.ModelForm):
     #     study_plan.save()
     #     return study_plan
 
-class NewStudyPlanSubject(forms.Form):
-    fields = ['deadline', 'reporting_form', 'study_work_scope']
-    pass
-
-class NewStudyPlanScopeDetails(forms.ModelForm):
+class StudyPlanScopeDetailsCommonForm(forms.ModelForm):
     class Meta:
         model = StudyWorkScopeDetails
-        fields = ['study_work_scope', 'subtitle', 'summary', 'deadline', 'reporting_form']
+        fields = ['study_work_scope', 'subtitle', 'summary', 'subject', 'deadline', 'reporting_form']
 
         labels = {'subtitle': 'Заголовок:', 
                 'summary': 'Краткое содержание:', 
+                'subject': 'Дисциплина:',
                 'deadline': 'Срок выполнения:',
                 'reporting_form': 'Форма отчетности:'
         }
@@ -55,8 +53,25 @@ class NewStudyPlanScopeDetails(forms.ModelForm):
         reporting_form = forms.CharField(max_length=250, required=False,
                         widget=forms.TextInput(attrs={'class': 'form-control'})
         )
+        subject = forms.ModelChoiceField(
+            required=True,
+            queryset=Subject.objects.all(),
+            empty_label='Дисциплина не выбрана'
+        )
+
+class StudyPlanScopeDetailsForm(StudyPlanScopeDetailsCommonForm):
+    class Meta(StudyPlanScopeDetailsCommonForm.Meta):
+        exclude = ('subject',)
 
     def __init__(self, *args, **kwargs):
         self.study_work_scope = kwargs.pop('study_work_scope')
-        super(NewStudyPlanScopeDetails, self).__init__(*args, **kwargs)
+        super(StudyPlanScopeDetailsForm, self).__init__(*args, **kwargs)
 
+class StudyPlanSubjectDetailsForm(StudyPlanScopeDetailsCommonForm):
+    class Meta(StudyPlanScopeDetailsCommonForm.Meta):
+        exclude = ('subtitle', 'summary', )
+
+    def __init__(self, *args, **kwargs):
+        self.study_work_scope = kwargs.pop('study_work_scope')
+        super(StudyPlanSubjectDetailsForm, self).__init__(*args, **kwargs)
+        self.fields['subject'].empty_label = 'Дисциплина не выбрана' 

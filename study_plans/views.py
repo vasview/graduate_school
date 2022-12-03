@@ -85,40 +85,8 @@ class CreateStudyPlan(LoginRequiredMixin, StudentMenuView, CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 
-class AddStudyWorkScopeSubject(LoginRequiredMixin, StudentMenuView, View):
-    template_name = 'study_plans/add_work_scope_subject.html'
-    login_url = '/login/'
-
-    def get_context_data(self, request, *args,**kwargs):
-        context =  super().get_context_data(*args, **kwargs)
-        # user = request.user
-        # student = user.students.last()
-        # context['user'] = user
-        # context['student_id'] = student.id
-        return context
-
-    def get(self, request, *args, **kwargs):
-        # context = self.get_context_data(request)
-        # form = self.form_class(initial={'postgraduate': context['student_id']})
-        form = NewStudyPlanScopeDetails()
-        # context['form'] = form
-        context = {'form': form}
-        return render(request, self.template_name, context)
-
-    # def post(self, request, *args, **kwargs):
-    #     context = self.get_context_data(request)
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():e
-    #         study_plan = form.save()
-    #         self.create_study_plan_works(study_plan)
-    #         return redirect("student_study_plans:index")
-    #     else:
-    #         context['form'] = form
-    #         return render(request, self.template_name, context)
-
-
 class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, CreateView):
-    form_class = NewStudyPlanScopeDetails
+    form_class = StudyPlanScopeDetailsForm
     template_name = 'study_plans/add_work_scope_details.html'
     login_url = '/login/'
 
@@ -126,6 +94,13 @@ class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, CreateView):
         work_scope = self.get_study_work_scope()
         plan_id = work_scope.study_plan_work.study_plan_id
         return reverse_lazy("student_study_plans:show_study_plan", kwargs={'id': plan_id})
+
+    def get_form_class(self):
+        study_work_scope = self.get_study_work_scope()
+        if study_work_scope.work_scope.code == 'subject' or study_work_scope.work_scope.code == 'exam':
+            return StudyPlanSubjectDetailsForm
+        else:
+            return StudyPlanScopeDetailsForm
 
     def get_study_work_scope(self):
         return get_object_or_404(StudyWorkScope, pk=self.kwargs['id'])

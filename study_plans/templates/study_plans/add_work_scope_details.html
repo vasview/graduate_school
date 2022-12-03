@@ -12,14 +12,24 @@
     <form class="mb-3" action="" method="post">
         {% csrf_token %}
         {{ form.study_work_scope.as_hidden }}
-        <div class="form-group mb-2 text-sm-start">
-            <label for="subtitle" class="fs-5">{{ form.subtitle.label_tag }}</label>
-            {% render_field form.subtitle id="subtitle" class="form-control" type="text" %}
-        </div>
-        <div class="form-group mb-2 text-sm-start">
-            <label for="summary" class="fs-5">{{ form.summary.label_tag }}</label>
-            {% render_field form.summary id="summary" class="form-control" type="textarea" %}
-        </div>
+        {% if form.subject %}
+            <div class="form-group mb-3 py-2 col-sm-12">
+                <label for="subject" class="mb-2 fs-5">Выберите дисциплину:</label>
+                {% render_field form.subject id="subject" class="form-select" %}
+            </div>
+        {% endif %}
+        {% if form.subtitle %}
+            <div class="form-group mb-2 text-sm-start">
+                <label for="subtitle" class="fs-5">{{ form.subtitle.label_tag }}</label>
+                {% render_field form.subtitle id="subtitle" class="form-control" type="text" %}
+            </div>
+        {% endif %}
+        {% if form.summary %}
+            <div class="form-group mb-2 text-sm-start">
+                <label for="summary" class="fs-5">{{ form.summary.label_tag }}</label>
+                {% render_field form.summary id="summary" class="form-control" type="textarea" %}
+            </div>
+        {% endif %}
         <div class="row mb-3">
             <div class="form-group col-sm-3 mb-2 text-sm-start">
                 <label for="deadline" class="fs-5">{{ form.deadline.label_tag }}</label>
