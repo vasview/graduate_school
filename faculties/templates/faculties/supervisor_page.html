@@ -10,8 +10,8 @@
 <div class="main_block_wrapper">
     <div class="main_block_section mb-3">
         <h3 class="fs-2">Мои аспиранты</h3>
-        <form class="d-flex col-6">
-          <input class="form-control me-2" type="search" placeholder="Поиск аспиранта" aria-label="Search">
+        <form class="d-flex col-6" action="{% url 'search_supervisor_student' %}" method="get">
+          <input class="form-control me-2" type="search" placeholder="Поиск аспиранта" aria-label="Search" name="query">
           <button class="btn btn-primary btn-search" type="submit">
               <img src="{% static 'images/search_white_30.png' %}"><span>Найти<span>
           </button>
@@ -26,15 +26,17 @@
             <div class="col-sm-1 fw-bold">Действия</div>
         </div>
         <hr/>
+        {% for postgraduate in postgraduates %}
         <div class="row">
-            <div class="col-sm-1">1</div>
-            <div class="col-sm-3">Данил Андреев</div>
-            <div class="col-sm-5">Изучение влияние информация на человека</div>
-            <div class="col-sm-2">Психология</div>
+            <div class="col-sm-1">{{ postgraduate.id }}</div>
+            <div class="col-sm-3">{{ postgraduate.student.first_name }} {{ postgraduate.student.last_name }}</div>
+            <div class="col-sm-5">{{ postgraduate.topics.last.name }}</div>
+            <div class="col-sm-2">{{ postgraduate.specialty.code }} {{ postgraduate.specialty.name|truncatechars:50 }}</div>
             <div class="col-sm-1">
-                <a href="#"><img src="{% static 'images/view.png' %}" alt="edit" width="28" height="28" title="Просмотреть"></a>
+                <a href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}"><img src="{% static 'images/view.png' %}" alt="edit" width="28" height="28" title="Просмотреть"></a>
             </div>
         </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

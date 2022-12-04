@@ -3,9 +3,6 @@ from django.forms.widgets import DateInput
 
 from .models import DissertationTopic, ExplanatoryNote
 
-class StudendCardForm(forms.Form):
-    pass
-
 class EditDissertationTopic(forms.ModelForm):
     class Meta:
         model = DissertationTopic

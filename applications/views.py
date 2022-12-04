@@ -108,4 +108,3 @@ class SearchPostgraduateInApplication(View):
             return render(request, self.template_name, {'applications': applications})
         return redirect('applications')
        
-       

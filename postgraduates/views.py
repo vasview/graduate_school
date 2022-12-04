@@ -27,22 +27,17 @@ class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
         # assert False
         return render(request, self.template_name, context)
 
-class StudentCard(LoginRequiredMixin, View):
-    form_class = StudendCardForm
+class StudentCard(LoginRequiredMixin, DetailView):
+    model = Postgraduate
+    context_object_name = 'postgraduate'
     template_name = 'postgraduates/student_card.html'
+    pk_url_kwarg = 'id'
     login_url = '/login/'
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class
-        return render(request, self.template_name, {'form': form})
+    # def get(self, request, *args, **kwargs):
+    #     form = self.form_class
+    #     return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST,  request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect("home")
-        else:
-            return render(request, self.template_name, {'form': form})
 
 class EditDissertationTopic(LoginRequiredMixin, StudentMenuView, UpdateView):
     model = DissertationTopic
