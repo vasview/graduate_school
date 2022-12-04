@@ -3,6 +3,7 @@ from django.views.generic import View, ListView, DetailView, UpdateView, CreateV
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.db.models import Q
 
 from main.models import *
 from .models import *
@@ -92,4 +93,19 @@ class ChangeStatusApplication(View):
         # return redirect("applications")
         return redirect("show_application", id=application.id)
 
-    
+class SearchPostgraduateInApplication(View):
+    template_name = 'applications/index_application.html'
+    login_url = '/login/'
+
+    def get(self, request, *args, **kwargs):
+        if ('query' in request.GET) and request.GET['query'].strip():
+            query_string=request.GET['query'].strip()
+            students = User.objects.filter(
+                    Q(first_name__icontains=query_string) | Q(last_name__icontains=query_string)
+            ) 
+            # .filter(contact_type='STD')
+            applications = Application.objects.filter(user__in=students).order_by('-application_date', 'id')
+            return render(request, self.template_name, {'applications': applications})
+        return redirect('applications')
+       
+       
