@@ -48,5 +48,65 @@
             "sort": 5,
             "seen_by": 1
         }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 6,
+        "fields": {
+            "title": "Мои аспиранты",
+            "url_name": "supervisor_students",
+            "sort": 1,
+            "seen_by": 2
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 7,
+        "fields": {
+            "title": "Мой профиль",
+            "url_name": "profiles:supervisor_profile",
+            "sort": 2,
+            "seen_by": 2
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 8,
+        "fields": {
+            "title": "Выход",
+            "url_name": "logout",
+            "sort": 3,
+            "seen_by": 2
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 9,
+        "fields": {
+            "title": "Заявления",
+            "url_name": "applications",
+            "sort": 1,
+            "seen_by": 3
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 10,
+        "fields": {
+            "title": "Отчеты",
+            "url_name": "#",
+            "sort": 2,
+            "seen_by": 3
+        }
+    },
+    {
+        "model": "main.menuitems",
+        "pk": 11,
+        "fields": {
+            "title": "Выход",
+            "url_name": "logout",
+            "sort": 3,
+            "seen_by": 3
+        }
     }
 ]
