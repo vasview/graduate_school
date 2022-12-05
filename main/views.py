@@ -13,18 +13,27 @@ from main.forms import *
 from .models import MenuItems
 
 class StudentMenuView(ContextMixin):
+    """
+    Menu items for students.
+    """
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=1)
         return context
 
 class SupervisorMenuView(ContextMixin):
+    """
+    Menu items for supervisors.
+    """
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=2)
         return context
 
 class AdministrationMenuView(ContextMixin):
+    """
+    Menu items for adiministration.
+    """
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(*args, **kwargs)
         context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=3)
