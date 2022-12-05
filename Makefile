@@ -74,6 +74,7 @@ load_data:
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\education_level.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\application_params.json
 	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\menu_items.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\groups.json
 	
 clean:
 	find . -type f -name *.pyc -delete
