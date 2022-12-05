@@ -9,34 +9,34 @@ from main.models import *
 from .models import *
 from .forms import *
 from postgraduates.models import Postgraduate, DissertationTopic, ExplanatoryNote
+from main.views import AdministrationMenuView
 
-#class ListApplications(LoginRequiredMixin, ListView):
-    # model = Application
-    # context_object_name = 'applications'
-    # template_name = 'applications/index.html'
-    # login_url = '/login/'
-    # paginate_by = 10
 
-    # def get_queryset(self):
-    #     queryset = Application.objects.all
-    #     return queryset
-class ListApplications(View):
+class ListApplications(LoginRequiredMixin, AdministrationMenuView, ListView):
     model = Application
+    context_object_name = 'applications'
     template_name = 'applications/index_application.html'
     login_url = '/login/'
     # paginate_by = 10
 
-    def get(self, request, *args, **kwargs):
-        applications = self.model.objects.all().order_by('-application_date', 'id')
-        return render(request, self.template_name, {'applications': applications})
+    def get_queryset(self):
+        return self.model.objects.all().order_by('-application_date', 'id')
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    # def get(self, request, *args, **kwargs):
+    #     context = self.get_context_data()
+    #     return render(request, self.template_name, context)
 
 # class ShowApplication(LoginRequiredMixin, DetailView):
-class ShowApplication(DetailView):
+class ShowApplication(LoginRequiredMixin, AdministrationMenuView, DetailView):
     model = Application
     context_object_name = 'application'
     pk_url_kwarg = 'id'
     template_name = 'applications/show_application.html'
-#     login_url = '/login/'
+    login_url = '/login/'
 
 class NewApplication(View):
     form_class = NewApplicationForm
@@ -55,7 +55,7 @@ class NewApplication(View):
             return render(request, self.template_name, {'form': form})
 
 # class EditApplication(LoginRequiredMixin, UpdateView):
-class ChangeStatusApplication(View):
+class ChangeStatusApplication(AdministrationMenuView, View):
     # template_name = 'applications/edit_application.html'
     pk_url_kwarg = 'id'
     login_url = '/login/'
@@ -93,7 +93,7 @@ class ChangeStatusApplication(View):
         # return redirect("applications")
         return redirect("show_application", id=application.id)
 
-class SearchPostgraduateInApplication(View):
+class SearchPostgraduateInApplication(AdministrationMenuView, View):
     template_name = 'applications/index_application.html'
     login_url = '/login/'
 
