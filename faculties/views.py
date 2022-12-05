@@ -6,19 +6,28 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 
 from postgraduates.models import Postgraduate
+from main.views import SupervisorMenuView
 from .models import *
 from .forms import *
 
-class ListSupervisorStudents(ListView):
-    # form_class = SupervisorStudentsForm
+class ListSupervisorStudents(LoginRequiredMixin, SupervisorMenuView, ListView):
+    context_object_name = 'postgraduates'
     template_name = 'faculties/supervisor_page.html'
     login_url = '/login/'
 
-    def get(self, request, *args, **kwargs):
-        postgraduates = Postgraduate.objects.all()
-        return render(request, self.template_name, {'postgraduates': postgraduates})
+    def get_queryset(self):
+        ###TODO need to filter by the supervisor
+        return Postgraduate.objects.all()  
 
-class SearchSupervisorStudents(View):
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    # def get(self, request, *args, **kwargs):
+    #     context = self.get_context_data()
+    #     return render(request, self.template_name, context)
+
+class SearchSupervisorStudents(SupervisorMenuView, View):
     template_name = 'faculties/supervisor_page.html'
     login_url = '/login/'
 

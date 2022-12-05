@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 
 from .models import *
 from .forms import *
-from main.views import StudentMenuView
+from main.views import StudentMenuView, SupervisorMenuView
 
 class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
     template_name = 'postgraduates/student_workspace.html'
@@ -27,16 +27,16 @@ class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
         # assert False
         return render(request, self.template_name, context)
 
-class StudentCard(LoginRequiredMixin, DetailView):
+class StudentCard(LoginRequiredMixin, SupervisorMenuView, DetailView):
     model = Postgraduate
     context_object_name = 'postgraduate'
     template_name = 'postgraduates/student_card.html'
     pk_url_kwarg = 'id'
     login_url = '/login/'
 
-    # def get(self, request, *args, **kwargs):
-    #     form = self.form_class
-    #     return render(request, self.template_name, {'form': form})
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 
 class EditDissertationTopic(LoginRequiredMixin, StudentMenuView, UpdateView):
