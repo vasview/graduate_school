@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Application Polytech{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/student_card.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <div class="main_block_left col-sm-2 mb-3 text-left">
+        <nav class="nav flex-column mt-3">
+            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}">Карточка аспиранта</a>
+            {% if postgraduate.explanatory_notes.last %}
+            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_explanatory_note' id=postgraduate.explanatory_notes.last.id %}">Объяснительная записка</a>
+            {% endif %}
+            {% for plan in postgraduate.study_plans.all %}
+            <a class="nav-link text-primary" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="main_block_center col-sm-10 mb-3">
+        <div class="main_block_section col-sm-10 mb-3">
+            <h3 class="fs-2 col-sm-10">Карточка аспиранта</h3>
+            <div class="row col-sm-12">
+                <div class="col_title col-sm-4">Факультет</div>
+                <div class="col_value col-sm-6">{{ postgraduate.department.faculty.name }}</div>
+            </div>
+            <div class="row col-sm-12">
+                <div class="col_title col-sm-4">Кафедра</div>
+                <div class="col_value col-sm-6">{{ postgraduate.department.name }}</div>
+            </div>
+            <div class="row col-12">
+                <div class="col_title col-sm-4">Форма обучения</div>
+                <div class="col_value col-sm-6">{{ postgraduate.get_form_of_study_display }}</div>
+            </div>
+            <div class="row col-12">
+                <div class="col_title col-sm-4">Срок обучения</div>
+                <div class="col_value col-sm-6">{{ postgraduate.number_of_years }} г.</div>
+            </div>
+        </div>
+        <div class="main_block_section col-sm-10 mb-3">
+            <h3 class="fs-2">Индивидуальный учебный план работы аспиранта</h3>
+            <div class="row col-sm-12">
+                <div class="col_title col-sm-4">Фамилия, имя, отчество</div>
+                <div class="col_value col-sm-6">{{ postgraduate.student.last_name }} {{ postgraduate.student.first_name }} {{ postgraduate.student.profile.middle_name }}</div>
+            </div>
+            <div class="row col-sm-12">
+                <div class="col_title col-sm-4">Специальность</div>
+                <div class="col_value col-sm-6">{{ postgraduate.specialty.code }} {{ postgraduate.specialty.name }}</div>
+            </div>
+            <div class="row col-sm-12 mb-2">
+                <div class="col_title col-sm-4">Научный руководитель</div>
+                <div class="col_value col-sm-6">Арзыбаев А.</div>
+            </div>
+            <div class="row col-sm-12 mb-2">
+                <div class="col_title topic_title col-10 mb-2">Тема диссертации</div>
+                <div class="col_value col_value_text col-10">{{ postgraduate.topics.last.name }}</div>
+            </div>
+            <div clas="row col-sm-12">
+                <div class="col_value col-9">Утверждена на совете
+                    {{ postgraduate.topics.last.approved_by }}
+                </div>
+                <div class="col_value col-9 mb-3">дата утверждения
+                    {{ postgraduate.topics.last.approval_date|default_if_none:"_____" }} г.
+                    протокол № {{ postgraduate.topics.last.protocol_number|default_if_none:"_____" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

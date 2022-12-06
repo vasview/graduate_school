@@ -27,18 +27,6 @@ class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
         # assert False
         return render(request, self.template_name, context)
 
-class StudentCard(LoginRequiredMixin, SupervisorMenuView, DetailView):
-    model = Postgraduate
-    context_object_name = 'postgraduate'
-    template_name = 'postgraduates/student_card.html'
-    pk_url_kwarg = 'id'
-    login_url = '/login/'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-
 class EditDissertationTopic(LoginRequiredMixin, StudentMenuView, UpdateView):
     model = DissertationTopic
     form_class = EditDissertationTopic
@@ -88,3 +76,31 @@ class EditExplanatoryNote(LoginRequiredMixin, StudentMenuView, UpdateView):
     def get_success_url(self):
         # id = self.object.postgraduate.id
         return reverse_lazy('postgraduates:show_explanatory_note')
+
+class SupervisorStudentCard(LoginRequiredMixin, SupervisorMenuView, DetailView):
+    """
+    shows postgraduate card for supervisor
+    """
+    model = Postgraduate
+    context_object_name = 'postgraduate'
+    template_name = 'postgraduates/supervisor_student_card.html'
+    pk_url_kwarg = 'id'
+    login_url = '/login/'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+class SupervisorStudentExplanatoryNote(LoginRequiredMixin, SupervisorMenuView, DetailView):
+    """
+    shows postgraduate explanatory note for supervisor
+    """
+    model = ExplanatoryNote
+    context_object_name = 'expl_note'
+    template_name = 'postgraduates/supervisor_student_explanatory_note.html'
+    pk_url_kwarg = 'id'
+    login_url = '/login/'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

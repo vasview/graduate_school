@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Explanatory note{% endblock %}
+
+{% block style_head %} {% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <div class="main_block_left col-sm-2 mb-3 text-left">
+        <nav class="nav flex-column mt-3">
+            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_card' id=expl_note.postgraduate.id %}">Карточка аспиранта</a>
+            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_explanatory_note' id=expl_note.id %}">Объяснительная записка</a>
+            {% for plan in expl_note.postgraduate.study_plans.all %}
+            <a class="nav-link text-primary" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="main_block_center col-sm-10 mb-3 text-left">
+        <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
+        <p class="text-sm-center fs-5">Аспиранта: {{ expl_note.postgraduate.student.last_name }} {{ expl_note.postgraduate.student.first_name }}</p>
+        <div class="study_plan_section col-sm-12 mb-2">
+            <div class="row px-3 py-2">
+                <div class="card col-sm-12 mb-1">
+                    <div class="card-header fs-5 w-100">Актуальность темы:</div>
+                    <div class="card-body m-0 text-sm-start">
+                        <div class="col-sm-12">{{ expl_note.topicality|default_if_none:'' }}</div>
+                    </div>
+                </div>
+                <div class="card col-sm-12 mb-1">
+                    <div class="card-header fs-5 w-100">Основная цель и задачи диссертации:</div>
+                    <div class="card-body m-0 text-sm-start">
+                        <div class="col-sm-12">{{ expl_note.purpose|default_if_none:'' }}</div>
+                    </div>
+                </div>
+                <div class="card col-sm-12 mb-1">
+                    <div class="card-header fs-5 w-100">Новизна и научная значимость диссертации:</div>
+                    <div class="card-body m-0 text-sm-start">
+                        <div class="col-sm-12">{{ expl_note.scientific_value|default_if_none:'' }}</div>
+                    </div>
+                </div>
+                <div class="card col-sm-12 mb-1">
+                    <div class="card-header fs-5 w-100">Ожидаемые результаты:</div>
+                    <div class="card-body m-0 text-sm-start">
+                        <div class="col-sm-12">{{ expl_note.expected_result|default_if_none:'' }}</div>
+                    </div>
+                </div>
+                <div class="card col-sm-12 mb-1">
+                    <div class="card-header fs-5 w-100">Область применения:</div>
+                    <div class="card-body m-0 text-sm-start">
+                        <div class="col-sm-12">{{ expl_note.application_area|default_if_none:'' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="d-flex justify-content-between">
+            <a href="{#% url 'postgraduates:edit_explanatory_note' id=expl_note.id %}" class="btn btn-primary col-4">Редактировать</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
