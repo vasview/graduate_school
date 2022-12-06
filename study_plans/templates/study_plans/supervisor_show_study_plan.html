@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Study plan{% endblock %}
+
+{% block style_head %} 
+    <link rel="stylesheet" type="text/css" href="{% static 'css/study_plan.css' %}?{% now 'U' %}"/>
+{% endblock %}
+
+{% block page_content %}
+<div class="row">
+    <div class="main_block_left col-sm-2 mb-3 text-left">
+        <nav class="nav flex-column mt-3">
+            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_card' id=study_plan.postgraduate.id %}">Карточка аспиранта</a>
+            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_explanatory_note' id=study_plan.postgraduate.explanatory_notes.last.id %}">
+                Объяснительная записка
+            </a>
+            {% for plan in study_plan.postgraduate.study_plans.all %}
+            <a class="nav-link text-primary" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+    <div class="main_block_center col-sm-10 mb-3">
+        <h3 class="text-sm-center fs-4">{{ study_plan.plan_type.title }}</h3>
+        <p class="text-sm-center fs-5">Аспиранта: {{ study_plan.postgraduate.student.last_name }} {{ study_plan.postgraduate.student.first_name }}</p>
+        {% for work in study_plan.study_plan_works.all %}
+            <div class="study_plan_section col-sm-10 mb-2">
+                <div class="row px-5">
+                    <h4 class="fs-4 col-sm-8">{{ work.work_type.title }}</h4>
+                    <div class="col-sm-2 py-2">
+                        <div class="progress">
+                            <div class="progress-bar bg-success" style="width:{{ work.completion_percentage }}%" role="progressbar">{{ work.completion_percentage }}%</div>
+                            <div class="progress-bar bg-info" style="width:{{ work.left_percentage }}%" role="progressbar"></div>
+                        </div>
+                    </div>
+                </div>
+                {% for scope in work.study_work_scopes.all %}
+                    <div class="row px-3 pb-2">
+                        <div class="card col-sm-12 mb-1">							
+                            <div class="card-header fs-5 fw-bold w-100">{{ scope.work_scope.title }}:</div>
+                            {% for details in scope.study_work_scope_details.all %}
+                                <div class="card-body row">
+                                    <div class="fw-bold col-sm-6">Краткое содержание работы:</div>
+                                    <div class="fw-bold col-sm-2">срок:</div>
+                                    <div class="fw-bold col-sm-2">форма отчетности:</div>
+                                    {% if scope.work_scope.code == 'subject' or scope.work_scope.code == 'exam' %}
+                                        <div class="col-sm-6">
+                                            {{ details.subject.name }}
+                                        </div>
+                                    {% else %}
+                                        <div class="col-sm-6">
+                                            {% if details.subtitle %}
+                                                {{ details.subtitle }} <br>
+                                            {% endif %}
+                                            {{ details.summary }}
+                                        </div>
+                                    {% endif %}
+                                    <div class="col-sm-2">{{ details.deadline|date:"SHORT_DATE_FORMAT" }}</div>
+                                    <div class="col-sm-2">{{ details.reporting_form }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

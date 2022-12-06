@@ -6,7 +6,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
-from main.views import StudentMenuView
+from main.views import StudentMenuView, SupervisorMenuView
 from .forms import *
 from .models import *
 
@@ -169,3 +169,15 @@ class DeleteStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, DeleteVie
         scope_details = self.get_object()
         plan_id = scope_details.study_work_scope.study_plan_work.study_plan_id
         return reverse_lazy('student_study_plans:show_study_plan', kwargs={'id': plan_id})
+
+
+class ShowSupervisorStudentStudyPlan(LoginRequiredMixin, SupervisorMenuView, DetailView):
+    model = StudyPlan
+    template_name = 'study_plans/supervisor_show_study_plan.html'
+    pk_url_kwarg = 'id'
+    context_object_name = 'study_plan'
+    login_url = '/login/'
+
+    def get_context_data(self, *args,**kwargs):
+        context =  super().get_context_data(*args, **kwargs)
+        return context
