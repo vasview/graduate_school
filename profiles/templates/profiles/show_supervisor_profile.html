@@ -41,6 +41,18 @@
         <div class="col_title col-sm-6">Пол</div>
         <div class="col_value col-sm-6">{{ user.profile.get_gender_display }}</div>
     </div>
+    <div class="row col-sm-12 mb-1">
+        <div class="col_title col-sm-6">Кафедра</div>
+        <div class="col_value col-sm-6">{{ user.supervisor.department.name }}</div>
+    </div>
+    <div class="row col-sm-12 mb-1">
+        <div class="col_title col-sm-6">Ученое звание</div>
+        <div class="col_value col-sm-6">{{ user.supervisor.academic_title.name }}</div>
+    </div>
+    <div class="row col-sm-12 mb-1">
+        <div class="col_title col-sm-6">Ученая степень</div>
+        <div class="col_value col-sm-6">{{ user.supervisor.academic_degree.name }}</div>
+    </div>
     <!-- <div class="col-10 mb-2">
         <div class="d-flex justify-content-between">
             <a href="#" class="btn btn-primary col-4">Редактировать</a>

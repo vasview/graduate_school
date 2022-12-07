@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.db.models import Q
+from django.contrib.auth.models import Group
 
 from main.models import *
 from .models import *
@@ -76,16 +77,22 @@ class ChangeStatusApplication(AdministrationMenuView, View):
         student.save()
         return student
 
+    def activate_user(self, user):
+        pwd = ApplicationParameters.objects.get(code='new_default_pwd')
+        user.is_active = True
+        user.set_password(pwd.value)
+        user.save()
+        group = Group.objects.get(name='Students')
+        user.groups.add(group)
+        return user
+
     def post(self, request, *args, **kwargs):
         application = self.get_object()
         status = request.POST.get('status')
         application.status = int(status)
         application.save(update_fields=['status'])
         if int(status) == 5:
-            pwd = ApplicationParameters.objects.get(code='new_default_pwd')
-            application.user.is_active = True
-            application.user.set_password(pwd.value)
-            application.user.save()
+            self.activate_user(application.user)
             student = self.create_student(application)
             DissertationTopic.objects.create(postgraduate=student)
             ExplanatoryNote.objects.create(postgraduate=student)

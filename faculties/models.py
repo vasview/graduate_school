@@ -79,7 +79,7 @@ class AcademicTitle(models.Model):
         return self.name
 
 class Supervisor(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey(Department, on_delete=models.SET_NULL, blank=True, null=True)
     academic_degree = models.ForeignKey(AcademicDegree, on_delete=models.SET_NULL, blank=True, null=True)
     academic_title = models.ForeignKey(AcademicTitle, on_delete=models.SET_NULL, blank=True, null=True)
