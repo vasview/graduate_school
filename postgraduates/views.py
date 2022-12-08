@@ -12,6 +12,10 @@ class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
     template_name = 'postgraduates/student_workspace.html'
     login_url = '/login/'
 
+    def is_group_member(self, group):
+        user = self.request.user
+        return user.groups.filter(name=group).exists()
+
     def get_context_data(self, request, *args,**kwargs):
         context =  super().get_context_data(*args, **kwargs)
         user = request.user
@@ -23,6 +27,8 @@ class StudentWorkspace(LoginRequiredMixin, StudentMenuView, View):
         return context
 
     def get(self, request, *args, **kwargs):
+        if not self.is_group_member('Students'):
+            return redirect('home')
         context = self.get_context_data(request)
         # assert False
         return render(request, self.template_name, context)
