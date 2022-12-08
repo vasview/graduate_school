@@ -15,6 +15,10 @@ class ListSupervisorStudents(LoginRequiredMixin, SupervisorMenuView, ListView):
     template_name = 'faculties/supervisor_page.html'
     login_url = '/login/'
 
+    def is_group_member(self, group):
+        user = self.request.user
+        return user.groups.filter(name=group).exists()
+
     def get_queryset(self):
         ###TODO need to filter by the supervisor
         return Postgraduate.objects.all()  
@@ -23,9 +27,10 @@ class ListSupervisorStudents(LoginRequiredMixin, SupervisorMenuView, ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-    # def get(self, request, *args, **kwargs):
-    #     context = self.get_context_data()
-    #     return render(request, self.template_name, context)
+    def get(self, *args, **kwargs):
+        if not self.is_group_member('Supervisors'):
+            return redirect("home")
+        return super(ListSupervisorStudents, self).get(*args, **kwargs)
 
 class SearchSupervisorStudents(SupervisorMenuView, View):
     template_name = 'faculties/supervisor_page.html'
