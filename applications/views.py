@@ -18,7 +18,11 @@ class ListApplications(LoginRequiredMixin, AdministrationMenuView, ListView):
     context_object_name = 'applications'
     template_name = 'applications/index_application.html'
     login_url = '/login/'
-    # paginate_by = 10
+    paginate_by = 10
+
+    def is_group_member(self, group):
+        user = self.request.user
+        return user.groups.filter(name=group).exists()
 
     def get_queryset(self):
         return self.model.objects.all().order_by('-application_date', 'id')
@@ -27,9 +31,11 @@ class ListApplications(LoginRequiredMixin, AdministrationMenuView, ListView):
         context = super().get_context_data(**kwargs)
         return context
 
-    # def get(self, request, *args, **kwargs):
-    #     context = self.get_context_data()
-    #     return render(request, self.template_name, context)
+    def get(self, *args, **kwargs):
+        if not self.is_group_member('Administration'):
+            return redirect("home")
+        return super(ListApplications, self).get(*args, **kwargs)
+
 
 # class ShowApplication(LoginRequiredMixin, DetailView):
 class ShowApplication(LoginRequiredMixin, AdministrationMenuView, DetailView):
