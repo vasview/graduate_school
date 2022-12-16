@@ -6,8 +6,9 @@ from django.urls import reverse
 
 
 class StudyPlanStatus(models.IntegerChoices):
-    NEW = 1, 'новый' 
-    APPROVED = 5, 'одобрен'
+    NEW = 1, 'не проверен' 
+    REWORK = 3, 'доработка'
+    APPROVED = 5, 'утвержден'
 
 # Register for types of study plans
 class StudyPlanType(models.Model):

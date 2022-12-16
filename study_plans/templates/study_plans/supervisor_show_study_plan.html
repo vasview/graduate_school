@@ -5,33 +5,43 @@
 
 {% block style_head %} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/study_plan.css' %}?{% now 'U' %}"/>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}?{% now 'U' %}" type="text/css">
 {% endblock %}
 
 {% block page_content %}
 <div class="row">
     <div class="main_block_left col-sm-2 mb-3 text-left">
-        <nav class="nav flex-column mt-3">
-            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_card' id=study_plan.postgraduate.id %}">Карточка аспиранта</a>
-            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_explanatory_note' id=study_plan.postgraduate.explanatory_notes.last.id %}">
+        <nav class="nav nav_left_side flex-column mt-3">
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_card' id=study_plan.postgraduate.id %}">Карточка аспиранта</a>
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=study_plan.postgraduate.explanatory_notes.last.id %}">
                 Объяснительная записка
             </a>
             {% for plan in study_plan.postgraduate.study_plans.all %}
-            <a class="nav-link text-primary" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
+            <a class="nav-link nav_left_link" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
             {% endfor %}
         </nav>
     </div>
     <div class="main_block_center col-sm-10 mb-3">
+        {% csrf_token %}
         <h3 class="text-sm-center fs-4">{{ study_plan.plan_type.title }}</h3>
         <p class="text-sm-center fs-5">Аспиранта: {{ study_plan.postgraduate.student.last_name }} {{ study_plan.postgraduate.student.first_name }}</p>
         {% for work in study_plan.study_plan_works.all %}
-            <div class="study_plan_section col-sm-10 mb-2">
-                <div class="row px-5">
-                    <h4 class="fs-4 col-sm-8">{{ work.work_type.title }}</h4>
+            <div class="study_plan_section col-sm-12 mb-2">
+                <div class="row ps-5 pe-0">
+                    <h4 class="fs-4 col-sm-8 ms-0 ps-0">{{ work.work_type.title }}</h4>
                     <div class="col-sm-2 py-2">
                         <div class="progress">
-                            <div class="progress-bar bg-success" style="width:{{ work.completion_percentage }}%" role="progressbar">{{ work.completion_percentage }}%</div>
-                            <div class="progress-bar bg-info" style="width:{{ work.left_percentage }}%" role="progressbar"></div>
+                            <div class="progress-bar bg-success" id="completion_work_{{ work.id }}" style="width:{{ work.completion_percentage }}%" role="progressbar">
+                                {{ work.completion_percentage }}
+                            </div>
+                            <div class="progress-bar bg-info" id="left_work_{{ work.id }}" style="width:{{ work.left_percentage }}%" role="progressbar"></div>
                         </div>
+                    </div>
+                    <div class="col-sm-2 pt-1 m-0">
+                        <button type="button" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-work_completion="{{ work.completion_percentage }}"
+                                data-bs-target="#workEditModal" data-work_id="{{ work.id }}" data-work_title="{{ work.work_type.title}}" id="change_work_{{ work.id }}">
+                            Задать процент
+                        </button>
                     </div>
                 </div>
                 {% for scope in work.study_work_scopes.all %}
@@ -66,4 +76,31 @@
         {% endfor %}
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="workEditModal" tabindex="-1" aria-labelledby="workEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header m-0">
+                <h5 class="modal-title " id="workEditModalLabel">Задать процент выполнения работы</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-sm-center">
+                <h6 class="modal-body-title mb-3"></h6>
+                <div>
+                    <input style="accent-color: #2ecc71" type="range" id="modal_slider"/>
+                </div>
+                <div>
+                    <span>Значение: </span><span class="modal_slider_value" id="modal_slider_val"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary me-5" data-work_id="" id="model_save_btn" onclick="updateWorkPercentage()">Сохранить</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modal_close_btn">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/work_plan_modal.js' %}"></script>
 {% endblock %}

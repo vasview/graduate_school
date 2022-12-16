@@ -13,10 +13,10 @@
     {% for work in study_plan.study_plan_works.all %}
         <div class="study_plan_section col-sm-10 mb-2">
             <div class="row px-5">
-                <h4 class="fs-4 col-sm-8">{{ work.work_type.title }}</h4>
+                <h4 class="fs-4 col-sm-8 ms-0 ps-0">{{ work.work_type.title }}</h4>
                 <div class="col-sm-2 py-2">
                     <div class="progress">
-                        <div class="progress-bar bg-success" style="width:{{ work.completion_percentage }}%" role="progressbar">{{ work.completion_percentage }}%</div>
+                        <div class="progress-bar bg-success" style="width:{{ work.completion_percentage }}%" role="progressbar">{{ work.completion_percentage }}</div>
                         <div class="progress-bar bg-info" style="width:{{ work.left_percentage }}%" role="progressbar"></div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
             {% for scope in work.study_work_scopes.all %}
                 <div class="row px-3 pb-2">
                     <div class="card col-sm-12 mb-1">							
-                        <div class="card-header fs-5 fw-bold w-100">{{ scope.work_scope.title }}:
+                        <div class="card-header fs-5 fw-bolder w-100">{{ scope.work_scope.title }}:
                             {% if scope.work_scope.code == 'subject' or scope.work_scope.code == 'exam' %}
                                 <a href="{% url 'student_study_plans:new_scope_details' id=scope.id %}">
                                     <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить дисциплину">

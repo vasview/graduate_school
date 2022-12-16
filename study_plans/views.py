@@ -4,7 +4,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+import json
 
 from main.views import StudentMenuView, SupervisorMenuView
 from .forms import *
@@ -18,7 +19,7 @@ class ListStudyPlans(LoginRequiredMixin, StudentMenuView, ListView):
     login_url = '/login/'
 
     def get_context_data(self, *args,**kwargs):
-        context =  super().get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         return context
 
     def get_queryset(self):
@@ -35,7 +36,7 @@ class ShowStudyPlan(LoginRequiredMixin, StudentMenuView, DetailView):
     login_url = '/login/'
 
     def get_context_data(self, *args,**kwargs):
-        context =  super().get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         return context
 
 
@@ -106,7 +107,7 @@ class AddStudyWorkScopeDetails(LoginRequiredMixin, StudentMenuView, CreateView):
         return get_object_or_404(StudyWorkScope, pk=self.kwargs['id'])
 
     def get_context_data(self, *args,**kwargs):
-        context =  super(AddStudyWorkScopeDetails, self).get_context_data(*args, **kwargs)
+        context = super(AddStudyWorkScopeDetails, self).get_context_data(*args, **kwargs)
         return context
 
     def get_initial(self, *args, **kwargs):
@@ -181,3 +182,36 @@ class ShowSupervisorStudentStudyPlan(LoginRequiredMixin, SupervisorMenuView, Det
     def get_context_data(self, *args,**kwargs):
         context =  super().get_context_data(*args, **kwargs)
         return context
+
+class AjaxUpdateStudyPlanWorkCompletion(LoginRequiredMixin, View):
+    """
+    let supervisor to update the completion percent of a work in a study planr
+    """
+    model = StudyPlanWork
+    pk_url_kwarg = 'id'
+
+    def get_object(self):
+        return get_object_or_404(StudyPlanWork, pk=self.kwargs['id'])
+
+    def is_ajax_request(self):
+        return self.request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+    def update_work_completion_percent(self):
+        study_plan_work = self.get_object()
+        data = json.loads(self.request.body)
+        work_completion = int(data['completion'])
+        study_plan_work.completion_percentage = work_completion
+        study_plan_work.save(update_fields=['completion_percentage'])
+        return study_plan_work
+
+    def post(self, request, *args, **kwargs):
+        if self.is_ajax_request():
+            study_plan_work = self.update_work_completion_percent()
+
+            response = {
+                    'work_id': study_plan_work.id,
+                    'completion': study_plan_work.completion_percentage,
+                    'left': study_plan_work.left_percentage()
+            }
+            return JsonResponse(response)
+        return redirect('home')
