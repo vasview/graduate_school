@@ -4,18 +4,19 @@
 
 {% block style_head %} 
     <link rel="stylesheet" type="text/css" href="{% static 'css/student_card.css' %}?{% now 'U' %}"/>
+    <link rel="stylesheet" href="{% static 'css/common.css' %}?{% now 'U' %}" type="text/css">
 {% endblock %}
 
 {% block page_content %}
 <div class="row">
     <div class="main_block_left col-sm-2 mb-3 text-left">
-        <nav class="nav flex-column mt-3">
-            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}">Карточка аспиранта</a>
+        <nav class="nav nav_left_side flex-column mt-3">
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}">Карточка аспиранта</a>
             {% if postgraduate.explanatory_notes.last %}
-            <a class="nav-link text-primary" href="{% url 'postgraduates:show_student_explanatory_note' id=postgraduate.explanatory_notes.last.id %}">Объяснительная записка</a>
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=postgraduate.explanatory_notes.last.id %}">Объяснительная записка</a>
             {% endif %}
             {% for plan in postgraduate.study_plans.all %}
-            <a class="nav-link text-primary" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
+            <a class="nav-link nav_left_link" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
             {% endfor %}
         </nav>
     </div>

@@ -10,4 +10,6 @@ urlpatterns = [
     path('dissertation_topics/<int:id>/edit', EditDissertationTopic.as_view(), name='edit_dissertation_topic'),
     path('supervisor_student/<int:id>', SupervisorStudentCard.as_view(), name='show_student_card'),
     path('supervisor_student/explanatory_note/<int:id>', SupervisorStudentExplanatoryNote.as_view(), name='show_student_explanatory_note'),
+
+    path('explanatory_notes/<int:id>/approve', AjaxUApproveExplanatoryNote.as_view(), name='approve_explanatory_note'),
 ]

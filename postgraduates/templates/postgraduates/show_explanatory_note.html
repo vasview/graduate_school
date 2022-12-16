@@ -2,7 +2,9 @@
 {% load static %}
 {% block title %}Explanatory note{% endblock %}
 
-{% block style_head %} {% endblock %}
+{% block style_head %} 
+    <link rel="stylesheet" href="{% static 'css/common.css' %}?{% now 'U' %}" type="text/css">
+{% endblock %}
 
 {% block page_content %}
 <div class="main_block_section mb-3">
@@ -10,31 +12,46 @@
     <div class="study_plan_section col-sm-12 mb-2">
         <div class="row px-3 py-2">
             <div class="card col-sm-12 mb-1">
-                <div class="card-header fs-5 w-100">Актуальность темы:</div>
+                <div class="card-header w-100 d-flex">
+                    <span class="d-inline-block float-start ms-0 fs-5">Актуальность темы:</span>
+                    <span class="d-inline-block me-1 float-end {{ topic_approval_status }}">{{ expl_note.get_topic_approval_status_display }}</span>
+                </div>
                   <div class="card-body m-0 text-sm-start">
                       <div class="col-sm-12">{{ expl_note.topicality|default_if_none:'' }}</div>
                   </div>
             </div>
             <div class="card col-sm-12 mb-1">
-                <div class="card-header fs-5 w-100">Основная цель и задачи диссертации:</div>
+                <div class="card-header w-100">
+                    <span class="d-inline-block float-start ms-0 fs-5">Основная цель и задачи диссертации:</span>
+                    <span class="d-inline-block me-1 float-end {{ purpose_approval_status }}">{{ expl_note.get_purpose_approval_status_display }}</span>
+                </div>
                   <div class="card-body m-0 text-sm-start">
                       <div class="col-sm-12">{{ expl_note.purpose|default_if_none:'' }}</div>
                   </div>
             </div>
             <div class="card col-sm-12 mb-1">
-                <div class="card-header fs-5 w-100">Новизна и научная значимость диссертации:</div>
+                <div class="card-header w-100">
+                    <span class="d-inline-block float-start ms-0 fs-5">Новизна и научная значимость диссертации:</span>
+                    <span class="d-inline-block me-1 float-end {{ value_approval_status }}">{{ expl_note.get_value_approval_status_display }}</span>
+                </div>
                   <div class="card-body m-0 text-sm-start">
                       <div class="col-sm-12">{{ expl_note.scientific_value|default_if_none:'' }}</div>
                   </div>
             </div>
             <div class="card col-sm-12 mb-1">
-                <div class="card-header fs-5 w-100">Ожидаемые результаты:</div>
+                <div class="card-header w-100">
+                    <span class="d-inline-block float-start ms-0 fs-5">Ожидаемые результаты:</span>
+                    <span class="d-inline-block me-1 float-end {{ result_approval_status }}">{{ expl_note.get_result_approval_status_display }}</span>
+                </div>
                   <div class="card-body m-0 text-sm-start">
                       <div class="col-sm-12">{{ expl_note.expected_result|default_if_none:'' }}</div>
                   </div>
             </div>
             <div class="card col-sm-12 mb-1">
-                <div class="card-header fs-5 w-100">Область применения:</div>
+                <div class="card-header w-100">
+                    <span class="d-inline-block float-start ms-0 fs-5">Область применения:</span>
+                    <span class="d-inline-block me-1 float-end {{ application_approval_status }}">{{ expl_note.get_application_approval_status_display }}</span>
+                </div>
                   <div class="card-body m-0 text-sm-start">
                       <div class="col-sm-12">{{ expl_note.application_area|default_if_none:'' }}</div>
                   </div>

@@ -18,6 +18,10 @@ class ExamGrade(models.IntegerChoices):
     GOOD = 4, 'хорошо'
     EXCELLENT = 5, 'отлично'
 
+class ExplanatoryNoteSectionStatus(models.IntegerChoices):
+    NEW = 1, 'не проверено' 
+    REWORK = 3, 'доработка'
+    APPROVED = 5, 'утверждено'
 
 class Postgraduate(models.Model):
     student = models.ForeignKey(User, on_delete=models.PROTECT, related_name='students')
@@ -65,10 +69,27 @@ class ExplanatoryNote(models.Model):
     scientific_value = models.TextField(blank=True, null=True)
     expected_result = models.TextField(blank=True, null=True)
     application_area = models.TextField(blank=True, null=True)
-    is_topic_approved = models.BooleanField(default=False)
-    is_purpose_approved = models.BooleanField(default=False)
-    is_value_approved = models.BooleanField(default=False)
-    is_application_approved = models.BooleanField(default=False)
+    topic_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
+                                                default=ExplanatoryNoteSectionStatus.NEW)
+    purpose_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
+                                                default=ExplanatoryNoteSectionStatus.NEW)
+    value_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
+                                                default=ExplanatoryNoteSectionStatus.NEW)
+    result_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
+                                                default=ExplanatoryNoteSectionStatus.NEW)
+    application_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
+                                                default=ExplanatoryNoteSectionStatus.NEW)
+
+    def info_status_css(self, section_status):
+        """
+        helper method for a css class used in template depending on the approval status
+        """
+        if section_status == 1:
+            return 'status_info_primary'
+        elif section_status == 3:
+            return 'status_info_warning'
+        else:
+            return 'status_info_success'
 
     def __str__(self):
         return self.id

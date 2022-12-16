@@ -3,6 +3,8 @@ from django.views.generic import View, ListView, DetailView, UpdateView, CreateV
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
+from django.http import JsonResponse
+import json
 
 from .models import *
 from .forms import *
@@ -54,17 +56,19 @@ class ShowExplanatoryNote(LoginRequiredMixin, StudentMenuView, View):
     login_url = '/login/'
 
     def get_context_data(self, request, *args,**kwargs):
-        context =  super().get_context_data(*args, **kwargs)
+        context = super().get_context_data(*args, **kwargs)
         user = request.user
         student = user.students.last()
         expl_note = student.explanatory_notes.last()
         context['expl_note'] = expl_note
+        context['topic_approval_status'] = expl_note.info_status_css(expl_note.topic_approval_status)
+        context['purpose_approval_status'] = expl_note.info_status_css(expl_note.purpose_approval_status)
+        context['value_approval_status'] = expl_note.info_status_css(expl_note.value_approval_status)
+        context['result_approval_status'] = expl_note.info_status_css(expl_note.result_approval_status)
+        context['application_approval_status'] = expl_note.info_status_css(expl_note.application_approval_status)
         return context
 
     def get(self, request, *args, **kwargs):
-        user = request.user
-        student = user.students.last()
-        expl_note = student.explanatory_notes.last()
         context = self.get_context_data(request)
         return render(request, self.template_name, context)
 
@@ -109,4 +113,44 @@ class SupervisorStudentExplanatoryNote(LoginRequiredMixin, SupervisorMenuView, D
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['topic_approval_status_css'] = self.object.info_status_css(self.object.topic_approval_status)
+        context['purpose_approval_status_css'] = self.object.info_status_css(self.object.purpose_approval_status)
+        context['value_approval_status_css'] = self.object.info_status_css(self.object.value_approval_status)
+        context['result_approval_status_css'] = self.object.info_status_css(self.object.result_approval_status)
+        context['application_approval_status_css'] = self.object.info_status_css(self.object.application_approval_status)
         return context
+
+class AjaxUApproveExplanatoryNote(LoginRequiredMixin, View):
+    """
+    let supervisor to approve one section of an explanatory note
+    """
+    model = ExplanatoryNote
+    pk_url_kwarg = 'id'
+
+    def get_object(self):
+        return get_object_or_404(ExplanatoryNote, pk=self.kwargs['id'])
+
+    def is_ajax_request(self):
+        return self.request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+    def update_note_section_status(self, section, status):
+        expl_note = self.get_object()
+        setattr(expl_note, section, status)
+        expl_note.save()
+        return expl_note
+
+    def post(self, request, *args, **kwargs):
+        if self.is_ajax_request():
+            data = json.loads(self.request.body)
+            section = data['section']
+            status = int(data['approval_status'])
+            expl_note = self.update_note_section_status(section, status)
+            approval_status = getattr(expl_note, 'get_{}_display'.format(section))()
+            info_status_css = expl_note.info_status_css(status)
+            response = {
+                'section': section,
+                'approval_status': approval_status,
+                'info_status_css': info_status_css
+            }
+            return JsonResponse(response)
+        return redirect('home')
