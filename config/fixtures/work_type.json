@@ -44,7 +44,7 @@
         "model": "study_plans.worktype",
         "pk": 5,
         "fields": {
-            "title": "Предварительная защита научной работы на кафедре",
+            "title": "Предзащита научной работы на кафедре",
             "sort": 5,
             "is_visible": false,
             "is_genplan_visible": true
