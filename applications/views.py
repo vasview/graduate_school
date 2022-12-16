@@ -88,7 +88,7 @@ class ChangeStatusApplication(AdministrationMenuView, View):
         user.is_active = True
         user.set_password(pwd.value)
         user.save()
-        group = Group.objects.get(name='Students')
+        group, _created = Group.objects.get_or_create(name='Students')
         user.groups.add(group)
         return user
 
