@@ -1,6 +1,7 @@
 from email.policy import default
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 
 class Faculty(models.Model):
     code = models.CharField(max_length=50, blank=True, null=True)
@@ -88,6 +89,30 @@ class Supervisor(models.Model):
         verbose_name = 'Научный руководитель'
         verbose_name_plural = 'Научные руководители'
         ordering = ['id']
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.refresh_from_db()
+        group, _created = Group.objects.get_or_create(name='Supervisors')
+        self.user.groups.add(group)
+
+    def __str__(self):
+        return self.user.last_name
+
+class Manager(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=150, blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'Администрация - представитель'
+        verbose_name_plural = 'Администрация - представители'
+        ordering = ['id']
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.refresh_from_db()
+        group, _created = Group.objects.get_or_create(name='Administration')
+        self.user.groups.add(group)
 
     def __str__(self):
         return self.user.last_name
