@@ -14,4 +14,6 @@ urlpatterns = [
 
     path('supervisor_student/plans/<int:id>', ShowSupervisorStudentStudyPlan.as_view(), name='show_supervisor_student_plan'),
     path('works/<int:id>', AjaxUpdateStudyPlanWorkCompletion.as_view(), name='update_work_completion'),
+    path('<int:id>/change_status', AjaxUpdateStudyPlanStatus.as_view(), name='update_study_plan_status'),
+
 ]

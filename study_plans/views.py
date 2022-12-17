@@ -37,6 +37,8 @@ class ShowStudyPlan(LoginRequiredMixin, StudentMenuView, DetailView):
 
     def get_context_data(self, *args,**kwargs):
         context = super().get_context_data(*args, **kwargs)
+        context['info_status_css'] = self.object.get_status_css()
+        context['study_plan_status'] = self.object.status
         return context
 
 
@@ -181,11 +183,47 @@ class ShowSupervisorStudentStudyPlan(LoginRequiredMixin, SupervisorMenuView, Det
 
     def get_context_data(self, *args,**kwargs):
         context =  super().get_context_data(*args, **kwargs)
+        context['info_status_css'] = self.object.get_status_css()
         return context
+
+
+class AjaxUpdateStudyPlanStatus(LoginRequiredMixin, View):
+    """
+    let supervisor to update the status of a study plan
+    """
+    model = StudyPlan
+    pk_url_kwarg = 'id'
+
+    def get_object(self):
+        return get_object_or_404(StudyPlan, pk=self.kwargs['id'])
+    
+    def is_ajax_request(self):
+        return self.request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
+    def update_study_plan_status(self, status):
+        study_plan = self.get_object()
+        study_plan.status = status
+        study_plan.save()
+        return study_plan
+
+    def post(self, request, *args, **kwargs):
+        if self.is_ajax_request():
+            data = json.loads(self.request.body)
+            status = int(data['approval_status'])
+            study_plan = self.update_study_plan_status(status)
+            approval_status = study_plan.get_status_display()
+            plan_status_css = study_plan.get_status_css()
+            response = {
+                'approval_status': approval_status,
+                'plan_status_css': plan_status_css
+            }
+            return JsonResponse(response)
+        return redirect('home')
+
 
 class AjaxUpdateStudyPlanWorkCompletion(LoginRequiredMixin, View):
     """
-    let supervisor to update the completion percent of a work in a study planr
+    let supervisor to update the completion percent of a work in a study plan
     """
     model = StudyPlanWork
     pk_url_kwarg = 'id'
@@ -204,14 +242,19 @@ class AjaxUpdateStudyPlanWorkCompletion(LoginRequiredMixin, View):
         study_plan_work.save(update_fields=['completion_percentage'])
         return study_plan_work
 
+    def update_study_plan_completion(self, study_plan_work):
+        study_plan = study_plan_work.study_plan
+        return study_plan.recalculate_completion_percentage()
+
     def post(self, request, *args, **kwargs):
         if self.is_ajax_request():
             study_plan_work = self.update_work_completion_percent()
-
+            total_plan_completion = self.update_study_plan_completion(study_plan_work)
             response = {
                     'work_id': study_plan_work.id,
-                    'completion': study_plan_work.completion_percentage,
-                    'left': study_plan_work.left_percentage()
+                    'completion_percent': study_plan_work.completion_percentage,
+                    'left_percent': study_plan_work.left_percentage(),
+                    'total_completion': total_plan_completion
             }
             return JsonResponse(response)
         return redirect('home')

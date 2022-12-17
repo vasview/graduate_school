@@ -4,12 +4,17 @@
 {% block title %}Study plan{% endblock %}
 
 {% block style_head %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/study_plan.css' %}?{% now 'U' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}?{% now 'U' %}"/>
 {% endblock %}
 
 {% block page_content %}
 <div class="main_block_wrapper">
-    <h3 class="text-sm-center fs-3">{{ study_plan.plan_type.title }}</h3>
+    <div class="w-100 col-sm-10 d-flex">
+        <div class="d-inline-block col-sm-2 text-sm-center">
+            <span class="{{ info_status_css }} fs-5">{{ study_plan.get_status_display }}</span>
+        </div>
+        <h3 class="text-sm-start fs-3 col-sm-8 ms-1">{{ study_plan.plan_type.title }}</h3>
+    </div>
     {% for work in study_plan.study_plan_works.all %}
         <div class="study_plan_section col-sm-10 mb-2">
             <div class="row px-5">
@@ -25,14 +30,16 @@
                 <div class="row px-3 pb-2">
                     <div class="card col-sm-12 mb-1">							
                         <div class="card-header fs-5 fw-bolder w-100">{{ scope.work_scope.title }}:
-                            {% if scope.work_scope.code == 'subject' or scope.work_scope.code == 'exam' %}
-                                <a href="{% url 'student_study_plans:new_scope_details' id=scope.id %}">
-                                    <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить дисциплину">
-                                </a>
-                            {% else %}
-                                <a href="{% url 'student_study_plans:new_scope_details' id=scope.id %}">
-                                    <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить содержание">
-                                </a>
+                            {% if study_plan_status != 5 %}
+                                {% if scope.work_scope.code == 'subject' or scope.work_scope.code == 'exam' %}
+                                    <a href="{% url 'student_study_plans:new_scope_details' id=scope.id %}">
+                                        <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить дисциплину">
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'student_study_plans:new_scope_details' id=scope.id %}">
+                                        <img src="{% static 'images/add.png' %}" alt="edit" width="32" height="32" title="Добавить содержание">
+                                    </a>
+                                {% endif %}
                             {% endif %}
                         </div>
                         {% for details in scope.study_work_scope_details.all %}

@@ -78,6 +78,28 @@ class StudyPlan(models.Model):
         verbose_name_plural = 'Учебные планы - заголовки'
         ordering = ['id']
 
+    def get_status_css(self):
+        """
+        helper method for a css class used in template depending on the approval status
+        """
+        if self.status == 1:
+            return 'status_info_primary'
+        elif self.status == 3:
+            return 'status_info_warning'
+        else:
+            return 'status_info_success'
+
+    def recalculate_completion_percentage(self):
+        works = self.study_plan_works.all()
+        completion_percentage = 0
+        for work in works:
+            completion_percentage += work.completion_percentage
+
+        completion_percentage = int(round(completion_percentage / works.count()))
+        self.completion_percentage = completion_percentage
+        self.save(update_fields=['completion_percentage'])
+        return self.completion_percentage
+
     def __str__(self):
         return self.postgraduate.student.last_name + ' ' + self.plan_type.title
 
