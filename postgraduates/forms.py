@@ -25,7 +25,9 @@ class EditExplanatoryNote(forms.ModelForm):
     class Meta:
         model = ExplanatoryNote
 
-        fields = ['topicality', 'purpose', 'scientific_value', 'expected_result', 'application_area']
+        fields = ['topicality', 'purpose', 'scientific_value', 'expected_result', 'application_area',
+                'topic_approval_status', 'purpose_approval_status', 'value_approval_status',
+                'result_approval_status', 'application_approval_status']
 
         labels = {'topicality': 'Актуальность темы', 
                 'purpose': 'Основная цель и задачи диссертации:', 
@@ -33,7 +35,7 @@ class EditExplanatoryNote(forms.ModelForm):
                 'expected_result': 'Ожидаемые результаты:',
                 'application_area': 'Область применения:'
         }
-        
+
         widgets = {
             'topicality': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', 'required': "true" }),
             'purpose': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3',}),
@@ -41,3 +43,18 @@ class EditExplanatoryNote(forms.ModelForm):
             'expected_result': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', }),
             'application_area': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', }),  
         }
+
+        def clean_topic_approval_status(self):
+            return self.initial['topic_approval_status']
+
+        def clean_purpose_approval_status(self):
+            return self.initial['purpose_approval_status']
+
+        def clean_value_approval_status(self):
+            return self.initial['value_approval_status']
+
+        def clean_result_approval_status(self):
+            return self.initial['result_approval_status']
+
+        def clean_application_approval_status(self):
+            return self.initial['application_approval_status']

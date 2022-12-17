@@ -50,6 +50,9 @@ class EditDissertationTopic(LoginRequiredMixin, StudentMenuView, UpdateView):
         return reverse_lazy('postgraduates:student_workspace')
 
 class ShowExplanatoryNote(LoginRequiredMixin, StudentMenuView, View):
+    """
+    shows explanatory note for student
+    """
     model = ExplanatoryNote
     context_object_name = 'expl_note'
     template_name = 'postgraduates/show_explanatory_note.html'
