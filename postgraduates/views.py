@@ -64,11 +64,11 @@ class ShowExplanatoryNote(LoginRequiredMixin, StudentMenuView, View):
         student = user.students.last()
         expl_note = student.explanatory_notes.last()
         context['expl_note'] = expl_note
-        context['topic_approval_status'] = expl_note.info_status_css(expl_note.topic_approval_status)
-        context['purpose_approval_status'] = expl_note.info_status_css(expl_note.purpose_approval_status)
-        context['value_approval_status'] = expl_note.info_status_css(expl_note.value_approval_status)
-        context['result_approval_status'] = expl_note.info_status_css(expl_note.result_approval_status)
-        context['application_approval_status'] = expl_note.info_status_css(expl_note.application_approval_status)
+        context['topic_approval_status'] = expl_note.get_status_css(expl_note.topic_approval_status)
+        context['purpose_approval_status'] = expl_note.get_status_css(expl_note.purpose_approval_status)
+        context['value_approval_status'] = expl_note.get_status_css(expl_note.value_approval_status)
+        context['result_approval_status'] = expl_note.get_status_css(expl_note.result_approval_status)
+        context['application_approval_status'] = expl_note.get_status_css(expl_note.application_approval_status)
         return context
 
     def get(self, request, *args, **kwargs):
@@ -116,11 +116,11 @@ class SupervisorStudentExplanatoryNote(LoginRequiredMixin, SupervisorMenuView, D
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['topic_approval_status_css'] = self.object.info_status_css(self.object.topic_approval_status)
-        context['purpose_approval_status_css'] = self.object.info_status_css(self.object.purpose_approval_status)
-        context['value_approval_status_css'] = self.object.info_status_css(self.object.value_approval_status)
-        context['result_approval_status_css'] = self.object.info_status_css(self.object.result_approval_status)
-        context['application_approval_status_css'] = self.object.info_status_css(self.object.application_approval_status)
+        context['topic_approval_status_css'] = self.object.get_status_css(self.object.topic_approval_status)
+        context['purpose_approval_status_css'] = self.object.get_status_css(self.object.purpose_approval_status)
+        context['value_approval_status_css'] = self.object.get_status_css(self.object.value_approval_status)
+        context['result_approval_status_css'] = self.object.get_status_css(self.object.result_approval_status)
+        context['application_approval_status_css'] = self.object.get_status_css(self.object.application_approval_status)
         return context
 
 class AjaxUApproveExplanatoryNote(LoginRequiredMixin, View):
@@ -149,7 +149,7 @@ class AjaxUApproveExplanatoryNote(LoginRequiredMixin, View):
             status = int(data['approval_status'])
             expl_note = self.update_note_section_status(section, status)
             approval_status = getattr(expl_note, 'get_{}_display'.format(section))()
-            info_status_css = expl_note.info_status_css(status)
+            info_status_css = expl_note.get_status_css(status)
             response = {
                 'section': section,
                 'approval_status': approval_status,

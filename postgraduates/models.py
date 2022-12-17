@@ -80,7 +80,7 @@ class ExplanatoryNote(models.Model):
     application_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
                                                 default=ExplanatoryNoteSectionStatus.NEW)
 
-    def info_status_css(self, section_status):
+    def get_status_css(self, section_status):
         """
         helper method for a css class used in template depending on the approval status
         """
