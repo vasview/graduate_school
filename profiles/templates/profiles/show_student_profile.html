@@ -41,10 +41,16 @@
         <div class="col_title col-sm-6">Пол</div>
         <div class="col_value col-sm-6">{{ user.profile.get_gender_display }}</div>
     </div>
+    
     <!-- <div class="col-10 mb-2">
         <div class="d-flex justify-content-between">
             <a href="#" class="btn btn-primary col-4">Редактировать</a>
         </div>
     </div> -->
+</div>
+<div class="col-10 mb-2">
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'profiles:password_change' %}" class="btn btn-primary col-4">Сменить пароль</a>
+    </div>
 </div>
 {% endblock %}
