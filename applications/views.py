@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.contrib.auth.models import Group
+from django.contrib import messages
 
 from main.models import *
 from .models import *
@@ -57,6 +58,7 @@ class NewApplication(View):
         form = self.form_class(request.POST,  request.FILES)
         if form.is_valid():
             form.save()
+            messages.success(request, "Ваш заявление успешно подано.")
             return redirect("home")
         else:
             return render(request, self.template_name, {'form': form})
