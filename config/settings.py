@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_auto_logout.middleware.auto_logout",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -162,3 +164,11 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+# auto logout user after a specified time
+# https://pypi.org/project/django-auto-logout/
+AUTO_LOGOUT = {
+    'IDLE_TIME': timedelta(minutes=20),
+    'SESSION_TIME': timedelta(minutes=60),
+    'MESSAGE': 'Сессия истекла. Пожалуйста, снова войдите в системе для продолжения работы',
+}
