@@ -53,11 +53,11 @@
         <div class="col_title col-sm-6">Ученая степень</div>
         <div class="col_value col-sm-6">{{ user.supervisor.academic_degree.name }}</div>
     </div>
-    <!-- <div class="col-10 mb-2">
+    <div class="col-10 mb-2">
         <div class="d-flex justify-content-between">
-            <a href="#" class="btn btn-primary col-4">Редактировать</a>
+            <a href="{% url 'profiles:edit_supervisor_profile' %}" class="btn btn-primary col-4">Редактировать</a>
         </div>
-    </div> -->
+    </div>
 </div>
 <div class="col-10 mb-2">
     <div class="d-flex justify-content-between">

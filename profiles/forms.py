@@ -1,5 +1,5 @@
 from django import forms
-from django.forms.widgets import DateInput
+from django.forms.widgets import DateInput, EmailInput, NumberInput
 from django.contrib.auth.forms import SetPasswordForm
 
 from .models import *
@@ -9,11 +9,41 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
+        labels = {
+            'first_name': 'Имя:', 
+            'last_name': 'Фамилия', 
+            'email': 'Эл.почта:'
+        }
+
+        widgets = {
+            'first_name': forms.TextInput(attrs={ 'class': 'form-control', 'required': "true" }),
+            'last_name': forms.TextInput(attrs={ 'class': 'form-control', 'required': "true"  }),
+            'email': forms.EmailInput(attrs={ 'class': 'form-control',  'required': "true" })
+        }
+
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('photo', 'middle_name', 'mobile', 'personal_number', 'birth_date', 'gender')
 
+        labels = {
+            'photo': 'Фотография',
+            'middle_name': 'Отчество:', 
+            'mobile': 'Номер телефона:', 
+            'personal_number': 'ИИН:',
+            'birth_date': 'Дата рождения:',
+            'gender': 'Пол:'
+        }
+
+        widgets = {
+            'middle_name': forms.TextInput(attrs={ 'class': 'form-control' }),
+            'mobile': forms.TextInput(attrs={ 'class': 'form-control', 'required': "true"  }),
+            'email': forms.TextInput(attrs={ 'class': 'form-control', 'required': "true" }),
+            'personal_number': forms.TextInput(attrs={ 'class': 'form-control', 'required': "true" }),
+            'birth_date': NumberInput(attrs={ 'type': 'date', 'class': 'form-control' })
+        }
+
+# forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
 
 class SetPasswordForm(SetPasswordForm):
     class Meta:
