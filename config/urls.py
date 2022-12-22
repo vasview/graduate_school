@@ -6,8 +6,9 @@ from django.urls import path, include
 admin.site.site_header = 'Аспирантура КГTY'
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
     path('', include('main.urls')),
+    path("admin/", admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
     path('applications/', include('applications.urls')),
     path('faculty/', include('faculties.urls')),
     path('postgraduates/', include('postgraduates.urls', namespace='postgraduates')),
