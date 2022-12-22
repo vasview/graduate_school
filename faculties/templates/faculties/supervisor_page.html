@@ -30,7 +30,7 @@
         <div class="row">
             <div class="col-sm-1">{{ postgraduate.id }}</div>
             <div class="col-sm-3">{{ postgraduate.student.first_name }} {{ postgraduate.student.last_name }}</div>
-            <div class="col-sm-5">{{ postgraduate.topics.last.name }}</div>
+            <div class="col-sm-5">{{ postgraduate.topics.last.name|safe }}</div>
             <div class="col-sm-2">{{ postgraduate.specialty.code }} {{ postgraduate.specialty.name|truncatechars:50 }}</div>
             <div class="col-sm-1">
                 <a href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}"><img src="{% static 'images/view.png' %}" alt="edit" width="28" height="28" title="Просмотреть"></a>
