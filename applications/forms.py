@@ -1,3 +1,4 @@
+from django.forms.widgets import DateInput, EmailInput, NumberInput
 import datetime
 
 from django import forms
@@ -12,7 +13,7 @@ from profiles.models import Country, Gender, Education, Profile, ContactDetails,
 from .models import Application
 
 class NewApplicationForm(forms.Form):
-    application_date = forms.DateField(initial=datetime.date.today)
+    application_date = forms.DateField(initial=datetime.date.today, widget=NumberInput(attrs={'type': 'date'}))
     number_of_years = forms.IntegerField(max_value=4, min_value=1)
     specialty = forms.ModelChoiceField(
         required=True,
@@ -26,8 +27,7 @@ class NewApplicationForm(forms.Form):
     first_name = forms.CharField(max_length=150)
     middle_name = forms.CharField(max_length=150, required=False)
     last_name = forms.CharField(max_length=150)
-    email = forms.CharField(max_length=254)
-    birth_date = forms.DateField()
+    birth_date = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
     citizenship = forms.ModelChoiceField(
         required=True,
         queryset=Country.objects.all(),
@@ -41,13 +41,13 @@ class NewApplicationForm(forms.Form):
     document_code = forms.CharField(max_length=10)
     document_number = forms.CharField(max_length=10)
     issued_by = forms.CharField(max_length=50)
-    issue_date = forms.DateField()
+    issue_date = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
     personal_number = forms.CharField(max_length=20)
     birthdate_place = forms.CharField(max_length=100)
     mobile = forms.CharField(max_length=100)
     email = forms.CharField(max_length=100)
     diploma_number = forms.CharField(max_length=50)
-    diploma_issued = forms.DateField()
+    diploma_issued = forms.DateField(widget=NumberInput(attrs={'type': 'date'}))
     edu_organization = forms.CharField(max_length=200)
     education_level = forms.ModelChoiceField(
         required=True,
