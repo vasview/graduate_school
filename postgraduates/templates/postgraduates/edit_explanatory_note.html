@@ -3,14 +3,14 @@
 {% load widget_tweaks %} 
 {% block title %}New explanatory note{% endblock %}
 
-{% block style_head %} {% endblock %}
+{% block style_head %} {{ form.media }} {% endblock %}
 
 {% block page_content %}
 <div class="main_block_section mb-3">
     <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
     <form action="" class="col-10" method="POST">
         {% csrf_token %}
-          <!-- {{ form.errors }} -->
+          {{ form.errors }}
         <div class="form-group mb-2 text-sm-start">
             <label for="topicality" class="fs-5">{{ form.topicality.label_tag }}</label>
             {% if form.topic_approval_status.value == 5 %}
@@ -62,4 +62,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}

@@ -35,7 +35,7 @@
                         </button>
                     </div>
                     <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.topicality|default_if_none:'' }}</div>
+                        <div class="col-sm-12">{{ expl_note.topicality|safe|default_if_none:'' }}</div>
                     </div>
                 </div>
                 <div class="card col-sm-12 mb-1">
@@ -51,7 +51,7 @@
                         </button>
                     </div>
                     <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.purpose|default_if_none:'' }}</div>
+                        <div class="col-sm-12">{{ expl_note.purpose|safe|default_if_none:'' }}</div>
                     </div>
                 </div>
                 <div class="card col-sm-12 mb-1">
@@ -67,7 +67,7 @@
                         </button>
                     </div>
                     <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.scientific_value|default_if_none:'' }}</div>
+                        <div class="col-sm-12">{{ expl_note.scientific_value|safe|default_if_none:'' }}</div>
                     </div>
                 </div>
                 <div class="card col-sm-12 mb-1">
@@ -83,7 +83,7 @@
                         </button>
                     </div>
                     <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.expected_result|default_if_none:'' }}</div>
+                        <div class="col-sm-12">{{ expl_note.expected_result|safe|default_if_none:'' }}</div>
                     </div>
                 </div>
                 <div class="card col-sm-12 mb-1">
@@ -99,7 +99,7 @@
                         </button>
                     </div>
                     <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.application_area|default_if_none:'' }}</div>
+                        <div class="col-sm-12">{{ expl_note.application_area|safe|default_if_none:'' }}</div>
                     </div>
                 </div>
             </div>

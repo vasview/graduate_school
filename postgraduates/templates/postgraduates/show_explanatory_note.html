@@ -17,7 +17,7 @@
                     <span class="d-inline-block me-1 float-end {{ topic_approval_status }}">{{ expl_note.get_topic_approval_status_display }}</span>
                 </div>
                   <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.topicality|default_if_none:'' }}</div>
+                      <div class="col-sm-12">{{ expl_note.topicality|safe|default_if_none:'' }}</div>
                   </div>
             </div>
             <div class="card col-sm-12 mb-1">
@@ -53,7 +53,7 @@
                     <span class="d-inline-block me-1 float-end {{ application_approval_status }}">{{ expl_note.get_application_approval_status_display }}</span>
                 </div>
                   <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.application_area|default_if_none:'' }}</div>
+                      <div class="col-sm-12">{{ expl_note.application_area|safe|default_if_none:'' }}</div>
                   </div>
             </div>
         </div>
