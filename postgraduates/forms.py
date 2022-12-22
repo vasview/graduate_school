@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.widgets import DateInput
+from tinymce.widgets import TinyMCE
 
 from .models import DissertationTopic, ExplanatoryNote
 
@@ -9,13 +10,15 @@ class EditDissertationTopic(forms.ModelForm):
 
         fields = ['name','approved_by','approval_date','protocol_number']
 
+        # name = forms.CharField(widget=TinyMCE(attrs={'class': 'form-control', 'rows': 3}))
+
         labels = {'name': 'Тема', 
                 'approved_by': 'Кем утверждена:', 'approval_date':'Дата утверждения:', 
                 'protocol_number': 'Номер протокола:'
         }
         
         widgets = {
-            'name': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', 'required': "true" }),
+            'name': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', 'required': "true" }),
             'approved_by': forms.TextInput(attrs={ 'class': 'form-control' }),
             'protocol_number': forms.TextInput(attrs={ 'class': 'form-control' }),
             'approval_date': DateInput(attrs={ 'type': 'date', 'class': 'form-control' })
@@ -37,11 +40,11 @@ class EditExplanatoryNote(forms.ModelForm):
         }
 
         widgets = {
-            'topicality': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', 'required': "true" }),
-            'purpose': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3',}),
-            'scientific_value': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', }),
-            'expected_result': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', }),
-            'application_area': forms.Textarea(attrs={ 'class': 'form-control', 'rows':'3', }),  
+            'topicality': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', 'required': "true" }),
+            'purpose': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10',}),
+            'scientific_value': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', }),
+            'expected_result': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', }),
+            'application_area': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', }),  
         }
 
         def clean_topic_approval_status(self):

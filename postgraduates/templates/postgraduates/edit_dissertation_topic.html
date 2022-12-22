@@ -3,7 +3,8 @@
 {% block title %}Edit dissertation topic{% endblock %}
 
 {% block style_head %} 
-    <link rel="stylesheet" type="text/css" href="{% static 'css/student_card.css' %}?{% now 'U' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common.css' %}?{% now 'U' %}"/>
+    {{ form.media }}
 {% endblock %}
 
 {% block page_content %}
