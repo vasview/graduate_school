@@ -39,6 +39,17 @@ class AdministrationMenuView(ContextMixin):
         context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=3)
         return context
 
+class UserGroupBasedMenuView(ContextMixin):
+    """
+    Menu items based on user group.
+    """
+    def get_context_data(self, *args,**kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        user = self.request.user
+        group = user.groups.last()
+        context["menu"] = MenuItems.objects.filter(is_active=True, seen_by=group.id)
+        return context
+
 class HomePage(View):
     def get(self,request,*args, **kwargs):
         return render(request, 'index.html')
