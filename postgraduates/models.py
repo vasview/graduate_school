@@ -4,6 +4,8 @@ from tabnanny import verbose
 from tokenize import blank_re
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
+from django.utils.safestring import SafeString
 
 class EducationType(models.TextChoices):
     NONE = 'NA', 'Не выбрано'
@@ -48,7 +50,7 @@ class Postgraduate(models.Model):
 
 class DissertationTopic(models.Model):
     postgraduate = models.ForeignKey(Postgraduate, on_delete=models.PROTECT, related_name='topics')
-    name = models.TextField()
+    name = HTMLField()
     approved_by = models.CharField(max_length=250, blank=True, null=True)
     approval_date = models.DateField(blank=True, null=True)
     protocol_number = models.CharField(max_length=50, blank=True, null=True)
@@ -59,16 +61,16 @@ class DissertationTopic(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return self.id
+        return str(self.id) + ' ' + self.postgraduate.student.last_name
 
 
 class ExplanatoryNote(models.Model):
     postgraduate = models.ForeignKey(Postgraduate, on_delete=models.CASCADE, related_name='explanatory_notes')
-    topicality = models.TextField(blank=True, null=True)
-    purpose = models.TextField(blank=True, null=True)
-    scientific_value = models.TextField(blank=True, null=True)
-    expected_result = models.TextField(blank=True, null=True)
-    application_area = models.TextField(blank=True, null=True)
+    topicality = HTMLField(blank=True, null=True)
+    purpose = HTMLField(blank=True, null=True)
+    scientific_value = HTMLField(blank=True, null=True)
+    expected_result = HTMLField(blank=True, null=True)
+    application_area = HTMLField(blank=True, null=True)
     topic_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
                                                 default=ExplanatoryNoteSectionStatus.NEW)
     purpose_approval_status = models.IntegerField(choices=ExplanatoryNoteSectionStatus.choices, 
