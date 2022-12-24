@@ -188,9 +188,7 @@ class ShowSupervisorStudentStudyPlan(LoginRequiredMixin, SupervisorMenuView, Det
 
 
 class AjaxUpdateStudyPlanStatus(LoginRequiredMixin, View):
-    """
-    let supervisor to update the status of a study plan
-    """
+    """ let supervisor to update the status of a study plan """
     model = StudyPlan
     pk_url_kwarg = 'id'
 

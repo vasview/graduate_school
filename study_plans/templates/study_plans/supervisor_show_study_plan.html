@@ -13,7 +13,7 @@
     <div class="main_block_left col-sm-2 mb-3 text-left">
         <nav class="nav nav_left_side flex-column mt-3">
             <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_card' id=study_plan.postgraduate.id %}">Карточка аспиранта</a>
-            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=study_plan.postgraduate.explanatory_notes.last.id %}">
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=study_plan.postgraduate.id %}">
                 Объяснительная записка
             </a>
             {% for plan in study_plan.postgraduate.study_plans.all %}
