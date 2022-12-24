@@ -97,7 +97,10 @@ class Supervisor(models.Model):
         self.user.groups.add(group)
 
     def __str__(self):
-        return self.user.last_name
+        if self.user.last_name:
+            return self.user.last_name
+        else:
+            return self.user.username
 
 class Manager(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -115,4 +118,4 @@ class Manager(models.Model):
         self.user.groups.add(group)
 
     def __str__(self):
-        return self.user.last_name
+        return str(self.id) + ' ' + self.user.last_name
