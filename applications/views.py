@@ -10,7 +10,7 @@ from django.contrib import messages
 from main.models import *
 from .models import *
 from .forms import *
-from postgraduates.models import Postgraduate, DissertationTopic, ExplanatoryNote
+from postgraduates.models import Postgraduate, DissertationTopic, ExplanatoryNoteSectionType, ExplanatoryNoteSection
 from main.views import AdministrationMenuView
 
 
@@ -94,6 +94,16 @@ class ChangeStatusApplication(AdministrationMenuView, View):
         user.groups.add(group)
         return user
 
+    def create_explanatory_note(serlf, student):
+        expl_section_types = ExplanatoryNoteSectionType.objects.filter(active=True)
+        for section in expl_section_types:
+            ExplanatoryNoteSection.objects.create(
+                postgraduate=student,
+                title =section.name,
+                sort = section.sort
+            )
+        return student.expl_note_sections
+
     def post(self, request, *args, **kwargs):
         application = self.get_object()
         status = request.POST.get('status')
@@ -103,8 +113,8 @@ class ChangeStatusApplication(AdministrationMenuView, View):
             self.activate_user(application.user)
             student = self.create_student(application)
             DissertationTopic.objects.create(postgraduate=student)
-            ExplanatoryNote.objects.create(postgraduate=student)
-        
+            self.create_explanatory_note(student)
+
         # return redirect("applications")
         return redirect("show_application", id=application.id)
 
