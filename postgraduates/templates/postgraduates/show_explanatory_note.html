@@ -7,61 +7,37 @@
 {% endblock %}
 
 {% block page_content %}
-<div class="main_block_section mb-3">
+<div class="main_block_section mb-3 p-2">
     <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
-    <div class="study_plan_section col-sm-12 mb-2">
-        <div class="row px-3 py-2">
-            <div class="card col-sm-12 mb-1">
-                <div class="card-header w-100 d-flex">
-                    <span class="d-inline-block float-start ms-0 fs-5">Актуальность темы:</span>
-                    <span class="d-inline-block me-1 float-end {{ topic_approval_status }}">{{ expl_note.get_topic_approval_status_display }}</span>
+    {% for section in expl_note_sections %}
+        <div class="note_section col-sm-12 mb-2">
+            <div class="row px-3 py-2">
+                <div class="card col-sm-12 mb-1">
+                    <div class="card-header row">
+                        <span class="col-sm-9 fs-5 text-sm-start">{{ section.sort }}.{{ section.title }}</span>
+                        <span class="status_info col-sm-2 {{ section.get_status_css }}">{{ section.get_approval_status_display }}</span>
+                        <div class="col-sm-1">
+                            {% if section.approval_status != 5 %}
+                            <a href="{% url 'postgraduates:edit_explanatory_note' id=section.id %}">
+                                <img src="{% static 'images/pencil.png' %}" alt="edit" width="28" height="28" title="Редактировать">
+                            </a> 
+                            <a href="{% url 'postgraduates:delete_explanatory_note' id=section.id %}">
+                                <img src="{% static 'images/delete.png' %}" alt="edit" width="28" height="28" title="Удалить">
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card-body m-0 text-sm-start">
+                        <div class="col-sm-12">{{ section.content|default_if_none:''|safe }}</div>
+                    </div>
                 </div>
-                  <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.topicality|safe|default_if_none:'' }}</div>
-                  </div>
-            </div>
-            <div class="card col-sm-12 mb-1">
-                <div class="card-header w-100">
-                    <span class="d-inline-block float-start ms-0 fs-5">Основная цель и задачи диссертации:</span>
-                    <span class="d-inline-block me-1 float-end {{ purpose_approval_status }}">{{ expl_note.get_purpose_approval_status_display }}</span>
-                </div>
-                  <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.purpose|default_if_none:'' }}</div>
-                  </div>
-            </div>
-            <div class="card col-sm-12 mb-1">
-                <div class="card-header w-100">
-                    <span class="d-inline-block float-start ms-0 fs-5">Новизна и научная значимость диссертации:</span>
-                    <span class="d-inline-block me-1 float-end {{ value_approval_status }}">{{ expl_note.get_value_approval_status_display }}</span>
-                </div>
-                  <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.scientific_value|default_if_none:'' }}</div>
-                  </div>
-            </div>
-            <div class="card col-sm-12 mb-1">
-                <div class="card-header w-100">
-                    <span class="d-inline-block float-start ms-0 fs-5">Ожидаемые результаты:</span>
-                    <span class="d-inline-block me-1 float-end {{ result_approval_status }}">{{ expl_note.get_result_approval_status_display }}</span>
-                </div>
-                  <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.expected_result|default_if_none:'' }}</div>
-                  </div>
-            </div>
-            <div class="card col-sm-12 mb-1">
-                <div class="card-header w-100">
-                    <span class="d-inline-block float-start ms-0 fs-5">Область применения:</span>
-                    <span class="d-inline-block me-1 float-end {{ application_approval_status }}">{{ expl_note.get_application_approval_status_display }}</span>
-                </div>
-                  <div class="card-body m-0 text-sm-start">
-                      <div class="col-sm-12">{{ expl_note.application_area|safe|default_if_none:'' }}</div>
-                  </div>
             </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
 <div class="col-10">
     <div class="d-flex justify-content-between">
-          <a href="{% url 'postgraduates:edit_explanatory_note' id=expl_note.id %}" class="btn btn-primary col-4">Редактировать</a>
+          <a href="{% url 'postgraduates:create_explanatory_note' %}" class="btn btn-primary col-4">Добавить раздел</a>
     </div>
 </div>
 </div>

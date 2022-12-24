@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Postgraduate)
 admin.site.register(DissertationTopic)
+admin.site.register(ExplanatoryNoteSectionType)

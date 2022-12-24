@@ -12,8 +12,8 @@
     <div class="main_block_left col-sm-2 mb-3 text-left">
         <nav class="nav nav_left_side flex-column mt-3">
             <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}">Карточка аспиранта</a>
-            {% if postgraduate.explanatory_notes.last %}
-            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=postgraduate.explanatory_notes.last.id %}">Объяснительная записка</a>
+            {% if postgraduate.expl_note_sections %}
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=postgraduate.id %}">Объяснительная записка</a>
             {% endif %}
             {% for plan in postgraduate.study_plans.all %}
             <a class="nav-link nav_left_link" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>

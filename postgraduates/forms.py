@@ -2,9 +2,9 @@ from django import forms
 from django.forms.widgets import DateInput
 from tinymce.widgets import TinyMCE
 
-from .models import DissertationTopic, ExplanatoryNote
+from .models import DissertationTopic, ExplanatoryNoteSection
 
-class EditDissertationTopic(forms.ModelForm):
+class EditDissertationTopicForm(forms.ModelForm):
     class Meta:
         model = DissertationTopic
 
@@ -18,46 +18,33 @@ class EditDissertationTopic(forms.ModelForm):
         }
         
         widgets = {
-            'name': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', 'required': "true" }),
-            'approved_by': forms.TextInput(attrs={ 'class': 'form-control' }),
-            'protocol_number': forms.TextInput(attrs={ 'class': 'form-control' }),
+            'name': TinyMCE(attrs={ 'class': 'form-control', 'rows':'15' }),
+            'approved_by': forms.TextInput(attrs={ 'class': 'form-control'  }),
+            'protocol_number': forms.TextInput(attrs={ 'class': 'form-control'  }),
             'approval_date': DateInput(attrs={ 'type': 'date', 'class': 'form-control' })
         }
 
-class EditExplanatoryNote(forms.ModelForm):
+class ExplanatorySectionForm(forms.ModelForm):
     class Meta:
-        model = ExplanatoryNote
+        model = ExplanatoryNoteSection
 
-        fields = ['topicality', 'purpose', 'scientific_value', 'expected_result', 'application_area',
-                'topic_approval_status', 'purpose_approval_status', 'value_approval_status',
-                'result_approval_status', 'application_approval_status']
+        fields = ['postgraduate', 'title', 'content', 'sort', 'is_custom']
 
-        labels = {'topicality': 'Актуальность темы', 
-                'purpose': 'Основная цель и задачи диссертации:', 
-                'scientific_value':'Новизна и научная значимость диссертации:', 
-                'expected_result': 'Ожидаемые результаты:',
-                'application_area': 'Область применения:'
+        labels = {'title': 'Заголовок раздела:', 
+                'content': 'Содержание:', 
+                'sort':'Положение в документе:'
         }
 
         widgets = {
-            'topicality': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', 'required': "true" }),
-            'purpose': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10',}),
-            'scientific_value': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', }),
-            'expected_result': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', }),
-            'application_area': TinyMCE(attrs={ 'class': 'form-control', 'rows':'10', }),  
+            'title': forms.TextInput(attrs={ 'class': 'form-control', 'required': "true" }),
+            'content': TinyMCE(attrs={ 'class': 'form-control', 'rows':'15' }),
+            'sort': forms.NumberInput(attrs={ 'class': 'form-control', 'type': 'number', 'min':'1', 'max':'20', 'required': "true" })
         }
 
-        def clean_topic_approval_status(self):
-            return self.initial['topic_approval_status']
+class NewExplanatorySectionForm(ExplanatorySectionForm):
+    class Meta(ExplanatorySectionForm.Meta):
+        exclude = ('postgraduate', 'is_custom',)
 
-        def clean_purpose_approval_status(self):
-            return self.initial['purpose_approval_status']
-
-        def clean_value_approval_status(self):
-            return self.initial['value_approval_status']
-
-        def clean_result_approval_status(self):
-            return self.initial['result_approval_status']
-
-        def clean_application_approval_status(self):
-            return self.initial['application_approval_status']
+class EditExplanatorySectionForm(ExplanatorySectionForm):
+    class Meta(ExplanatorySectionForm.Meta):
+        exclude = ('postgraduate',)

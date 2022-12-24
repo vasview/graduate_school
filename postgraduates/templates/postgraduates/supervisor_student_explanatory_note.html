@@ -10,98 +10,37 @@
 <div class="row">
     <div class="main_block_left col-sm-2 mb-3 text-left">
         <nav class="nav nav_left_side flex-column mt-3">
-            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_card' id=expl_note.postgraduate.id %}">Карточка аспиранта</a>
-            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=expl_note.id %}">Объяснительная записка</a>
-            {% for plan in expl_note.postgraduate.study_plans.all %}
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_card' id=postgraduate.id %}">Карточка аспиранта</a>
+            <a class="nav-link nav_left_link" href="{% url 'postgraduates:show_student_explanatory_note' id=postgraduate.id %}">Объяснительная записка</a>
+            {% for plan in postgraduate.study_plans.all %}
             <a class="nav-link nav_left_link" href="{% url 'student_study_plans:show_supervisor_student_plan' id=plan.id %}">{{ plan.plan_type.title }}</a>
             {% endfor %}
         </nav>
     </div>
     <div class="main_block_center col-sm-10 mb-3 text-left">
         <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
-        <p class="text-sm-center fs-5">Аспиранта: {{ expl_note.postgraduate.student.last_name }} {{ expl_note.postgraduate.student.first_name }}</p>
+        <p class="text-sm-center fs-5">Аспиранта: {{ postgraduate.student.last_name }} {{ postgraduate.student.first_name }}</p>
+       
         <div class="study_plan_section col-sm-12 mb-2">
             <div class="row px-3 py-2">
+                {% for section in expl_note_sections %}
                 <div class="card col-sm-12 mb-1">
                     <div class="card-header w-100 d-flex">
-                        <span class="d-inline-block float-start ms-0 fs-5">Актуальность темы:</span>
-                        <span class="d-inline-block me-1 float-end {{ topic_approval_status_css }}" id="topic_approval_status">
-                            {{ expl_note.get_topic_approval_status_display }}
+                        <span class="d-inline-block float-start ms-0 fs-5">{{ section.sort }}.{{ section.title }}</span>
+                        <span class="d-inline-block me-1 float-end {{ section.get_status_css }}" id="section_status_{{ section.id }}">
+                            {{ section.get_approval_status_display }}
                         </span>
                         <button type="button" class="btn_note_edit btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#noteEditModal"
-                            data-approval_status="{{ expl_note.topic_approval_status }}" data-section_title="Актуальность темы" id="change_topic_status"
-                            data-section_name="topic_approval_status">
+                            data-approval_status="{{ section.approval_status }}" data-section_title="{{ section.title }}" id="change_section_status_{{ section.id }}"
+                            data-section_name="section_status_{{ section.id }}" data-section_id="{{ section.id }}">
                             Утвердить
                         </button>
                     </div>
                     <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.topicality|safe|default_if_none:'' }}</div>
+                        <div class="col-sm-12">{{ section.content|safe|default_if_none:'' }}</div>
                     </div>
                 </div>
-                <div class="card col-sm-12 mb-1">
-                    <div class="card-header w-100 d-flex">
-                        <span class="d-inline-block float-start ms-0 fs-5">Основная цель и задачи диссертации:</span>
-                        <span class="d-inline-block me-1 float-end {{ purpose_approval_status_css }}" id="purpose_approval_status">
-                            {{ expl_note.get_purpose_approval_status_display }}
-                        </span>
-                        <button type="button" class="btn_note_edit btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#noteEditModal"
-                            data-approval_status="{{ expl_note.purpose_approval_status }}" data-section_title="Основная цель и задачи диссертации" id="change_purpose_status"
-                            data-section_name="purpose_approval_status">
-                            Утвердить
-                        </button>
-                    </div>
-                    <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.purpose|safe|default_if_none:'' }}</div>
-                    </div>
-                </div>
-                <div class="card col-sm-12 mb-1">
-                    <div class="card-header w-100 d-flex">
-                        <span class="d-inline-block float-start ms-0 fs-5">Новизна и научная значимость диссертации:</span>
-                        <span class="d-inline-block me-1 float-end {{ value_approval_status_css }}" id="value_approval_status">
-                            {{ expl_note.get_value_approval_status_display }}
-                        </span>
-                        <button type="button" class="btn_note_edit btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#noteEditModal"
-                            data-approval_status="{{ expl_note.value_approval_status }}" data-section_title="Новизна и научная значимость диссертации" id="change_value_status"
-                            data-section_name="value_approval_status">
-                            Утвердить
-                        </button>
-                    </div>
-                    <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.scientific_value|safe|default_if_none:'' }}</div>
-                    </div>
-                </div>
-                <div class="card col-sm-12 mb-1">
-                    <div class="card-header w-100 d-flex">
-                        <span class="d-inline-block float-start ms-0 fs-5">Ожидаемые результаты:</span>
-                            <span class="d-inline-block me-1 float-end {{ result_approval_status_css }}" id="result_approval_status">
-                                {{ expl_note.get_result_approval_status_display }}
-                            </span>
-                        <button type="button" class="btn_note_edit btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#noteEditModal"
-                            data-approval_status="{{ expl_note.result_approval_status }}" data-section_title="Ожидаемые результаты" id="change_result_status"
-                            data-section_name="result_approval_status">
-                            Утвердить
-                        </button>
-                    </div>
-                    <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.expected_result|safe|default_if_none:'' }}</div>
-                    </div>
-                </div>
-                <div class="card col-sm-12 mb-1">
-                    <div class="card-header w-100 d-flex">
-                        <span class="d-inline-block float-start ms-0 fs-5">Область применения:</span>
-                        <span class="d-inline-block me-1 float-end {{ application_approval_status_css }}" id="application_approval_status">
-                            {{ expl_note.get_application_approval_status_display }}
-                        </span>                       
-                        <button type="button" class="btn_note_edit btn btn-outline-success btn-sm float-end" data-bs-toggle="modal" data-bs-target="#noteEditModal"
-                            data-approval_status="{{ expl_note.application_approval_status }}" data-section_title="Область применения" id="change_application_status"
-                            data-section_name="application_approval_status">
-                            Утвердить
-                        </button>
-                    </div>
-                    <div class="card-body m-0 text-sm-start">
-                        <div class="col-sm-12">{{ expl_note.application_area|safe|default_if_none:'' }}</div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -133,7 +72,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary me-5" data-section_name="" data-url="{% url 'postgraduates:approve_explanatory_note' id=expl_note.id %}" 
+                <button type="button" class="btn btn-primary me-5" data-section_name="" data-section_url="" 
                     id="model_save_btn" onclick="updateNoteStatus()">
                     Сохранить
                 </button>

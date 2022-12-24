@@ -1,61 +1,30 @@
 {% extends "base.html" %}
 {% load static %}
-{% load widget_tweaks %} 
-{% block title %}New explanatory note{% endblock %}
+{% block title %}Edit explanatory note{% endblock %}
 
 {% block style_head %} {{ form.media }} {% endblock %}
 
 {% block page_content %}
 <div class="main_block_section mb-3">
-    <h3 class="text-sm-center fs-4">Объяснительная записка к выбору темы научной работы</h3>
-    <form action="" class="col-10" method="POST">
+    <h3 class="text-sm-center fs-4">Редактировать раздел объяснительной записка</h3>
+    <form class="col-10" method="POST">
         {% csrf_token %}
           {{ form.errors }}
         <div class="form-group mb-2 text-sm-start">
-            <label for="topicality" class="fs-5">{{ form.topicality.label_tag }}</label>
-            {% if form.topic_approval_status.value == 5 %}
-                {{ form.topicality|attr:'disabled' }}
-            {% else %}
-                {{ form.topicality }}
-            {% endif %}
-            {{ form.topic_approval_status.as_hidden }}
+            <label for="title" class="fs-5">{{ form.title.label_tag }}</label>
+                {{ form.title }}
         </div>
         <div class="form-group mb-2 text-sm-start">
-            <label for="purpose" class="fs-5">{{ form.purpose.label_tag }}</label>
-            {% if form.purpose_approval_status.value == 5 %}
-                {{ form.purpose|attr:'disabled' }}
-            {% else %}
-                {{ form.purpose }}
-            {% endif %}
-            {{ form.purpose_approval_status.as_hidden }}
+            <label for="content" class="fs-5">{{ form.content.label_tag }}</label>
+                {{ form.content }}
         </div>
-        <div class="form-group mb-2 text-sm-start">
-            <label for="scientific_value" class="fs-5">{{ form.scientific_value.label_tag }}</label>
-            {% if form.value_approval_status.value == 5 %}
-                {{ form.scientific_value|attr:'disabled' }}
-            {% else %}
-                {{ form.scientific_value }}
-            {% endif %}
-            {{ form.value_approval_status.as_hidden }}
+        <div class="form-group mb-3 text-sm-start">
+            <label for="sort" class="fs-5">{{ form.sort.label_tag }}</label>
+            <div class="w-25 ms-0">
+                {{ form.sort }}
+            </div>
         </div>
-        <div class="form-group mb-2 text-sm-start">
-            <label for="expected_result" class="fs-5">{{ form.expected_result.label_tag }}</label>
-            {% if form.result_approval_status.value == 5 %}
-                {{ form.expected_result|attr:'disabled' }}
-            {% else %}
-                {{ form.expected_result }}
-            {% endif %}
-            {{ form.result_approval_status.as_hidden }}
-        </div>
-        <div class="form-group mb-2 text-sm-start">
-            <label for="application_area" class="fs-5">{{ form.application_area.label_tag }}</label>
-            {% if form.application_approval_status.value == 5 %}
-                {{ form.application_area|attr:'disabled' }}
-            {% else %}
-                {{ form.application_area }}
-            {% endif %}
-            {{ form.application_approval_status.as_hidden }}
-        </div>
+        {{ form.is_custom.as_hidden }}
         <div class="d-flex justify-content-between">
               <button class="btn btn-primary col-sm-4" type="submit">Сохранить</button>
               <a href="{{ view.get_success_url }}" class="btn btn-secondary col-sm-4 me-0" role="button">Отменить</a>
