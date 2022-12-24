@@ -29,8 +29,8 @@ class MenuItems(models.Model):
     class Meta:
         verbose_name = 'Пункт меню'
         verbose_name_plural = 'Пункты меню'
-        ordering = ['sort']
+        ordering = ['seen_by', 'sort']
 
     def __str__(self):
-        return self.title
+        return self.get_seen_by_display().upper() + ' : ' + self.title
 
