@@ -4,9 +4,12 @@ noteEditModal.addEventListener('show.bs.modal', function (event) {
     var button = event.relatedTarget
     var section_title = button.getAttribute('data-section_title')
     var section_name = button.getAttribute('data-section_name')
+    var section_id = button.getAttribute('data-section_id')
     var modalBodyTitle = noteEditModal.querySelector('.modal-body-title')
     var model_save_btn = document.getElementById('model_save_btn')
+
     model_save_btn.dataset.section_name = section_name
+    model_save_btn.dataset.section_url = '/postgraduates/explanatory_notes/' + section_id + '/approve'
     modalBodyTitle.textContent = section_title
 })
 
@@ -14,13 +17,11 @@ noteEditModal.addEventListener('show.bs.modal', function (event) {
 function updateNoteStatus() {
   const csfr = document.querySelector('[name=csrfmiddlewaretoken]').value
   let save_button = document.getElementById('model_save_btn')
-  let section_name = save_button.getAttribute('data-section_name')
-  let url = save_button.getAttribute('data-url')
+  let url = save_button.getAttribute('data-section_url')
   let approval_status = document.querySelector('input[name="approval_status"]:checked').value
 
   let body = JSON.stringify({
-    approval_status: approval_status,
-    section: section_name
+    approval_status: approval_status
   })
 
   let headers = {
@@ -42,7 +43,7 @@ function updateNoteStatus() {
           }
       })
       .then(data => {
-          let section = document.getElementById(data['section'])
+          let section = document.getElementById('section_status_' + data['section_id'])
           const statusStyles = ['status_info_primary', 'status_info_warning', 'status_info_success']
           let currentStyleClass = statusStyles.some(removeSectionApprovalStyle)
           
