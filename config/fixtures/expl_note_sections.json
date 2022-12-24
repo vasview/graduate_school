@@ -1,0 +1,47 @@
+[
+    {
+        "model": "postgraduates.explanatorynotesectiontype",
+        "pk": 1,
+        "fields": {
+            "name": "Актуальность темы",
+            "sort": 1,
+            "active": 1
+        }
+    },
+    {
+        "model": "postgraduates.explanatorynotesectiontype",
+        "pk": 2,
+        "fields": {
+            "name": "Основная цель и задачи диссертации",
+            "sort": 2,
+            "active": 1
+        }
+    },
+    {
+        "model": "postgraduates.explanatorynotesectiontype",
+        "pk": 3,
+        "fields": {
+            "name": "Новизна и научная значимость диссертации",
+            "sort": 3,
+            "active": 1
+        }
+    },
+    {
+        "model": "postgraduates.explanatorynotesectiontype",
+        "pk": 4,
+        "fields": {
+            "name": "Ожидаемые результаты",
+            "sort": 4,
+            "active": 1
+        }
+    },
+    {
+        "model": "postgraduates.explanatorynotesectiontype",
+        "pk": 5,
+        "fields": {
+            "name": "Область применения",
+            "sort": 5,
+            "active": 1
+        }
+    }
+]
