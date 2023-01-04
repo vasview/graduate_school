@@ -33,4 +33,4 @@ class Application(models.Model):
         ordering = ['application_date', 'id']
 
     def __str__(self):
-        return self.id
+        return str(self.id)
