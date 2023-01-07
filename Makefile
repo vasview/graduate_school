@@ -1,24 +1,26 @@
 .PHONY: run setup activate
 
-VENV = venv
-PYTHON = ${VENV}\Scripts\python
-PIP = ${VENV}\Scripts\pip
-MANAGE = .\manage.py
+# VENV = venv
+# PYTHON = ${VENV}\Scripts\python
+# PIP = ${VENV}\Scripts\pip
+PYTHON=python
+PIP = pip
+MANAGE = ./manage.py
 APP_PROFILE = profiles
 APP_FACULTY = faculties
 APP_POSTGRADUATE = postgraduates
 APP_STUDY_PLAN = study_plans
 APP_APPLICATION = applications
 APP_MAIN = main
-FIXTURE = .\config\fixtures
+FIXTURE = ./config/fixtures
 
-${VENV}\Scripts\activate: requirements.txt
-	python -m venv venv
-	${VENV}\Scripts\pip install -r requirements.txt
+# ${VENV}\Scripts\activate: requirements.txt
+# 	python -m venv venv
+# 	${VENV}\Scripts\pip install -r requirements.txt
 
-setup: requirements.txt
-	python -m venv ${VENV}
-	${PIP} install -r requirements.txt
+# setup: requirements.txt
+# 	python -m venv ${VENV}
+# 	${PIP} install -r requirements.txt
 
 run:
 	${PYTHON} ${MANAGE} runserver
@@ -61,21 +63,22 @@ static:
 	${PYTHON} ${MANAGE} collectstatic
 
 load_data:
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\subject.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\specialty.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\faculty.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\department.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_degree.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\academic_title.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\study_plan_type.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_type.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\work_scope_type.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\country.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\education_level.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\application_params.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\menu_items.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\groups.json
-	${PYTHON} ${MANAGE} loaddata ${FIXTURE}\expl_note_sections.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/subject.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/specialty.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/faculty.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/department.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/academic_degree.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/academic_title.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/study_plan_type.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/work_type.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/work_scope_type.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/country.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/education_level.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/application_params.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/menu_items.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/groups.json
+	${PYTHON} ${MANAGE} loaddata ${FIXTURE}/expl_note_sections.json
+
 	
 clean:
 	find . -type f -name *.pyc -delete
