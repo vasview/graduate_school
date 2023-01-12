@@ -32,27 +32,13 @@ services:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     volumes:
-      - ./docker/nginx/prod:/etc/nginx/conf.d
       - static_volume:/app/static
-      - media_volume:/app/media
-      - ./docker/nginx/certbot/conf:/etc/letsencrypt
-      - ./docker/nginx/certbot/www:/var/www/certbot
     ports:
       - "80:80"
-      - "443:443"
     networks:
       - my-network
     depends_on:
       - app
-
-  certbot:
-    image: certbot/certbot
-    restart: unless-stopped
-    volumes:
-      - ./docker/nginx/certbot/conf:/etc/letsencrypt
-      - ./docker/nginx/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-
 
 volumes:
   postgres_data:
