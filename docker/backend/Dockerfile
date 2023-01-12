@@ -7,12 +7,12 @@ RUN apt-get update && apt-get install make
 
 WORKDIR /app
 
-COPY ./requirements.txt /app/
+COPY ./requirements.txt .
 
 RUN pip install --upgrade pip
 
 RUN pip install -r /app/requirements.txt
 
-COPY . /app/
+COPY . .
 
 EXPOSE 8000

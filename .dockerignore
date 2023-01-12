@@ -80,3 +80,6 @@ bin/*.pid
 ignore
 
 .commit_hash
+
+# Ignore docker configuration
+docker
