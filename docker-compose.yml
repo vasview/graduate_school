@@ -7,8 +7,10 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     networks:
       - my-network
+    ports:
+      - "5432:5432"
     env_file:
-      - .env
+      - ./src/.env
 
   app:
     restart: unless-stopped
@@ -24,7 +26,7 @@ services:
     depends_on:
       - db
     env_file:
-      - .env
+      - ./src/.env
 
   nginx:
     restart: unless-stopped
@@ -32,27 +34,13 @@ services:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
     volumes:
-      - ./docker/nginx/prod:/etc/nginx/conf.d
       - static_volume:/app/static
-      - media_volume:/app/media
-      - ./docker/nginx/certbot/conf:/etc/letsencrypt
-      - ./docker/nginx/certbot/www:/var/www/certbot
     ports:
       - "80:80"
-      - "443:443"
     networks:
       - my-network
     depends_on:
       - app
-
-  certbot:
-    image: certbot/certbot
-    restart: unless-stopped
-    volumes:
-      - ./docker/nginx/certbot/conf:/etc/letsencrypt
-      - ./docker/nginx/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-
 
 volumes:
   postgres_data:

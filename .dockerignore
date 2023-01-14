@@ -63,6 +63,7 @@ venv
 .testing-venv
 .trading_service-venv
 *venv*
+./src/venv
 
 # PyCharm's .idea directory
 .idea

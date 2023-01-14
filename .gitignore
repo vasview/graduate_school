@@ -1,3 +1,10 @@
+# ignore prod config for nginx and all prod config
+docker/nginx/prod/
+docker-compose.prod.yml
+init-letencrypt.sh
+docker/nginx/Dockerfile.prod
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

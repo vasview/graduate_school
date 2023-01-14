@@ -7,12 +7,14 @@ RUN apt-get update && apt-get install make
 
 WORKDIR /app
 
-COPY ./requirements.txt .
+COPY ./src/requirements.txt .
 
 RUN pip install --upgrade pip
 
 RUN pip install -r /app/requirements.txt
 
-COPY . .
+COPY ./docker/backend/entrypoint.sh /app/docker/backend/
+
+COPY ./src /app
 
 EXPOSE 8000
