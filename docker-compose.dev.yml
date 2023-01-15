@@ -35,6 +35,7 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     volumes:
       - static_volume:/app/static
+      - media_volume:/app/media
     ports:
       - "80:80"
     networks:
