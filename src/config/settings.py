@@ -30,8 +30,12 @@ DEBUG = str(os.environ.get('DEBUG')) == '1'
 
 ALLOWED_HOSTS = ['127.0.0.1']
 if not DEBUG:
-    ALLOWED_HOSTS += os.environ.get('ALLOWED_HOSTS').split(',')
+    ALLOWED_HOSTS += os.environ.get('ALLOWED_HOSTS').split(' ')
 
+
+#CSRF_TRUSTED_ORIGINS = []
+
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS').split(' ')
 
 # Application definition
 
