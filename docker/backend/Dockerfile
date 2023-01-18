@@ -1,11 +1,11 @@
 FROM python:3.10-slim
 
-RUN addgroup -S $APP_USER && adduser -S $APP_USER -G $APP_USER
-
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1  
 
 RUN apt-get update && apt-get install make
+
+RUN useradd -d /app -r app
 
 WORKDIR /app
 
