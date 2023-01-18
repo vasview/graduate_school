@@ -1,13 +1,15 @@
 FROM python:3.10-slim
 
-RUN addgroup -S $APP_USER && adduser -S $APP_USER -G $APP_USER
-
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1  
 
 RUN apt-get update && apt-get install make
 
 WORKDIR /app
+
+ENV APP_USER pgUser
+
+RUN addgroup -S $APP_USER && adduser -S $APP_USER -G $APP_USER
 
 COPY ./src/requirements.txt .
 
